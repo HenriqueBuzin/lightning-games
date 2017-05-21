@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+	font-family: 'Squealer';
+	src: url('assets/fonts/squealer/squealer.eot'); /* IE9 Compat Modes */
+	src: url('assets/fonts/squealer/squealer.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	  url('assets/fonts/squealer/squealer.otf') format('opentype'), /* Legacy iOS */
+	  url('assets/fonts/squealer/squealer.svg#Squealer') format('svg'), /* Legacy iOS */
+	  url('assets/fonts/squealer/squealer.ttf')  format('truetype'), /* Safari, Android, iOS */
+	  url('assets/fonts/squealer/squealer.woff') format('woff');
+}
