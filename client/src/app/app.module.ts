@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { PopupModule } from 'ng2-opd-popup';
-
 import { AppComponent } from './app.component';
 
 import { FooterComponent } from './footer/footer.component';
@@ -28,8 +26,7 @@ import 'rxjs/add/operator/map';
     FormsModule,
     HttpModule,
     routing,
-    HttpModule,
-    PopupModule.forRoot()
+    HttpModule
   ],
   bootstrap: [AppComponent]
 })
