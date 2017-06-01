@@ -1,16 +1,34 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <td>Editar</td>
-      <th>Excluir</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{name}}</td>
-      <td>Editar</td>
-      <td>X</td>
-    </tr>
-  </tbody>
-</table>
+<div class="col-md-12">
+    <div class="row bar">
+        <div class="col-md-12">
+            <form>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <a [routerLink]="['/cadastrar', 'plataformas']" class="btn btn-primary">
+                            Nova Plataforma
+                        </a>
+                    </span>
+                    <input #SearchedText (keyup)="0" class="form-control" placeholder="Procurar plataforma">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nome</td>
+                    <td><i class="fa fa-pencil icon" aria-hidden="true" (click)="staticModal.show()"></i></td>
+                    <td><i class="fa fa-times icon" aria-hidden="true" (click)="staticModal.show()"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

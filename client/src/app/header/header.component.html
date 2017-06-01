@@ -1,7 +1,28 @@
 <div class="jumbotron">
-  <h1 class="text-center squealer">Lightning Games</h1>      
-  <p class="text-center">A sua loja de jogos desde o seu primeiro dia</p>
+    <p class="text-center title"><a [routerLink]="['/inicio']">Lightning Games</a></p>
+    <p class="text-center">A sua loja de jogos desde o seu primeiro dia</p>
 </div>
-<a [routerLink]="['/plataformas']">Listagem - Plataformas</a>
-<br>
-<a [routerLink]="['/games']">Listagem - Games</a>
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link" [routerLink]="['/inicio']">Início <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link" [routerLink]="['/listar', 'plataformas']">Plataformas</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                <a class="nav-link" [routerLink]="['/listar', 'fabricantes']">Fabricantes</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                <a class="nav-link" [routerLink]="['/listar', 'usuarios']">Usuários</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                <a class="nav-link" [routerLink]="['/listar', 'jogos']">Jogos</a>
+            </li>
+        </ul>
+    </div>
+</nav>

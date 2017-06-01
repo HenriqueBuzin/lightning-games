@@ -33,7 +33,7 @@ namespace Psr\Http\Message;
  * Additionally, this interface recognizes the utility of introspecting a
  * request to derive and match additional parameters (e.g., via URI path
  * matching, decrypting cookie values, deserializing non-form-encoded body
- * content, matching authorization headers to users, etc). These parameters
+ * content, matching authorization headers to user, etc). These parameters
  * are stored in an "attributes" property.
  *
  * Requests are considered immutable; all methods that might change state MUST
