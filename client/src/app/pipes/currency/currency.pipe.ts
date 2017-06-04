@@ -9,7 +9,14 @@ export class GamesListingPipe implements PipeTransform {
 
         if(value == null) return "";
 
-        value = currencySignal + value.replace(DividerOfThousands, DecimalDivider);
+        let teste;
+
+        value.forEach(function (value) {
+
+            teste = currencySignal + value.replace(DividerOfThousands, DecimalDivider);
+
+        });
+
 
         return value;
 

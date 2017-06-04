@@ -29,11 +29,11 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let game of games | searchGame:SearchedText.value">
+              <tr *ngFor="let game of games">
                   <td>{{game.name}}</td>
                   <td>{{game.category}}</td>
-                  <td>{{game.platform | separator}}</td>
-                  <td>{{game.price | currency}}</td>
+                  <td>{{game.platforms | separator}}</td>
+                  <td>{{game.price}}</td>
                   <td>{{game.quantity}}</td>
                   <td>{{game.production ? 'Sim' : 'Não'}}</td>
                   <td>{{game.description}}</td>

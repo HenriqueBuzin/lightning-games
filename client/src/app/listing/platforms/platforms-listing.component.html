@@ -18,13 +18,15 @@
             <thead>
                 <tr>
                     <th>Nome</th>
+                    <th>Image</th>
                     <th>Editar</th>
                     <th>Excluir</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Nome</td>
+                <tr *ngFor="let platform of platforms">
+                    <td>{{platform.name}}</td>
+                    <td><img src="{{platform.image}}" width="500" height="500" /></td>
                     <td><i class="fa fa-pencil icon" aria-hidden="true" (click)="staticModal.show()"></i></td>
                     <td><i class="fa fa-times icon" aria-hidden="true" (click)="staticModal.show()"></i></td>
                 </tr>

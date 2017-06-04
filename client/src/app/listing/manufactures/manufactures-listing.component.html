@@ -24,9 +24,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Nome</td>
-                <td>Imagem</td>
+            <tr *ngFor="let manufacture of manufactures">
+                <td>{{manufacture.name}}</td>
+                <td>{{manufacture.image}}</td>
                 <td><i class="fa fa-pencil icon" aria-hidden="true" (click)="staticModal.show()"></i></td>
                 <td><i class="fa fa-times icon" aria-hidden="true" (click)="delete(9)"></i></td>
             </tr>

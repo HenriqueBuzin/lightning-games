@@ -15,25 +15,23 @@ export class GamesListingComponent{
 
     delete(id:number){
 
-
-        console.log(id);
+        this.http.delete('http://localhost:80/lightning/server/index.php/test', JSON.stringify(id))
+        .map(res => res).subscribe(games => console.log(games));
 
     }
 
     edit(form){
 
-        this.http.post('', JSON.stringify(form.value))
-            .map(res => res.json)
-            .subscribe(games => console.log(games));
+        this.http.post('http://localhost:80/lightning/server/index.php/test', JSON.stringify(form.value))
+        .map(res => res).subscribe(games => console.log(games));
 
     }
 
+    */
 
-*/
+    constructor(private http: Http){
 
-    constructor(http: Http){
-
-        http.get('http://localhost:80/lightning/server/index.php/game')
+        http.get('http://localhost:8080/lightning/api/game')
         .map(res => res.json()).subscribe(games => {
 
             this.games = games;

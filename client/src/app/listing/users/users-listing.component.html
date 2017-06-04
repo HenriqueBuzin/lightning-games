@@ -27,12 +27,12 @@
             </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Nome</td>
-                    <td>E-mail</td>
-                    <td>Senha</td>
-                    <td>Data de Registro</td>
-                    <td>Imagem</td>
+                <tr *ngFor="let user of users | searchGame ">
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.registrationDate | date: 'dd/MM/yyyy'}}</td>
+                    <td><img src="{{user.image}}" width="200" height="200" /></td>
                     <td><i class="fa fa-pencil icon" aria-hidden="true" (click)="staticModal.show()"></i></td>
                     <td><i class="fa fa-times icon" aria-hidden="true" (click)="staticModal.show()"></i></td>
                 </tr>

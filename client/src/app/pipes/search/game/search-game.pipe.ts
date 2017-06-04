@@ -5,28 +5,41 @@ import { Pipe , PipeTransform } from '@angular/core';
 })
 export class SearchGamePipe implements PipeTransform{
 
-    transform(game, typed: String){
+    transform(game, typed: String): any{
 
         typed = typed.toLowerCase();
 
-        return game.filter( game =>
 
-            (game.name.toLowerCase().includes(typed)) ||
+        for (let i = 0; i < game.length; i++) {
 
-            (game.category.toLowerCase().includes(typed)) ||
 
-            (game.platforms[1].toLowerCase().includes(typed)) ||
 
-            (game.price.toLowerCase().includes(typed)) ||
 
-            (game.quantity.toLowerCase().includes(typed)) ||
 
-            (game.production.toLowerCase().includes(typed)) ||
+        }
 
-            (game.description.toLowerCase().includes(typed))
 
-        );
 
     }
 
 }
+/*
+ return game.filter( game =>
+
+ (game.name.toLowerCase().includes(typed)) ||
+
+ (game.category.toLowerCase().includes(typed)) ||
+
+ // (game.platforms.toLowerCase().includes(typed)) ||
+
+ (game.price.toLowerCase().includes(typed)) ||
+
+ (game.quantity.toLowerCase().includes(typed)) ||
+
+ (game.production.toLowerCase().includes(typed)) ||
+
+ (game.description.toLowerCase().includes(typed))
+
+ );
+
+ */

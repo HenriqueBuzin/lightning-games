@@ -12,9 +12,9 @@ export class GamesRegisterComponent {
 
     platforms: Object[] = [];
 
-    constructor(http: Http){
+    constructor(private http: Http){
 
-        http.get('http://localhost:80/lightning/server/index.php/platforms')
+        http.get('http://localhost:8080/lightning/api/platform')
             .map(res => res.json()).subscribe(platforms => {
 
             this.platforms = platforms;
@@ -22,6 +22,13 @@ export class GamesRegisterComponent {
             console.log(this.platforms);
 
         }), erro => console.log(erro);
+
+    }
+
+    onSubmit(form){
+
+        console.log(form);
+
 
     }
 
