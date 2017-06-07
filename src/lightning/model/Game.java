@@ -72,14 +72,20 @@ public class Game implements Serializable {
         this.id = id;
     }
 
-    public Game(Integer id, String name, String category, double price, int quantity, boolean production) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-        this.price = price;
-        this.quantity = quantity;
-        this.production = production;
-    }
+	public Game(Integer id, String name, String category, double price, int quantity, boolean production) {
+		this.id = id;
+		this.name = name;
+		this.category = category;
+		this.price = price;
+		this.quantity = quantity;
+		this.production = production;
+	}
+    
+    public String getImageFullPath() {
+    	if (image == null) return "";
+		
+		return "http://localhost:8080/lightning/images/" + image;
+	}
 
     public Integer getId() {
         return id;

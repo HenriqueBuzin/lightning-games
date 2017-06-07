@@ -54,6 +54,12 @@ public class Manufacture implements Serializable {
 		this.id = id;
 		this.name = name;
 	}
+	
+	public String getImageFullPath() {
+		if (image == null) return "";
+
+		return "http://localhost:8080/lightning/images/" + image;
+	}
 
 	public Integer getId() {
 		return id;

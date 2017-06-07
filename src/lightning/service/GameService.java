@@ -19,6 +19,7 @@ public class GameService extends GenericService<Game> {
 		TypedQuery<Game> query = em.createQuery(
 			"SELECT g FROM Game g "
 		 + "left join fetch g.gameHasPlatformList p "
+		 + "left join fetch g.manufacture "
 		 + "left join fetch p.platform "
 		 + "order by g.name", Game.class);
 		

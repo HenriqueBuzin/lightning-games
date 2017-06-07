@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "user")
 @XmlRootElement
-@NamedQueries({
+@NamedQueries({ 
 	@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u order by u.name"),
 	@NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
 	@NamedQuery(name = "User.findByNameAndPassword", query = "SELECT u FROM User u WHERE u.name = :name and u.password = :password") 
@@ -28,17 +28,56 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 8297302394387326448L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private Integer id;
+
+	@Column(name = "name", nullable = false, length = 255)
+	private String name;
+
+	@Column(name = "email", nullable = false, length = 255)
+	private String email;
+
+	@Column(name = "password", nullable = false, length = 255)
+	private String password;
+
+	@Column(name = "registration_date", nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date registrationDate;
+
+	@Column(name = "image", length = 255)
+	private String image;
+
+	public User() {
+	}
+
+	public User(Integer id) {
+		this.id = id;
+	}
+
+	public User(Integer id, String name, String email, String password, Date registrationDate) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.registrationDate = registrationDate;
+	}
 	
-    @Column(name = "name", nullable = false, length = 255)
-    private String name;
-    
-    @Column(name = "email", nullable = false, length = 255)
-    private String email;
-    
-    public String getEmail() {
+	public String getImageFullPath() {
+		if (image == null) return "";
+
+		return "http://localhost:8080/lightning/images/" + image;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getEmail() {
 		return email;
 	}
 
@@ -46,70 +85,37 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	@Column(name = "password", nullable = false, length = 255)
-    private String password;
-    
-    @Column(name = "registration_date", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date registrationDate;
-    
-    @Column(name = "image", length = 255)
-    private String image;
+	public String getName() {
+		return name;
+	}
 
-    public User() {
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public User(Integer id) {
-        this.id = id;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public User(Integer id, String name, String email, String password, Date registrationDate) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.registrationDate = registrationDate;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Date getRegistrationDate() {
+		return registrationDate;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getImage() {
+		return image;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	@Override
 	public int hashCode() {
@@ -134,5 +140,5 @@ public class User implements Serializable {
 	public String toString() {
 		return "User { 'id' : " + id + " }";
 	}
-    
+
 }
