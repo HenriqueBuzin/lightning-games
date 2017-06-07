@@ -1,0 +1,46 @@
+<div class="col-md-12">
+    <div class="row bar">
+        <div class="col-md-12">
+            <form>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <a [routerLink]="['/cadastrar', 'jogos']" class="btn btn-primary">
+                            Novo Jogo
+                        </a>
+                    </span>
+                    <input #SearchedText (keyup)="0" class="form-control" placeholder="Procurar jogo">
+                </div>
+            </form>
+        </div>
+  </div>
+  <div class="row">
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th>Nome</th>
+                  <th>Categoria</th>
+                  <th>Plataformas</th>
+                  <th>Preço</th>
+                  <th>Quantidade</th>
+                  <th>Em Produção</th>
+                  <th>Descrição</th>
+                  <th>Editar</th>
+                  <th>Excluir</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let game of games">
+                  <td>{{game.name}}</td>
+                  <td>{{game.category}}</td>
+                  <td>{{game.platforms | separator}}</td>
+                  <td>{{game.price}}</td>
+                  <td>{{game.quantity}}</td>
+                  <td>{{game.production ? 'Sim' : 'Não'}}</td>
+                  <td>{{game.description}}</td>
+                  <td><i class="fa fa-pencil icon" aria-hidden="true" (click)="edit(game)"></i></td>
+                  <td><i class="fa fa-times icon" aria-hidden="true" (click)="delete(game.id)"></i></td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

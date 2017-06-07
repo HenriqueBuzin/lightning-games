@@ -1,0 +1,23 @@
+.jumbotron {
+    margin-bottom: 0;
+}
+.jumbotron > .title > a {
+    font-size: 36px;
+    font-family: 'Squealer';
+    color: #292b2c;
+    text-decoration: none;
+}
+.jumbotron > p:not(.title) {
+    font-size: 24px;
+}
+.navbar {
+    margin-bottom: 2rem;
+}
+@media(max-width: 991px) {
+    .navbar {
+        padding: 30px;
+    }
+    .navbar-toggler {
+        margin-top: -20px;
+    }
+}

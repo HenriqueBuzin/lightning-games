@@ -1,0 +1,36 @@
+<div class="col-md-12">
+    <div class="row bar">
+        <div class="col-md-12">
+            <form>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <a [routerLink]="['/cadastrar', 'fabricantes']" class="btn btn-primary">
+                            Nova Fabricante
+                        </a>
+                    </span>
+                    <input #SearchedText (keyup)="0" class="form-control" placeholder="Procurar fabricante">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Imagem</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let manufacture of manufactures">
+                <td>{{manufacture.name}}</td>
+                <td><img src="{{manufacture.image}}" width="150" height="150" /></td>
+                <td><i class="fa fa-pencil icon" aria-hidden="true" (click)="staticModal.show()"></i></td>
+                <td><i class="fa fa-times icon" aria-hidden="true" (click)="delete(9)"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
