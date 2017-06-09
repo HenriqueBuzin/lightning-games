@@ -9,9 +9,13 @@ import { SeparatorPipe } from './separator.pipe';
 export class SeparatorModule{
 
     static forRoot() {
+
         return {
+
             ngModule: SeparatorModule
+
         };
+
     }
 
 }

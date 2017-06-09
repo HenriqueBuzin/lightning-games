@@ -11,17 +11,21 @@ import { GamesRegisterComponent } from './register/games/games-register.componen
 import { ManufacturesRegisterComponent } from './register/manufactures/manufactures-register.component';
 import { PlatformsRegisterComponent } from './register/platforms/platforms-register.component';
 import { UsersRegisterComponent } from './register/users/users-register.component';
+// Edit
+import { GameEditComponent } from './edit/game/game-edit.component';
+import { ManufactureEditComponent } from './edit/manufacture/manufacture-edit.component';
+import { PlatformEditComponent } from './edit/platform/platform-edit.component';
+import { UserEditComponent } from './edit/user/user-edit.component';
 
 const appRoutes: Routes = [
 
-    { path: '', component: GamesListingComponent },
+    { path: '', component: HomeComponent },
 
     { path: 'inicio', component: HomeComponent },
 
     { path: 'listar',
         children: [
             { path: '', component: HomeComponent },
-
             { path: 'jogos', component: GamesListingComponent },
             { path: 'fabricantes', component: ManufacturesListingComponent },
             { path: 'plataformas', component: PlatformsListingComponent },
@@ -41,7 +45,18 @@ const appRoutes: Routes = [
         ]
     },
 
-    { path: '**', component: GamesListingComponent }
+    { path: 'editar',
+        children: [
+            { path: '', component: HomeComponent },
+            { path: 'jogos/:id', component: GameEditComponent },
+            { path: 'fabricantes/:id', component: ManufactureEditComponent },
+            { path: 'plataformas/:id', component: PlatformEditComponent },
+            { path: 'usuarios/:id', component: UserEditComponent },
+            { path: '**', component: HomeComponent }
+        ]
+    },
+
+    { path: '**', component: HomeComponent }
 
 ];
 

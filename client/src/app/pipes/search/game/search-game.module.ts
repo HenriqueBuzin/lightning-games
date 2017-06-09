@@ -9,9 +9,13 @@ import { SearchGamePipe } from './search-game.pipe';
 export class SearchGameModule {
 
     static forRoot() {
+
         return {
+
             ngModule: SearchGameModule
+
         };
+
     }
 
 }

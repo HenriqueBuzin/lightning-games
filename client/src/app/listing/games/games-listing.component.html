@@ -17,6 +17,7 @@
       <table class="table table-striped">
           <thead>
               <tr>
+                  <th>Capa</th>
                   <th>Nome</th>
                   <th>Categoria</th>
                   <th>Plataformas</th>
@@ -30,6 +31,7 @@
           </thead>
           <tbody>
               <tr *ngFor="let game of games">
+                  <td><img src="{{game.imageFullPath}}" width="150" height="150" /></td>
                   <td>{{game.name}}</td>
                   <td>{{game.category}}</td>
                   <td>{{game.platforms | separator}}</td>

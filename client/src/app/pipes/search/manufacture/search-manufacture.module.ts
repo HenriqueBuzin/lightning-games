@@ -9,9 +9,13 @@ import { SearchManufacturePipe } from './search-manufacture.pipe';
 export class SearchManufactureModule {
 
     static forRoot() {
+
         return {
+
             ngModule: SearchManufactureModule
+
         };
+
     }
 
 }

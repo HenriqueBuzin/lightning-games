@@ -15,18 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter("/api/*")
 public class CORSFilter implements Filter {
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-
-	}
-
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 
 		HttpServletResponse resp = (HttpServletResponse) servletResponse;
 		resp.addHeader("Access-Control-Allow-Origin", "*");
-		resp.addHeader("Access-Control-Allow-Methods", "GET,POST");
+		resp.addHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
 		resp.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
 		// Just ACCEPT and REPLY OK if OPTIONS
@@ -38,8 +33,11 @@ public class CORSFilter implements Filter {
 	}
 
 	@Override
-	public void destroy() {
+	public void destroy() {		
+	}
 
+	@Override
+	public void init(FilterConfig arg0) throws ServletException {		
 	}
 
 }

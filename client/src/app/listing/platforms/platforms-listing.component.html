@@ -26,9 +26,9 @@
             <tbody>
                 <tr *ngFor="let platform of platforms">
                     <td>{{platform.name}}</td>
-                    <td><img src="{{platform.image}}" width="150" height="150" /></td>
-                    <td><i class="fa fa-pencil icon" aria-hidden="true" (click)="staticModal.show()"></i></td>
-                    <td><i class="fa fa-times icon" aria-hidden="true" (click)="staticModal.show()"></i></td>
+                    <td><img src="{{platform.imageFullPath}}" width="150" height="150" /></td>
+                    <td><i class="fa fa-pencil icon" aria-hidden="true" (click)="edit(platform.id)"></i></td>
+                    <td><i class="fa fa-times icon" aria-hidden="true" (click)="delete(platform.id)"></i></td>
                 </tr>
             </tbody>
         </table>

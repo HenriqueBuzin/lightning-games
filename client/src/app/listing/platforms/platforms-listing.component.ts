@@ -11,6 +11,30 @@ export class PlatformsListingComponent{
 
     platforms: Object[] = [];
 
+    delete(id){
+
+        this.http.delete('http://localhost:8080/lightning/api/platform', JSON.stringify(id))
+            .map(res => res).subscribe(games => console.log(games));
+
+    }
+
+    edit(id){
+
+        /*
+
+        form
+
+        this.http.post('http://localhost:8080/lightning/api/platform', JSON.stringify(form.value))
+            .map(res => res).subscribe(games => console.log(games));
+
+         */
+
+        alert(id);
+
+
+
+    }
+
     constructor(private http: Http){
 
         http.get('http://localhost:8080/lightning/api/platform')

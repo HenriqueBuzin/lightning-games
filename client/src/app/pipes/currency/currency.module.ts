@@ -9,9 +9,13 @@ import { GamesListingPipe } from './currency.pipe';
 export class CurrencyModule {
 
     static forRoot() {
+
         return {
+
             ngModule: CurrencyModule
+
         };
+
     }
 
 }

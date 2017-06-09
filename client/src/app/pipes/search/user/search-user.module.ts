@@ -9,9 +9,13 @@ import { SearchUserPipe } from './search-user.pipe';
 export class SearchUserModule {
 
     static forRoot() {
+
         return {
+
             ngModule: SearchUserModule
+
         };
+
     }
 
 }

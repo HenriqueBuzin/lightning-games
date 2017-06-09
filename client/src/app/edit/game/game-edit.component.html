@@ -1,0 +1,25 @@
+<div class="container">
+<form  enctype="multipart/form-data" class="row" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="col-md-8 offset-md-2">
+
+    <label for="name">Nome</label>
+    <input type="text" id="name" name="name" class="form-control" autocomplete="off" #name="ngModel" [(ngModel)]="game.name">
+    <label for="category">Categoria</label>
+    <input type="text" id="category" name="category" class="form-control" autocomplete="off" #category="ngModel" [(ngModel)]="game.category">
+
+    <label for="quantity">Quantidade</label>
+    <input type="number" id="quantity" name="quantity" class="form-control" autocomplete="off" #quantity="ngModel" [(ngModel)]="game.quantity">
+    <label for="price">Preço:</label>
+    <input type="number" id="price" name="price" class="form-control" autocomplete="off" #price="ngModel" [(ngModel)]="game.price">
+
+
+
+
+
+    <div class="form-group">
+        <label for="description">Descrição</label>
+        <textarea id="description" class="form-control" name="description" autocomplete="off" #description="ngModel" [(ngModel)]="game.description"></textarea>
+    </div>
+    </div>
+</form>
+</div>

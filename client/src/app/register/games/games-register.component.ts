@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 
-
 @Component({
     moduleId: module.id,
     selector: 'app-games-register',
@@ -29,6 +28,24 @@ export class GamesRegisterComponent {
 
         console.log(form);
 
+
+    }
+
+    verificaValidTouched(campo){
+
+        return !campo.valid && campo.touched;
+
+    }
+
+    aplicaCssErro(campo){
+
+        return {
+
+            'has-error' : this.verificaValidTouched(campo) ,
+
+            'has-feedback' : this.verificaValidTouched(campo)
+
+        }
 
     }
 
