@@ -37,7 +37,7 @@ public class GameRest {
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Integer id) {
-        service.remove(service.find(id));
+        service.remove(id);
     }
 
     @GET

@@ -6,6 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import lightning.model.Game;
 
@@ -24,6 +25,16 @@ public class GameService extends GenericService<Game> {
 		 + "order by g.name", Game.class);
 		
 		return query.getResultList();
+	}
+	
+	@Transactional
+	public void remove(Integer id) {
+		try {
+			Game game = find(id);
+			em.remove(game);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
