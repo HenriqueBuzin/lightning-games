@@ -1,0 +1,20 @@
+<div class="container">
+    <form  enctype="multipart/form-data" class="row" #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="col-md-8 offset-md-2">
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" id="name" name="name" class="form-control" autocomplete="off" #name="ngModel" [(ngModel)]="platform.name" required>
+                <app-form-control [mostrarErro]="verificaValidTouched(name)" msgErro="O campo nome deve ser preenchido."></app-form-control>
+            </div>
+            <div class="form-group">
+                <label for="image">Imagem</label><br>
+                <img src="{{platform.imageFullPath}}" width="150" height="150"><br><br>
+                <input type="file" name="image" id="image" class="form-control" ngModel>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+                Enviar
+            </button>
+            <a [routerLink]="['/listar', 'plataformas']" class="btn btn-primary">Voltar</a>
+        </div>
+    </form>
+</div>

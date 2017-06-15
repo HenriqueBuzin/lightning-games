@@ -1,0 +1,29 @@
+<div class="container">
+    <form  enctype="multipart/form-data" class="row" #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="col-md-8 offset-md-2">
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" id="name" name="name" class="form-control" autocomplete="off" #name="ngModel" [(ngModel)]="user.name" required>
+                <app-form-control [mostrarErro]="verificaValidTouched(name)" msgErro="O campo nome deve ser preenchido."></app-form-control>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" name="email" class="form-control" autocomplete="off" id="email" #email="ngModel" email [(ngModel)]="user.email" required>
+                <app-form-control [mostrarErro]="verificaValidTouched(email)" msgErro="O campo e-mail deve ser preenchido e válido."></app-form-control>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label><br>
+                <button id="password">Resetar Senha</button>
+            </div>
+            <div class="form-group">
+                <label for="image">Imagem</label><br>
+                <img src="{{user.imageFullPath}}" width="150" height="150"><br><br>
+                <input type="file" name="image" id="image" class="form-control" ngModel>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+                Enviar
+            </button>
+            <a [routerLink]="['/listar', 'usuarios']" class="btn btn-primary">Voltar</a>
+        </div>
+    </form>
+</div>

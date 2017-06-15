@@ -1,0 +1,73 @@
+
+Rest endpoints para trabalhar com senha:
+GET http://localhost:8080/lightning/api/user/resetPassword/{id}
+GET http://localhost:8080/lightning/api/user/changePassword/{id}/{newPassword}
+
+Rest para autenticacao:
+POST http://localhost:8080/lightning/api/user/login
+Ex de json que deve ser enviado : 
+	{
+		"email": "cris@gmail.com",
+		"password": "123"
+	}
+
+
+
+
+<datasource jta="true" 
+    jndi-name="java:jboss/datasources/lightningDS" 
+    pool-name="lightningDS" enabled="true" use-java-context="true" use-ccm="true">
+    <connection-url>jdbc:mysql://localhost:3306/lightning?useSSL=false</connection-url>
+    <driver>mysql</driver>
+    <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
+    <pool>
+        <min-pool-size>5</min-pool-size>
+        <max-pool-size>15</max-pool-size>
+        <prefill>true</prefill>
+    </pool>
+    <security>
+        <user-name>root</user-name>
+        <password>admin</password>
+    </security>
+    <statement>
+        <prepared-statement-cache-size>32</prepared-statement-cache-size>
+        <share-prepared-statements>true</share-prepared-statements>
+    </statement>
+</datasource>
+
+
+
+
+Lista de Rest endpoints:
+
+GET http://localhost:8080/lightning/api/user
+GET http://localhost:8080/lightning/api/user/:id
+POST http://localhost:8080/lightning/api/user
+DELETE http://localhost:8080/lightning/api/user/:id
+PUT http://localhost:8080/lightning/api/user
+
+GET http://localhost:8080/lightning/api/game
+GET http://localhost:8080/lightning/api/game/:id
+POST http://localhost:8080/lightning/api/game
+DELETE http://localhost:8080/lightning/api/game/:id
+PUT http://localhost:8080/lightning/api/game
+
+GET http://localhost:8080/lightning/api/manufacture
+GET http://localhost:8080/lightning/api/manufacture/:id
+POST http://localhost:8080/lightning/api/manufacture
+DELETE http://localhost:8080/lightning/api/manufacture/:id
+PUT http://localhost:8080/lightning/api/manufacture
+
+GET http://localhost:8080/lightning/api/gamehasplatform
+GET http://localhost:8080/lightning/api/gamehasplatform/:id
+POST http://localhost:8080/lightning/api/gamehasplatform
+DELETE http://localhost:8080/lightning/api/gamehasplatform/:id
+PUT http://localhost:8080/lightning/api/gamehasplatform
+
+GET http://localhost:8080/lightning/api/platform
+GET http://localhost:8080/lightning/api/platform/:id
+POST http://localhost:8080/lightning/api/platform
+DELETE http://localhost:8080/lightning/api/platform/:id
+PUT http://localhost:8080/lightning/api/platform
+
+

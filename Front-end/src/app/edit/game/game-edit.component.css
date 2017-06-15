@@ -1,0 +1,6 @@
+.checkbox-inline > span, .radio-inline > span > img {
+    margin: 0 5px 0 5px;
+}
+.checkbox-inline > span > img, .radio-inline > span > img {
+    border-radius: 5px;
+}

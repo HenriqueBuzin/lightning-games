@@ -1,0 +1,48 @@
+<div class="col-md-12">
+    <div class="row bar">
+        <div class="col-md-12">
+            <form>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <a [routerLink]="['/cadastrar', 'jogo']" class="btn btn-primary">
+                            Cadastrar Jogo
+                        </a>
+                    </span>
+                    <input #SearchedText (keyup)="0" class="form-control" placeholder="Procurar jogo">
+                </div>
+            </form>
+        </div>
+  </div>
+  <div class="row">
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th>Capa</th>
+                  <th>Nome</th>
+                  <th>Categoria</th>
+                  <th>Plataformas</th>
+                  <th>Preço</th>
+                  <th>Quantidade</th>
+                  <th>Em Produção</th>
+                  <th>Descrição</th>
+                  <th>Editar</th>
+                  <th>Excluir</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let game of games">
+                  <td><img src="{{game.imageFullPath}}" width="150" height="150" /></td>
+                  <td>{{game.name}}</td>
+                  <td>{{game.category}}</td>
+                  <td>{{game.platforms | separator}}</td>
+                  <td>{{game.price | currency:'BRL':true:'2.2-2'}}</td>
+                  <td>{{game.quantity}}</td>
+                  <td>{{game.production ? 'Sim' : 'Não'}}</td>
+                  <td>{{game.description}}</td>
+                  <td><a [routerLink]="['/editar', 'jogo', game.id]"><i class="fa fa-pencil icon" aria-hidden="true"></i></a></td>
+                  <td><i class="fa fa-times icon" aria-hidden="true" (click)="open('Você realmente desejar excluir o jogo ' + game.name + '?', game.id)"></i></td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
