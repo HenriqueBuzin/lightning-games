@@ -15,6 +15,8 @@ import { FormControlModule } from '../_directives/form-control/form-control.modu
 import { routing } from './game.routes';
 
 import { GameComponent } from './game.component';
+import { PlatformsService } from "../_services/platform.service";
+import { ManufactureService } from "../_services/manufacture.service";
 
 @NgModule({
     declarations: [
@@ -29,7 +31,9 @@ import { GameComponent } from './game.component';
         FormControlModule
     ],
     providers: [
-        GameService
+        GameService,
+        PlatformsService,
+        ManufactureService
     ]
 })
 
