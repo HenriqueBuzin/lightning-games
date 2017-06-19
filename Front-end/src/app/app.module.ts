@@ -15,15 +15,7 @@ import 'rxjs/add/operator/map';
 // Services
 import { AuthService } from './_services/auth.service';
 
-//
-import { GameModule } from './game/game.module';
-import { ManufactureModule } from './manufacture/manufacture.module';
-import { PlatformModule } from './platform/platform.module';
-import { UserModule } from './user/user.module';
-
-
 import { FormControlModule } from './_directives/form-control/form-control.module';
-
 
 // Others
 import { FooterComponent } from './footer/footer.component';
@@ -49,10 +41,6 @@ import 'hammerjs';
         AppComponent
     ],
     imports: [
-        GameModule,
-        ManufactureModule,
-        PlatformModule,
-        UserModule,
         BrowserAnimationsModule,
         MdDialogModule,
         BrowserModule,

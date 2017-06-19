@@ -4,7 +4,7 @@
             <form>
                 <div class="input-group">
                     <span class="input-group-btn">
-                        <a [routerLink]="['/cadastrar', 'jogo']" class="btn btn-primary">
+                        <a [routerLink]="['/jogo', 'cadastrar']" class="btn btn-primary">
                             Cadastrar Jogo
                         </a>
                     </span>
@@ -39,7 +39,7 @@
                   <td>{{game.quantity}}</td>
                   <td>{{game.production ? 'Sim' : 'Não'}}</td>
                   <td>{{game.description}}</td>
-                  <td><a [routerLink]="['/editar', 'jogo', game.id]"><i class="fa fa-pencil icon" aria-hidden="true"></i></a></td>
+                  <td><a [routerLink]="['/jogo', 'editar', game.id]"><i class="fa fa-pencil icon" aria-hidden="true"></i></a></td>
                   <td><i class="fa fa-times icon" aria-hidden="true" (click)="open('Você realmente desejar excluir o jogo ' + game.name + '?', game.id)"></i></td>
               </tr>
           </tbody>

@@ -20,7 +20,7 @@ export class PlatformEditComponent {
 
         this.activatedRoute.params.subscribe((params: Params) => { this.id = params['id']; });
 
-        this.platformService.getPlatforms(this.id).subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
+        this.platformService.getPlatform(this.id).subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
 
     }
 

@@ -12,21 +12,20 @@ import { ManufacturesRegisterComponent } from './register/manufacture-register.c
 
 import { routing } from './manufacture.routes';
 
-import { FormsModule} from '@angular/forms';
-
 import { ManufactureComponent } from './manufacture.component';
 
+import { FormControlModule } from '../_directives/form-control/form-control.module';
 
 @NgModule({
     declarations: [
         ManufacturesRegisterComponent,
         ManufacturesListingComponent,
         ManufactureEditComponent,
-        ManufactureComponent
+        ManufactureComponent,
     ],
     imports: [
         routing,
-        FormsModule,
+        FormControlModule,
         CommonModule
     ],
     providers: [

@@ -4,28 +4,25 @@ import { HomeComponent } from './home/home.component';
 
 // Login
 import { LoginComponent } from './login/login.component';
+import {AuthGuard} from "./_guards/auth-guard";
 
 const appRoutes: Routes = [
 
-    { path: '', redirectTo: 'inicio' },
+    { path: '', canActivate: [ AuthGuard ], component: HomeComponent },
 
-    { path: 'inicio', component: HomeComponent },
+    { path: 'inicio', canActivate: [ AuthGuard ], component: HomeComponent },
 
     { path: 'login', component: LoginComponent },
 
-    /*
+    { path: "jogo", canActivate: [ AuthGuard ], loadChildren: "app/game/game.module#GameModule" },
 
-    { path: "jogo", loadChildren: "app/game/game.module#GameModule" },
+    { path: "plataforma", canActivate: [ AuthGuard ], loadChildren: "app/platform/platform.module#PlatformModule"  },
 
-    { path: "plataforma", loadChildren: "app/platform/platform.module#PlatformModule"  },
+    { path: "fabricante", canActivate: [ AuthGuard ], loadChildren: "app/manufacture/manufacture.module#ManufactureModule"  },
 
-    { path: "fabricante", loadChildren: "app/manufacture/manufacture.module#ManufactureModule"  },
+    { path: "usuario", canActivate: [ AuthGuard ], loadChildren: "app/user/user.module#UserModule"  },
 
-    { path: "usuario", loadChildren: "app/user/user.module#UserModule"  },
-
-    */
-
-    { path: '**', redirectTo: 'inicio' }
+    { path: '**', redirectTo: '' }
 
 ];
 

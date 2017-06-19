@@ -14,6 +14,8 @@ import { UsersRegisterComponent } from './register/user-register.component';
 
 import { UserComponent } from './user.component';
 
+import { FormControlModule } from '../_directives/form-control/form-control.module';
+
 @NgModule({
     declarations: [
         UsersRegisterComponent,
@@ -23,7 +25,8 @@ import { UserComponent } from './user.component';
     ],
     imports: [
         CommonModule,
-        routing
+        routing,
+        FormControlModule
     ],
     providers: [
         UserService
