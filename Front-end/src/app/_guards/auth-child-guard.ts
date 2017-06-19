@@ -3,7 +3,7 @@ import {Observable} from "rxjs/Observable";
 import {Injectable} from "@angular/core";
 
 @Injectable()
-export class RegisterGuard implements CanActivateChild {
+export class EditGuard implements CanActivateChild {
 
     canActivateChild(
 
@@ -13,7 +13,7 @@ export class RegisterGuard implements CanActivateChild {
 
     ): Observable<boolean> | boolean {
 
-        console.log('Guarda de Rota Filha - Register');
+        console.log('Guarda de Rota Filha');
 
         return true;
 

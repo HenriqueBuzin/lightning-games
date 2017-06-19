@@ -8,8 +8,8 @@ import { User } from '../../_models/user';
 @Component({
     moduleId: module.id,
     selector: 'app-users-listing',
-    templateUrl: './users-listing.component.html',
-    styleUrls: [ './users-listing.component.css' ]
+    templateUrl: './user-listing.component.html',
+    styleUrls: [ './user-listing.component.css' ]
 })
 export class UsersListingComponent{
 

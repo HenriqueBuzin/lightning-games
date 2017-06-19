@@ -4,9 +4,9 @@ import { GameService } from '../_services/game.service';
 
 import { GameEditComponent } from './edit/game-edit.component';
 
-import { GamesListingComponent } from './listing/games-listing.component';
+import { GamesListingComponent } from './listing/game-listing.component';
 
-import { GamesRegisterComponent } from './register/games-register.component';
+import { GamesRegisterComponent } from './register/game-register.component';
 
 import { FormsModule} from '@angular/forms';
 

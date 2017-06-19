@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'app-users-register',
-    templateUrl: './users-register.component.html',
-    styleUrls: ['./users-register.component.css' ]
+    selector: 'app-platforms-register',
+    templateUrl: './platform-register.component.html',
+    styleUrls: ['./platform-register.component.css' ]
 })
-export class UsersRegisterComponent{
+export class PlatformsRegisterComponent{
 
     onSubmit(form){
 

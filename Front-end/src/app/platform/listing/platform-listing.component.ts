@@ -8,8 +8,8 @@ import { PlatformsListingService } from '../../_services/platform/listing/platfo
 @Component({
     moduleId: module.id,
     selector: 'app-platform-listing',
-    templateUrl: './platforms-listing.component.html',
-    styleUrls: [ './platforms-listing.component.css' ]
+    templateUrl: './platform-listing.component.html',
+    styleUrls: [ './platform-listing.component.css' ]
 })
 export class PlatformsListingComponent{
 

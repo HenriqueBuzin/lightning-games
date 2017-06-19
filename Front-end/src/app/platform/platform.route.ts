@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { PlatformsRegisterComponent  } from './register/platforms-register.component';
-import { PlatformsListingComponent } from './listing/platforms-listing.component';
+import { PlatformsRegisterComponent  } from './register/platform-register.component';
+import { PlatformsListingComponent } from './listing/platform-listing.component';
 import { PlatformEditComponent } from './edit/platform-edit.component';
 
 const appRoutes: Routes = [

@@ -4,8 +4,8 @@ import { PlatformEditService } from '../_services/platform/edit/platform-edit.se
 import { PlatformsListingService } from '../_services/platform/listing/platforms-listing.service';
 
 import { PlatformEditComponent } from './edit/platform-edit.component';
-import { PlatformsListingComponent } from './listing/platforms-listing.component';
-import { PlatformsRegisterComponent } from './register/platforms-register.component';
+import { PlatformsListingComponent } from './listing/platform-listing.component';
+import { PlatformsRegisterComponent } from './register/platform-register.component';
 
 import { routing } from './platform.route';
 

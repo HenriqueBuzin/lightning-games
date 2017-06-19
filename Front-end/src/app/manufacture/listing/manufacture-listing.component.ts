@@ -8,8 +8,8 @@ import { Manufacture } from '../../_models/manufacture';
 @Component({
     moduleId: module.id,
     selector: 'app-manufactures-listing',
-    templateUrl: './manufactures-listing.component.html',
-    styleUrls: [ './manufactures-listing.component.css' ]
+    templateUrl: './manufacture-listing.component.html',
+    styleUrls: [ './manufacture-listing.component.css' ]
 })
 export class ManufacturesListingComponent{
 

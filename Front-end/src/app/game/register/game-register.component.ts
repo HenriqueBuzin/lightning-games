@@ -7,8 +7,8 @@ import { Platform } from '../../_models/platform';
 @Component({
     moduleId: module.id,
     selector: 'app-games-register',
-    templateUrl: './games-register.component.html',
-    styleUrls: ['./games-register.component.css' ]
+    templateUrl: './game-register.component.html',
+    styleUrls: ['./game-register.component.css' ]
 })
 export class GamesRegisterComponent {
 

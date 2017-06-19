@@ -1,8 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { ManufacturesRegisterComponent  } from './register/manufactures-register.component';
+import { ManufacturesRegisterComponent  } from './register/manufacture-register.component';
 
-import { ManufacturesListingComponent } from './listing/manufactures-listing.component';
+import { ManufacturesListingComponent } from './listing/manufacture-listing.component';
 
 import { ManufactureEditComponent } from './edit/manufacture-edit.component';
 

@@ -1,16 +1,27 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { GamesRegisterComponent  } from './register/games-register.component';
-import { GamesListingComponent } from './listing/games-listing.component';
+import { GamesRegisterComponent  } from './register/game-register.component';
+import { GamesListingComponent } from './listing/game-listing.component';
 import { GameEditComponent } from './edit/game-edit.component';
+import { GameComponent } from './game.component';
 
 const gameRoutes: Routes = [
 
-    { path: 'listar', component: GamesListingComponent },
+    {
 
-    { path: 'cadastrar', component: GamesRegisterComponent },
+        path: "", component: GameComponent,
 
-    { path: 'editar/:id', component: GameEditComponent }
+        children: [
+
+            { path: '', component: GamesListingComponent },
+
+            { path: 'cadastrar', component: GamesRegisterComponent },
+
+            { path: 'editar/:id', component: GameEditComponent }
+
+        ]
+
+    }
 
 ];
 

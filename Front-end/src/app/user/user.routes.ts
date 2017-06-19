@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { UsersRegisterComponent  } from './register/users-register.component';
-import { UsersListingComponent } from './listing/users-listing.component';
+import { UsersRegisterComponent  } from './register/user-register.component';
+import { UsersListingComponent } from './listing/user-listing.component';
 import { UserEditComponent } from './edit/user-edit.component';
 
 const appRoutes: Routes = [

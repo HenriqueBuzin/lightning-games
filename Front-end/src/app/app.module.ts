@@ -36,7 +36,7 @@ import { HomeComponent } from './home/home.component';
 import {RegisterGuard} from "./_guards/register-guard";
 import {ListingGuard} from "./_guards/listing-guard";
 import {AuthGuard} from "./_guards/auth-guard";
-import {EditGuard} from "./_guards/edit-guard";
+import {EditGuard} from "./_guards/auth-child-guard";
 
 // External
 import 'hammerjs';

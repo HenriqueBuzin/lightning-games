@@ -8,8 +8,8 @@ import { Game } from '../../_models/game';
 @Component({
     moduleId: module.id,
     selector: 'app-games-listing',
-    templateUrl: './games-listing.component.html',
-    styleUrls: [ './games-listing.component.css' ]
+    templateUrl: './game-listing.component.html',
+    styleUrls: [ './game-listing.component.css' ]
 })
 export class GamesListingComponent{
 

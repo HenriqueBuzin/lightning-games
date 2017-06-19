@@ -4,9 +4,9 @@ import { ManufactureService } from '../_services/manufacture.service';
 
 import { ManufactureEditComponent } from './edit/manufacture-edit.component';
 
-import { ManufacturesListingComponent } from './listing/manufactures-listing.component';
+import { ManufacturesListingComponent } from './listing/manufacture-listing.component';
 
-import { ManufacturesRegisterComponent } from './register/manufactures-register.component';
+import { ManufacturesRegisterComponent } from './register/manufacture-register.component';
 
 import { routing } from './manufacture.routes';
 

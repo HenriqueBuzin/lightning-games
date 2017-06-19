@@ -4,8 +4,8 @@ import { UsersListingService } from '../_services/user/listing/users-listing.ser
 import { UserEditService } from '../_services/user/edit/user-edit.service';
 
 import { UserEditComponent } from './edit/user-edit.component';
-import { UsersListingComponent } from './listing/users-listing.component';
-import { UsersRegisterComponent } from './register/users-register.component';
+import { UsersListingComponent } from './listing/user-listing.component';
+import { UsersRegisterComponent } from './register/user-register.component';
 
 import { routing } from './user.routes';
 

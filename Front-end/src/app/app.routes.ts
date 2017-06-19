@@ -9,10 +9,17 @@ const appRoutes: Routes = [
 
     { path: '', component: HomeComponent },
 
+    { path: 'inicio', component: HomeComponent },
+
     { path: 'login', component: LoginComponent },
 
+    { path: "jogo", loadChildren: "app/game/game.module#GameModule" },
 
-    { path: 'inicio', component: HomeComponent },
+    { path: "plataforma", loadChildren: "app/platform/platform.module#PlatformModule"  },
+
+    { path: "fabricante", loadChildren: "app/manufacture/manufacture.module#ManufactureModule"  },
+
+    { path: "usuario", loadChildren: "app/user/user.module#UserModule"  },
 
     { path: '**', redirectTo: '' }
 
