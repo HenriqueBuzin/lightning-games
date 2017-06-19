@@ -6,14 +6,30 @@ import { ManufacturesListingComponent } from './listing/manufacture-listing.comp
 
 import { ManufactureEditComponent } from './edit/manufacture-edit.component';
 
+import { ManufactureComponent } from './manufacture.component';
+
 const manufactureRoutes: Routes = [
 
-    { path: '', component: ManufacturesListingComponent },
+    {
 
-    { path: 'cadastrar', component: ManufacturesRegisterComponent },
+        path: '', component: ManufactureComponent,
 
-    { path: 'editar/:id', component: ManufactureEditComponent }
+        children: [
+
+            { path: '', component: ManufacturesListingComponent },
+
+            { path: 'cadastrar', component: ManufacturesRegisterComponent },
+
+            { path: 'editar/:id', component: ManufactureEditComponent }
+
+        ]
+
+    }
+
+
+
+
 
 ];
 
-export const routing = RouterModule.forRoot(manufactureRoutes);
+export const routing = RouterModule.forChild(manufactureRoutes);

@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 
-import { GameService } from '../../_services/game.service';
 import { Manufacture } from '../../_models/manufacture';
+
 import { Platform } from '../../_models/platform';
+
+import {PlatformsService} from "../../_services/platform.service";
+
+import {ManufactureService} from "../../_services/manufacture.service";
 
 @Component({
     moduleId: module.id,
@@ -16,11 +20,14 @@ export class GamesRegisterComponent {
 
     platforms: Platform[] = [];
 
-    constructor(private gameService: GameService){
+    constructor(
+        private platformService: PlatformsService,
+        private manufactureService: ManufactureService
+    ){
 
-        this.gameService.getPlatforms().subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
+        this.platformService.getPlatforms().subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
 
-        this.gameService.getManufactures().subscribe(manufactures => { this.manufactures = manufactures; }), erro => console.log(erro);
+        this.manufactureService.getManufactures().subscribe(manufactures => { this.manufactures = manufactures; }), erro => console.log(erro);
 
     }
 

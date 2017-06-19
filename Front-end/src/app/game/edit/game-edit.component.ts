@@ -5,6 +5,8 @@ import { Manufacture } from '../../_models/manufacture';
 import { GameService } from '../../_services/game.service';
 import { Platform } from '../../_models/platform';
 import { Game } from '../../_models/game';
+import {ManufactureService} from "../../_services/manufacture.service";
+import {PlatformsService} from "../../_services/platform.service";
 
 @Component({
     moduleId: module.id,
@@ -22,11 +24,16 @@ export class GameEditComponent {
 
     private id: number;
 
-    constructor(private activatedRoute: ActivatedRoute, private gameService: GameService) {
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private gameService: GameService,
+        private manufactureService: ManufactureService,
+        private platformService: PlatformsService
+    ) {
 
-        this.gameService.getPlatforms().subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
+        this.platformService.getPlatforms().subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
 
-        this.gameService.getManufactures().subscribe(manufactures => { this.manufactures = manufactures; }), erro => console.log(erro);
+        this.manufactureService.getManufactures().subscribe(manufactures => { this.manufactures = manufactures; }), erro => console.log(erro);
 
         this.activatedRoute.params.subscribe((params: Params) => { this.id = params['id']; });
 

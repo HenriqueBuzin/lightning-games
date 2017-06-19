@@ -9,7 +9,7 @@ const gameRoutes: Routes = [
 
     {
 
-        path: "", component: GameComponent,
+        path: '', component: GameComponent,
 
         children: [
 
@@ -25,4 +25,4 @@ const gameRoutes: Routes = [
 
 ];
 
-export const routing = RouterModule.forRoot(gameRoutes);
+export const routing = RouterModule.forChild(gameRoutes);

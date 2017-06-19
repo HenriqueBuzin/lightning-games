@@ -26,17 +26,15 @@ import { FormControlModule } from './_directives/form-control/form-control.modul
 
 
 // Others
-import { FormControlComponent } from './_directives/form-control/form-control.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 // Guards
-import {RegisterGuard} from "./_guards/register-guard";
-import {ListingGuard} from "./_guards/listing-guard";
+
 import {AuthGuard} from "./_guards/auth-guard";
-import {EditGuard} from "./_guards/auth-child-guard";
+import { AuthChildGuard } from "./_guards/auth-child-guard";
 
 // External
 import 'hammerjs';
@@ -53,8 +51,8 @@ import 'hammerjs';
     imports: [
         GameModule,
         ManufactureModule,
-        // PlatformModule,
-        // UserModule,
+        PlatformModule,
+        UserModule,
         BrowserAnimationsModule,
         MdDialogModule,
         BrowserModule,
@@ -64,10 +62,8 @@ import 'hammerjs';
         FormControlModule
     ],
     providers: [
-        RegisterGuard,
-        ListingGuard,
+        AuthChildGuard,
         AuthService,
-        EditGuard,
         AuthGuard
     ],
     entryComponents: [ DialogComponent ],

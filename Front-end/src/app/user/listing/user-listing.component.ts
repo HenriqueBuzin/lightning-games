@@ -2,7 +2,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { Component } from '@angular/core';
 
 import { DialogComponent } from '../../_directives/dialog/dialog.component';
-import { UsersListingService } from '../../_services/user/listing/users-listing.service';
+import { UserService } from '../../_services/user.service';
 import { User } from '../../_models/user';
 
 @Component({
@@ -15,9 +15,9 @@ export class UsersListingComponent{
 
     users: User[] = [];
 
-    constructor(public dialog: MdDialog, private userListingService: UsersListingService){
+    constructor(public dialog: MdDialog, private userService: UserService){
 
-        this.userListingService.getUsers().subscribe(users => { this.users = users; }), erro => console.log(erro);
+        this.userService.getUsers().subscribe(users => { this.users = users; }), erro => console.log(erro);
 
     }
 
@@ -37,7 +37,7 @@ export class UsersListingComponent{
 
             if(result) {
 
-                this.userListingService.deleteUser(id).subscribe(games => console.log(games));
+                this.userService.deleteUser(id).subscribe(games => console.log(games));
 
             }
 

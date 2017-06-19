@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 
-import { PlatformEditService } from '../_services/platform/edit/platform-edit.service';
-import { PlatformsListingService } from '../_services/platform/listing/platforms-listing.service';
-
-import { PlatformEditComponent } from './edit/platform-edit.component';
-import { PlatformsListingComponent } from './listing/platform-listing.component';
-import { PlatformsRegisterComponent } from './register/platform-register.component';
+import { CommonModule } from '@angular/common';
 
 import { routing } from './platform.route';
+
+import { PlatformsService } from '../_services/platform.service';
+
+import { PlatformEditComponent } from './edit/platform-edit.component';
+
+import { PlatformsListingComponent } from './listing/platform-listing.component';
+
+import { PlatformsRegisterComponent } from './register/platform-register.component';
+
+import { PlatformComponent } from './platform.component';
 
 import { FormControlModule } from '../_directives/form-control/form-control.module';
 
@@ -15,15 +20,16 @@ import { FormControlModule } from '../_directives/form-control/form-control.modu
     declarations: [
         PlatformsRegisterComponent,
         PlatformsListingComponent,
-        PlatformEditComponent
+        PlatformEditComponent,
+        PlatformComponent
     ],
     imports: [
-        routing,
-        FormControlModule
+        FormControlModule,
+        CommonModule,
+        routing
     ],
     providers: [
-        PlatformsListingService,
-        PlatformEditService
+        PlatformsService
     ]
 })
 

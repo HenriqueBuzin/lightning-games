@@ -1,7 +1,7 @@
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component } from '@angular/core';
 
-import { PlatformEditService } from '../../_services/platform/edit/platform-edit.service';
+import { PlatformsService } from '../../_services/platform.service';
 import { Platform } from '../../_models/platform';
 
 @Component({
@@ -16,11 +16,11 @@ export class PlatformEditComponent {
 
     private id;
 
-    constructor(private activatedRoute: ActivatedRoute, private platformEditService: PlatformEditService) {
+    constructor(private activatedRoute: ActivatedRoute, private platformService: PlatformsService) {
 
         this.activatedRoute.params.subscribe((params: Params) => { this.id = params['id']; });
 
-        this.platformEditService.getPlatforms(this.id).subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
+        this.platformService.getPlatforms(this.id).subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
 
     }
 

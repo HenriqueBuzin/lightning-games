@@ -3,7 +3,7 @@ import {Observable} from "rxjs/Observable";
 import {Injectable} from "@angular/core";
 
 @Injectable()
-export class EditGuard implements CanActivateChild {
+export class AuthChildGuard implements CanActivateChild {
 
     canActivateChild(
 

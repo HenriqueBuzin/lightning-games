@@ -43,7 +43,7 @@ export class AuthService {
 
             this.menuEmitter.emit(true);
 
-            this.router.navigate(['/']);
+            this.router.navigate(['/inicio']);
 
         }else{
 

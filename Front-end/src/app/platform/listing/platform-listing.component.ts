@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 
 import { DialogComponent } from '../../_directives/dialog/dialog.component';
 
-import { PlatformsListingService } from '../../_services/platform/listing/platforms-listing.service';
+import { PlatformsService } from '../../_services/platform.service';
 
 @Component({
     moduleId: module.id,
@@ -15,9 +15,9 @@ export class PlatformsListingComponent{
 
     platforms: Object[] = [];
 
-    constructor(public dialog: MdDialog, private platformsListingService : PlatformsListingService){
+    constructor(public dialog: MdDialog, private platformsService : PlatformsService){
 
-        this.platformsListingService.getPlatforms().subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
+        this.platformsService.getPlatforms().subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
 
     }
 
@@ -37,7 +37,7 @@ export class PlatformsListingComponent{
 
             if(result) {
 
-                this.platformsListingService.deletePlatform(id).subscribe(games => console.log(games));
+                this.platformsService.deletePlatform(id).subscribe(games => console.log(games));
 
             }
 

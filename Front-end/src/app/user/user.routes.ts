@@ -4,14 +4,29 @@ import { UsersRegisterComponent  } from './register/user-register.component';
 import { UsersListingComponent } from './listing/user-listing.component';
 import { UserEditComponent } from './edit/user-edit.component';
 
+import { UserModule } from './user.module';
+
 const appRoutes: Routes = [
 
-    { path: '', component: UsersListingComponent },
+    {
 
-    { path: 'cadastrar', component: UsersRegisterComponent },
+        path: '', component: UserModule,
 
-    { path: 'editar/:id', component: UserEditComponent }
+        children: [
+
+            { path: '', component: UsersListingComponent },
+
+            { path: 'cadastrar', component: UsersRegisterComponent },
+
+            { path: 'editar/:id', component: UserEditComponent }
+
+        ]
+
+    }
+
+
+
 
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing = RouterModule.forChild(appRoutes);

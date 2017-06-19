@@ -7,11 +7,13 @@ import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
 
-    { path: '', component: HomeComponent },
+    { path: '', redirectTo: 'inicio' },
 
     { path: 'inicio', component: HomeComponent },
 
     { path: 'login', component: LoginComponent },
+
+    /*
 
     { path: "jogo", loadChildren: "app/game/game.module#GameModule" },
 
@@ -21,7 +23,9 @@ const appRoutes: Routes = [
 
     { path: "usuario", loadChildren: "app/user/user.module#UserModule"  },
 
-    { path: '**', redirectTo: '' }
+    */
+
+    { path: '**', redirectTo: 'inicio' }
 
 ];
 

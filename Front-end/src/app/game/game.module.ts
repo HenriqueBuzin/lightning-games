@@ -8,25 +8,25 @@ import { GamesListingComponent } from './listing/game-listing.component';
 
 import { GamesRegisterComponent } from './register/game-register.component';
 
-import { FormsModule} from '@angular/forms';
-
 import { CommonModule } from '@angular/common';
 
 import { FormControlModule } from '../_directives/form-control/form-control.module';
 
 import { routing } from './game.routes';
 
+import { GameComponent } from './game.component';
+
 @NgModule({
     declarations: [
         GamesRegisterComponent,
         GamesListingComponent,
-        GameEditComponent
+        GameEditComponent,
+        GameComponent
     ],
     imports: [
         routing,
         CommonModule,
-        FormControlModule,
-        FormsModule
+        FormControlModule
     ],
     providers: [
         GameService

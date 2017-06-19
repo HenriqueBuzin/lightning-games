@@ -1,26 +1,32 @@
 import { NgModule } from '@angular/core';
 
-import { UsersListingService } from '../_services/user/listing/users-listing.service';
-import { UserEditService } from '../_services/user/edit/user-edit.service';
-
-import { UserEditComponent } from './edit/user-edit.component';
-import { UsersListingComponent } from './listing/user-listing.component';
-import { UsersRegisterComponent } from './register/user-register.component';
+import { CommonModule } from '@angular/common';
 
 import { routing } from './user.routes';
 
+import { UserService } from '../_services/user.service';
+
+import { UserEditComponent } from './edit/user-edit.component';
+
+import { UsersListingComponent } from './listing/user-listing.component';
+
+import { UsersRegisterComponent } from './register/user-register.component';
+
+import { UserComponent } from './user.component';
+
 @NgModule({
     declarations: [
-        UserEditComponent,
+        UsersRegisterComponent,
         UsersListingComponent,
-        UsersRegisterComponent
+        UserEditComponent,
+        UserComponent
     ],
     imports: [
+        CommonModule,
         routing
     ],
     providers: [
-        UsersListingService,
-        UserEditService
+        UserService
     ]
 })
 

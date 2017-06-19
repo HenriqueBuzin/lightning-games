@@ -1,7 +1,7 @@
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component } from '@angular/core';
 
-import { UserEditService } from '../../_services/user/edit/user-edit.service';
+import { UserService } from '../../_services/user.service';
 import { User } from '../../_models/user';
 
 @Component({
@@ -16,11 +16,11 @@ export class UserEditComponent {
 
     private id;
 
-    constructor(private activatedRoute: ActivatedRoute, private userEditService: UserEditService) {
+    constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
 
         this.activatedRoute.params.subscribe((params: Params) => { this.id = params['id']; });
 
-        this.userEditService.getUser(this.id).subscribe(users => { this.users = users }), erro => console.log(erro);
+        this.userService.getUser(this.id).subscribe(users => { this.users = users }), erro => console.log(erro);
 
     }
 
