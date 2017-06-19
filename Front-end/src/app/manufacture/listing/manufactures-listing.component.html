@@ -1,0 +1,36 @@
+<div class="col-md-12">
+    <div class="row bar">
+        <div class="col-md-12">
+            <form>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <a [routerLink]="['/cadastrar', 'fabricante']" class="btn btn-primary">
+                            Cadastrar Fabricante
+                        </a>
+                    </span>
+                    <input #SearchedText (keyup)="0" class="form-control" placeholder="Procurar fabricante (nome)">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Nome</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let manufacture of manufactures"> <!-- | searchManufacture:SearchedText.value -->
+                <td><img src="{{manufacture.imageFullPath}}" width="150" height="150" /></td>
+                <td>{{manufacture.name}}</td>
+                <td><a [routerLink]="['/editar', 'fabricante', manufacture.id]"><i class="fa fa-pencil icon" aria-hidden="true"></i></a></td>
+                <td><i class="fa fa-times icon" aria-hidden="true" (click)="open('Você realmente desejar excluir a fabricante ' + manufacture.name + '?', manufacture.id)"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

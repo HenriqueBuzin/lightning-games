@@ -1,82 +1,74 @@
 // Angular
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { MdDialogModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-// Essential
-import { DialogComponent } from './confirm-dialog/dialog.component';
+import { NgModule } from '@angular/core';
+
+// Essentials
+import { DialogComponent } from './_directives/dialog/dialog.component';
 import { AppComponent } from './app.component';
 import { routing } from './app.routes';
 import 'rxjs/add/operator/map';
-// Pipes
-import { CurrencyModule } from './pipes/currency/currency.module'
-import { SeparatorModule } from './pipes/separator/separator.module'
-import { SearchGameModule } from './pipes/search/game/search-game.module';
-import { SearchManufactureModule } from './pipes/search/manufacture/search-manufacture.module';
-import { SearchPlatformModule } from './pipes/search/platform/search-platform.module';
-import { SearchUserModule } from './pipes/search/user/search-user.module';
-// Other
-import { FormControlComponent } from './form-control/form-control.component';
+
+// Services
+import { AuthService } from './_services/auth.service';
+
+//
+import { GameModule } from './game/game.module';
+import { ManufactureModule } from './manufacture/manufacture.module';
+import { PlatformModule } from './platform/platform.module';
+import { UserModule } from './user/user.module';
+
+
+import { FormControlModule } from './_directives/form-control/form-control.module';
+
+
+// Others
+import { FormControlComponent } from './_directives/form-control/form-control.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-// Listing
-import { UsersListingComponent } from './listing/users/users-listing.component';
-import { ManufacturesListingComponent } from './listing/manufactures/manufactures-listing.component';
-import { GamesListingComponent } from './listing/games/games-listing.component';
-import { PlatformsListingComponent } from './listing/platforms/platforms-listing.component';
-// Register
-import { GamesRegisterComponent } from './register/games/games-register.component';
-import { PlatformsRegisterComponent } from './register/platforms/platforms-register.component';
-import { ManufacturesRegisterComponent } from './register/manufactures/manufactures-register.component';
-import { UsersRegisterComponent } from './register/users/users-register.component';
-// Edit
-import { PlatformEditComponent } from './edit/platform/platform-edit.component';
-import { ManufactureEditComponent } from './edit/manufacture/manufacture-edit.component';
-import { UserEditComponent } from './edit/user/user-edit.component';
-import { GameEditComponent } from './edit/game/game-edit.component';
-// External
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MdDialogModule } from '@angular/material';
-import 'hammerjs';
+import { HomeComponent } from './home/home.component';
 
+// Guards
+import {RegisterGuard} from "./_guards/register-guard";
+import {ListingGuard} from "./_guards/listing-guard";
+import {AuthGuard} from "./_guards/auth-guard";
+import {EditGuard} from "./_guards/edit-guard";
+
+// External
+import 'hammerjs';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        PlatformsListingComponent,
         FooterComponent,
         HeaderComponent,
-        GamesListingComponent,
-        ManufacturesListingComponent,
-        UsersListingComponent,
-        GamesRegisterComponent,
-        PlatformsRegisterComponent,
-        ManufacturesRegisterComponent,
-        UsersRegisterComponent,
-        HomeComponent,
-        FormControlComponent,
-        PlatformEditComponent,
-        ManufactureEditComponent,
-        UserEditComponent,
-        GameEditComponent,
         DialogComponent,
-        LoginComponent
+        LoginComponent,
+        HomeComponent,
+        AppComponent
     ],
     imports: [
+        GameModule,
+        ManufactureModule,
+        // PlatformModule,
+        // UserModule,
+        BrowserAnimationsModule,
+        MdDialogModule,
         BrowserModule,
         FormsModule,
         HttpModule,
         routing,
-        CurrencyModule.forRoot(),
-        SeparatorModule.forRoot(),
-        SearchGameModule.forRoot(),
-        SearchManufactureModule.forRoot(),
-        SearchPlatformModule.forRoot(),
-        SearchUserModule.forRoot(),
-        BrowserAnimationsModule,
-        MdDialogModule
+        FormControlModule
+    ],
+    providers: [
+        RegisterGuard,
+        ListingGuard,
+        AuthService,
+        EditGuard,
+        AuthGuard
     ],
     entryComponents: [ DialogComponent ],
     bootstrap: [ AppComponent ]

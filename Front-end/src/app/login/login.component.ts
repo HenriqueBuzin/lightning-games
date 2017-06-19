@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
+
+import { AuthService } from '../_services/auth.service';
+import { User } from '../_models/user';
 
 @Component({
     moduleId: module.id,
@@ -9,18 +11,29 @@ import { Http } from '@angular/http';
 })
 export class LoginComponent{
 
-    games: Object[] = [];
+    private user: User = new User();
 
-    constructor(private http: Http){
+    constructor(private authService: AuthService){ }
 
-        this.http.get('http://localhost:8080/lightning/api/game')
-            .map(res => res.json()).subscribe(games => {
+    login(){
 
-            this.games = games;
+        this.authService.login(this.user);
 
-            console.log(this.games);
+    }
 
-        }), erro => console.log(erro);
+    verificaValidTouched(campo){
+
+        return !campo.valid && campo.touched;
+
+    }
+
+    aplicaCssErroLabel(campo){
+
+        return {
+
+            'textError': this.verificaValidTouched(campo)
+
+        }
 
     }
 

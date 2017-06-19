@@ -1,0 +1,9 @@
+.ng-invalid.ng-touched:not(form) {
+    border: 1px solid #9d4d49;
+}
+.container {
+    margin-bottom: 1rem;
+}
+.textError {
+    color: #9d4d49;
+}
