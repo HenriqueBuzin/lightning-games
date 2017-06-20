@@ -18,45 +18,47 @@ export class AuthService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        if(
-            (user.email == 'teste@teste.com') &&
-            (user.password == 'teste')
-        ){
+        this.http
+            .post('http://localhost:8080/lightning/api/user/login', JSON.stringify(user), options)
+            .map(res => res).subscribe(login => {
 
-            this.authenticated = true;
+                if(login.json() != null){
 
-            this.menuEmitter.emit(true);
+                    this.authenticated = true;
 
-           // this.router.navigate(['/inicio']);
+                    this.menuEmitter.emit(true);
 
-            this.http
-                .post('http://localhost:8080/lightning/api/user/login', JSON.stringify(user), options)
-                .map(res => res).subscribe(login => {
-                console.log(login);
-                if(login == null){
-                    console.log(2);
+                    localStorage.setItem('userName', login.json().name);
+
+                    this.router.navigate(['/inicio']);
+
                 }else{
-                    console.log(9);
+
+                    this.authenticated = false;
+
+                    this.menuEmitter.emit(false);
+
                 }
+
             }), erro => console.log(erro);
-
-            console.log(JSON.stringify(user));
-
-
-
-        }else{
-
-            this.authenticated = false;
-
-            this.menuEmitter.emit(false);
-
-        }
 
     }
 
     authenticatedUser(){
 
         return this.authenticated;
+
+    }
+
+    logout(){
+
+        this.authenticated = false;
+
+        this.menuEmitter.emit(false);
+
+        localStorage.removeItem('userName');
+
+        this.router.navigate(['/login']);
 
     }
 
