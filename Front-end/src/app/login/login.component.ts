@@ -15,7 +15,7 @@ export class LoginComponent{
 
     constructor(private authService: AuthService){ }
 
-    login(){
+    onSubmit(){
 
         this.authService.login(this.user);
 

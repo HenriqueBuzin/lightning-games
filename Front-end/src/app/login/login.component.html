@@ -11,10 +11,9 @@
                 <input type="password" id="password" name="password" placeholder="ex: 8cR*DwvjI%QT" class="form-control" autocomplete="off" #password="ngModel" [(ngModel)]="user.password" required>
                 <app-form-control [mostrarErro]="verificaValidTouched(password)" msgErro="O campo senha deve ser preenchido."></app-form-control>
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="!form.valid" (click)="login()">
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
                 Enviar
             </button>
-            <a [routerLink]="['/listar', 'plataformas']" class="btn btn-primary">Voltar</a>
         </div>
     </form>
 </div>

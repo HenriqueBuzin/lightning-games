@@ -14,19 +14,25 @@ export class UsersRegisterComponent{
 
     }
 
-    verificaValidTouched(campo){
+    checkValidTouched(campo){
 
         return !campo.valid && campo.touched;
 
     }
 
-    aplicaCssErroLabel(campo){
+    appliesCssErrorLabel(campo){
 
         return {
 
-            'textError': this.verificaValidTouched(campo)
+            'textError': this.checkValidTouched(campo)
 
         }
+
+    }
+
+    onSubmitPassword(form){
+
+        console.log(form);
 
     }
 

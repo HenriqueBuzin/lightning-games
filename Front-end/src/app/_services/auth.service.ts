@@ -1,8 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from "@angular/router";
-import { Http } from '@angular/http';
-
-import { Observable } from 'rxjs/Observable';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { User } from '../_models/user';
 
@@ -15,24 +13,10 @@ export class AuthService {
 
     constructor(private http: Http, private router: Router) { }
 
-    getLogin(): Observable<any> {
-
-        /*
-        this.http.get('http://localhost:8080/lightning/api/game')
-            .map(res => res.json()).subscribe(game => {
-
-          this.game = game;
-
-          console.log(this.game);
-
-        }), erro => console.log(erro);
-        */
-
-        return null;
-
-    }
-
     login(user: User){
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
 
         if(
             (user.email == 'teste@teste.com') &&
@@ -43,7 +27,22 @@ export class AuthService {
 
             this.menuEmitter.emit(true);
 
-            this.router.navigate(['/inicio']);
+           // this.router.navigate(['/inicio']);
+
+            this.http
+                .post('http://localhost:8080/lightning/api/user/login', JSON.stringify(user), options)
+                .map(res => res).subscribe(login => {
+                console.log(login);
+                if(login == null){
+                    console.log(2);
+                }else{
+                    console.log(9);
+                }
+            }), erro => console.log(erro);
+
+            console.log(JSON.stringify(user));
+
+
 
         }else{
 
