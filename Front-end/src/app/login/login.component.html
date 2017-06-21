@@ -2,14 +2,14 @@
     <form  enctype="multipart/form-data" class="row" #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="col-md-8 offset-md-2">
             <div class="form-group">
-                <label for="email" [ngClass]="aplicaCssErroLabel(email)">E-mail</label>
+                <label for="email" [ngClass]="applyCssErrorLabel(email)">E-mail</label>
                 <input type="email" id="email" name="email" placeholder="ex: henrique@buzin.com" class="form-control" autocomplete="off" #email="ngModel" email [(ngModel)]="user.email" required>
-                <app-form-control [mostrarErro]="verificaValidTouched(email)" msgErro="O campo e-mail deve ser preenchido e válido."></app-form-control>
+                <app-form-control [mostrarErro]="checkValidTouched(email)" msgErro="O campo e-mail deve ser preenchido e válido."></app-form-control>
             </div>
             <div class="form-group">
-                <label for="password" [ngClass]="aplicaCssErroLabel(password)">Senha</label>
+                <label for="password" [ngClass]="applyCssErrorLabel(password)">Senha</label>
                 <input type="password" id="password" name="password" placeholder="ex: 8cR*DwvjI%QT" class="form-control" autocomplete="off" #password="ngModel" [(ngModel)]="user.password" required>
-                <app-form-control [mostrarErro]="verificaValidTouched(password)" msgErro="O campo senha deve ser preenchido."></app-form-control>
+                <app-form-control [mostrarErro]="checkValidTouched(password)" msgErro="O campo senha deve ser preenchido."></app-form-control>
             </div>
             <app-form-control [mostrarErro]="alert" msgErro="E-mail ou senha inválido."></app-form-control>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">

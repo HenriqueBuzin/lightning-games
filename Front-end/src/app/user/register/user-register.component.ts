@@ -14,17 +14,17 @@ export class UsersRegisterComponent{
 
     }
 
-    checkValidTouched(campo){
+    checkValidTouched(field){
 
-        return !campo.valid && campo.touched;
+        return !field.valid && field.touched;
 
     }
 
-    appliesCssErrorLabel(campo){
+    applyCssErrorLabel(field){
 
         return {
 
-            'textError': this.checkValidTouched(campo)
+            'textError': this.checkValidTouched(field)
 
         }
 

@@ -37,27 +37,17 @@ export class GamesRegisterComponent {
 
     }
 
-    verificaValidTouched(campo){
+    checkValidTouched(field){
 
-        return !campo.valid && campo.touched;
-
-    }
-
-    aplicaCssErroInput(campo){
-
-        return {
-
-            'subError': this.verificaValidTouched(campo)
-
-        }
+        return !field.valid && field.touched;
 
     }
 
-    aplicaCssErroLabel(campo){
+    applyCssErrorLabel(field){
 
         return {
 
-            'textError': this.verificaValidTouched(campo)
+            'textError': this.checkValidTouched(field)
 
         }
 

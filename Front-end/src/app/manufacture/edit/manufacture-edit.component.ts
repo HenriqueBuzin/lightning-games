@@ -30,17 +30,17 @@ export class ManufactureEditComponent {
 
     }
 
-    verificaValidTouched(campo){
+    checkValidTouched(field){
 
-        return !campo.valid && campo.touched;
+        return !field.valid && field.touched;
 
     }
 
-    aplicaCssErroLabel(campo){
+    applyCssErrorLabel(field){
 
         return {
 
-            'textError': this.verificaValidTouched(campo)
+            'textError': this.checkValidTouched(field)
 
         }
 

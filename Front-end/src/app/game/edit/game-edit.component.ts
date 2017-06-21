@@ -47,27 +47,27 @@ export class GameEditComponent {
 
     }
 
-    verificaValidTouched(campo){
+    checkValidTouched(field){
 
-        return !campo.valid && campo.touched;
+        return !field.valid && field.touched;
 
     }
 
-    aplicaCssErroInput(campo){
+    applyCssErrorInput(field){
 
         return {
 
-            'subError': this.verificaValidTouched(campo)
+            'subError': this.checkValidTouched(field)
 
         }
 
     }
 
-    aplicaCssErroLabel(campo){
+    applyCssErrorLabel(field){
 
         return {
 
-            'textError': this.verificaValidTouched(campo)
+            'textError': this.checkValidTouched(field)
 
         }
 

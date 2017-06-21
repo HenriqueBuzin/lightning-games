@@ -27,20 +27,19 @@ export class LoginComponent{
 
         );
 
+    }
+
+    checkValidTouched(field){
+
+        return !field.valid && field.touched;
 
     }
 
-    verificaValidTouched(campo){
-
-        return !campo.valid && campo.touched;
-
-    }
-
-    aplicaCssErroLabel(campo){
+    applyCssErrorLabel(field){
 
         return {
 
-            'textError': this.verificaValidTouched(campo)
+            'textError': this.checkValidTouched(field)
 
         }
 
