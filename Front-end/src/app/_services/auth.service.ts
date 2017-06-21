@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Router } from "@angular/router";
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { Router } from "@angular/router";
 
 import { User } from '../_models/user';
 
@@ -8,6 +8,8 @@ import { User } from '../_models/user';
 export class AuthService {
 
     menuEmitter = new EventEmitter<boolean>();
+
+    alertEmitter = new EventEmitter<boolean>();
 
     private authenticated: boolean = false;
 
@@ -34,6 +36,8 @@ export class AuthService {
 
                 }else{
 
+                    this.alertEmitter.emit(true);
+
                     this.authenticated = false;
 
                     this.menuEmitter.emit(false);
@@ -55,6 +59,8 @@ export class AuthService {
         this.authenticated = false;
 
         this.menuEmitter.emit(false);
+
+        this.alertEmitter.emit(false);
 
         localStorage.removeItem('userName');
 

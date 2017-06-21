@@ -13,9 +13,8 @@ import { routing } from './app.routes';
 import 'rxjs/add/operator/map';
 
 // Services
-import { AuthService } from './_services/auth.service';
-
 import { FormControlModule } from './_directives/form-control/form-control.module';
+import { AuthService } from './_services/auth.service';
 
 // Others
 import { FooterComponent } from './footer/footer.component';
@@ -24,9 +23,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 // Guards
-
-import {AuthGuard} from "./_guards/auth-guard";
 import { AuthChildGuard } from "./_guards/auth-child-guard";
+import {AuthGuard} from "./_guards/auth-guard";
 
 // External
 import 'hammerjs';
@@ -42,12 +40,12 @@ import 'hammerjs';
     ],
     imports: [
         BrowserAnimationsModule,
+        FormControlModule,
         MdDialogModule,
         BrowserModule,
         FormsModule,
         HttpModule,
-        routing,
-        FormControlModule
+        routing
     ],
     providers: [
         AuthChildGuard,

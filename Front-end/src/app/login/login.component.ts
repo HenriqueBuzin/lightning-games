@@ -13,11 +13,20 @@ export class LoginComponent{
 
     private user: User = new User();
 
+    alert: boolean = false;
+
     constructor(private authService: AuthService){ }
 
     onSubmit(){
 
         this.authService.login(this.user);
+
+        this.authService.alertEmitter.subscribe(show =>
+
+            this.alert = show
+
+        );
+
 
     }
 

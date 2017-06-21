@@ -11,6 +11,7 @@
                 <input type="password" id="password" name="password" placeholder="ex: 8cR*DwvjI%QT" class="form-control" autocomplete="off" #password="ngModel" [(ngModel)]="user.password" required>
                 <app-form-control [mostrarErro]="verificaValidTouched(password)" msgErro="O campo senha deve ser preenchido."></app-form-control>
             </div>
+            <app-form-control [mostrarErro]="alert" msgErro="E-mail ou senha inválido."></app-form-control>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
                 Enviar
             </button>
