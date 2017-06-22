@@ -24,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let manufacture of manufactures"> <!-- | searchManufacture:SearchedText.value -->
+            <tr *ngFor="let manufacture of manufactures | searchManufacture:SearchedText.value">
                 <td><img src="{{manufacture.imageFullPath}}" width="150" height="150" /></td>
                 <td>{{manufacture.name}}</td>
                 <td><a [routerLink]="['/fabricante', 'editar', manufacture.id]"><i class="fa fa-pencil icon" aria-hidden="true"></i></a></td>

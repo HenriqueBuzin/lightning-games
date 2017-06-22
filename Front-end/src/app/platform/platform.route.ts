@@ -8,12 +8,14 @@ import { PlatformEditComponent } from './edit/platform-edit.component';
 
 import { PlatformComponent } from './platform.component';
 
+import {AuthChildGuard} from "../_guards/auth-child-guard";
 
-const appRoutes: Routes = [
+
+const platformRoutes: Routes = [
 
     {
 
-        path: '', component: PlatformComponent,
+        path: '', component: PlatformComponent, canActivateChild: [ AuthChildGuard ],
 
         children: [
 
@@ -29,4 +31,4 @@ const appRoutes: Routes = [
 
 ];
 
-export const routing = RouterModule.forChild(appRoutes);
+export const routing = RouterModule.forChild(platformRoutes);

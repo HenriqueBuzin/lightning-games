@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let platform of platforms"> <!-- | searchPlatform:SearchedText.value -->
+                <tr *ngFor="let platform of platforms | searchPlatform:SearchedText.value">
                     <td><img src="{{platform.imageFullPath}}" width="150" height="150" /></td>
                     <td>{{platform.name}}</td>
                     <td><a [routerLink]="['/plataforma', 'editar', platform.id]"><i class="fa fa-pencil icon" aria-hidden="true"></i></a></td>

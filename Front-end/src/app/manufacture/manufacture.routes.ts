@@ -8,11 +8,13 @@ import { ManufactureEditComponent } from './edit/manufacture-edit.component';
 
 import { ManufactureComponent } from './manufacture.component';
 
+import {AuthChildGuard} from "../_guards/auth-child-guard";
+
 const manufactureRoutes: Routes = [
 
     {
 
-        path: '', component: ManufactureComponent,
+        path: '', component: ManufactureComponent, canActivateChild: [ AuthChildGuard ],
 
         children: [
 
@@ -25,10 +27,6 @@ const manufactureRoutes: Routes = [
         ]
 
     }
-
-
-
-
 
 ];
 

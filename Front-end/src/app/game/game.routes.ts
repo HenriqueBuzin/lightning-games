@@ -5,11 +5,13 @@ import { GamesListingComponent } from './listing/game-listing.component';
 import { GameEditComponent } from './edit/game-edit.component';
 import { GameComponent } from './game.component';
 
+import {AuthChildGuard} from "../_guards/auth-child-guard";
+
 const gameRoutes: Routes = [
 
     {
 
-        path: '', component: GameComponent,
+        path: '', component: GameComponent, canActivateChild: [ AuthChildGuard ],
 
         children: [
 

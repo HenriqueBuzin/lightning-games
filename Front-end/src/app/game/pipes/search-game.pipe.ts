@@ -1,9 +1,10 @@
 import { Pipe , PipeTransform } from '@angular/core';
 
-import { Game } from '../../../../_models/game';
+import { Game } from '../../_models/game';
 
 @Pipe({
-    name: 'searchGame'
+    name: 'searchGame',
+    pure: false
 })
 export class SearchGamePipe implements PipeTransform {
 

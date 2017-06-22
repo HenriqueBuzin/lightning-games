@@ -5,12 +5,13 @@ import { UsersListingComponent } from './listing/user-listing.component';
 import { UserEditComponent } from './edit/user-edit.component';
 
 import { UserModule } from './user.module';
+import {AuthChildGuard} from "../_guards/auth-child-guard";
 
-const appRoutes: Routes = [
+const userRoutes: Routes = [
 
     {
 
-        path: '', component: UserModule,
+        path: '', component: UserModule, canActivateChild: [ AuthChildGuard ],
 
         children: [
 
@@ -29,4 +30,4 @@ const appRoutes: Routes = [
 
 ];
 
-export const routing = RouterModule.forChild(appRoutes);
+export const routing = RouterModule.forChild(userRoutes);

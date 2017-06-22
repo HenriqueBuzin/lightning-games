@@ -1,10 +1,10 @@
 // Angular
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { MdDialogModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgModule } from '@angular/core';
 
 // Essentials
 import { DialogComponent } from './_directives/dialog/dialog.component';
@@ -20,7 +20,6 @@ import { AuthService } from './_services/auth.service';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
 
 // Guards
 import { AuthChildGuard } from "./_guards/auth-child-guard";
@@ -35,7 +34,6 @@ import 'hammerjs';
         HeaderComponent,
         DialogComponent,
         LoginComponent,
-        HomeComponent,
         AppComponent
     ],
     imports: [
@@ -48,6 +46,10 @@ import 'hammerjs';
         routing
     ],
     providers: [
+        {
+            provide: LOCALE_ID,
+            useValue: 'pt-BR'
+        },
         AuthChildGuard,
         AuthService,
         AuthGuard

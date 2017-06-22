@@ -1,9 +1,10 @@
 import { Pipe , PipeTransform } from '@angular/core';
 
-import { Manufacture } from '../../../../_models/manufacture';
+import { Manufacture } from '../_models/manufacture';
 
 @Pipe({
-    name: 'searchManufacture'
+    name: 'searchManufacture',
+    pure: false
 })
 export class SearchManufacturePipe implements PipeTransform{
 

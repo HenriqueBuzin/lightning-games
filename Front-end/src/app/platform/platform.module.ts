@@ -16,11 +16,14 @@ import { PlatformComponent } from './platform.component';
 
 import { FormControlModule } from '../_directives/form-control/form-control.module';
 
+import {SearchPlatformPipe} from "./search-platform.pipe";
+
 @NgModule({
     declarations: [
         PlatformsRegisterComponent,
         PlatformsListingComponent,
         PlatformEditComponent,
+        SearchPlatformPipe,
         PlatformComponent
     ],
     imports: [

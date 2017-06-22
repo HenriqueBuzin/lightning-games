@@ -1,9 +1,10 @@
 import { Pipe , PipeTransform } from '@angular/core';
 
-import { User } from '../../../../_models/user';
+import { User } from '../_models/user';
 
 @Pipe({
-    name: 'searchUser'
+    name: 'searchUser',
+    pure: false
 })
 export class SearchUserPipe implements PipeTransform{
 

@@ -30,11 +30,11 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let game of games"> <!-- | searchGame:SearchedText.value -->
+              <tr *ngFor="let game of games | searchGame:SearchedText.value">
                   <td><img src="{{game.imageFullPath}}" width="150" height="150" /></td>
                   <td>{{game.name}}</td>
                   <td>{{game.category}}</td>
-                  <td>{{game.platforms}}</td> <!-- | separator -->
+                  <td>{{game.platforms | separator}}</td>
                   <td>{{game.price | currency:'BRL':true:'2.2-2'}}</td>
                   <td>{{game.quantity}}</td>
                   <td>{{game.production ? 'Sim' : 'Não'}}</td>

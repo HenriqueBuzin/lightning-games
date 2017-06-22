@@ -1,9 +1,10 @@
 import { Pipe , PipeTransform } from '@angular/core';
 
-import { Platform } from '../../../../_models/platform';
+import { Platform } from '../_models/platform';
 
 @Pipe({
-    name: 'searchPlatform'
+    name: 'searchPlatform',
+    pure: false
 })
 export class SearchPlatformPipe implements PipeTransform {
 

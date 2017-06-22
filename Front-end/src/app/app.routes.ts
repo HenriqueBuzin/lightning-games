@@ -10,9 +10,7 @@ const appRoutes: Routes = [
 
     { path: '', redirectTo: 'inicio', canActivate: [ AuthGuard ], pathMatch: 'full' },
 
-    { path: 'inicio', canActivate: [ AuthGuard ], component: HomeComponent },
-
-    { path: 'login', component: LoginComponent },
+    { path: 'inicio', canActivate: [ AuthGuard ], loadChildren: "app/home/home.module#HomeModule" },
 
     { path: "jogo", canActivate: [ AuthGuard ], loadChildren: "app/game/game.module#GameModule" },
 
@@ -21,6 +19,8 @@ const appRoutes: Routes = [
     { path: "fabricante", canActivate: [ AuthGuard ], loadChildren: "app/manufacture/manufacture.module#ManufactureModule"  },
 
     { path: "usuario", canActivate: [ AuthGuard ], loadChildren: "app/user/user.module#UserModule"  },
+
+    { path: 'login', component: LoginComponent },
 
     { path: '**', redirectTo: '', pathMatch: 'full' }
 

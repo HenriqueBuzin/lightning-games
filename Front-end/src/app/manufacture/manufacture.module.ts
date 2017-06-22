@@ -16,12 +16,15 @@ import { ManufactureComponent } from './manufacture.component';
 
 import { FormControlModule } from '../_directives/form-control/form-control.module';
 
+import {SearchManufacturePipe} from "./search-manufacture.pipe";
+
 @NgModule({
     declarations: [
         ManufacturesRegisterComponent,
         ManufacturesListingComponent,
         ManufactureEditComponent,
-        ManufactureComponent,
+        SearchManufacturePipe,
+        ManufactureComponent
     ],
     imports: [
         routing,
