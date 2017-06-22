@@ -11,6 +11,8 @@ export class AuthService {
 
     alertEmitter = new EventEmitter<boolean>();
 
+    footerEmitter = new EventEmitter<boolean>();
+
     private authenticated: boolean = false;
 
     constructor(private http: Http, private router: Router) { }
@@ -29,6 +31,8 @@ export class AuthService {
                     this.authenticated = true;
 
                     this.menuEmitter.emit(true);
+
+                    this.footerEmitter.emit(true);
 
                     localStorage.setItem('userName', login.json().name);
 
@@ -61,6 +65,8 @@ export class AuthService {
         this.menuEmitter.emit(false);
 
         this.alertEmitter.emit(false);
+
+        this.footerEmitter.emit(false);
 
         localStorage.removeItem('userName');
 

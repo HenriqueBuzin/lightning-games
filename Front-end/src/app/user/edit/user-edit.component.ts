@@ -20,7 +20,7 @@ export class UserEditComponent {
 
         this.activatedRoute.params.subscribe((params: Params) => { this.id = params['id']; });
 
-        this.userService.getUser(this.id).subscribe(users => { this.users = users }), erro => console.log(erro);
+        this.userService.getUser(this.id).subscribe(users => this.users = users), erro => console.log(erro);
 
     }
 
@@ -43,6 +43,12 @@ export class UserEditComponent {
             'textError': this.checkValidTouched(field)
 
         }
+
+    }
+
+    resetPassword(){
+
+        this.userService.resetPassword(this.id).subscribe(), erro => console.log(erro);
 
     }
 

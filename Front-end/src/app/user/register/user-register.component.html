@@ -1,17 +1,4 @@
 <div class="container">
-    <form  enctype="multipart/form-data" class="row" #f="ngForm" (ngSubmit)="onSubmitPassword(form)">
-        <div class="col-md-8 offset-md-2">
-            <div class="form-group">
-                <label for="password" [ngClass]="applyCssErrorLabel(password)">Senha</label>
-                <input type="password" id="password" name="password" placeholder="ex: 8cR*DwvjI%QT" class="form-control" autocomplete="off" #password="ngModel" ngModel required>
-                <app-form-control [showError]="checkValidTouched(password)" messageError="O campo senha deve ser preenchido."></app-form-control>
-            </div>
-            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
-                Enviar
-            </button>
-            <a [routerLink]="['/usuario']" class="btn btn-primary">Voltar</a>
-        </div>
-    </form>
     <form  enctype="multipart/form-data" class="row" #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="col-md-8 offset-md-2">
             <div class="form-group">

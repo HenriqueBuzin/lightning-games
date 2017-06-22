@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Http} from "@angular/http";
+import {isUndefined} from "util";
 
 @Component({
     moduleId: module.id,
@@ -8,9 +10,29 @@ import { Component } from '@angular/core';
 })
 export class PlatformsRegisterComponent{
 
+
+    private fileList: FileList;
+
+    constructor(private http: Http){}
+
     onSubmit(form){
 
-        console.log(form);
+        if(this.fileList){
+
+            if(this.fileList.length > 0) {
+
+                // Funcionando
+
+            }
+
+
+        }
+
+    }
+
+    fileChange(event) {
+
+        this.fileList = event.target.files;
 
     }
 

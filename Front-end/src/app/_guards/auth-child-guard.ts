@@ -1,9 +1,12 @@
-import {ActivatedRouteSnapshot, CanActivateChild, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRouteSnapshot, CanActivateChild, Router, RouterStateSnapshot} from "@angular/router";
 import {Observable} from "rxjs/Observable";
 import {Injectable} from "@angular/core";
+import {AuthService} from "../_services/auth.service";
 
 @Injectable()
 export class AuthChildGuard implements CanActivateChild {
+
+    constructor(private authService: AuthService, private router: Router) { }
 
     canActivateChild(
 
@@ -13,9 +16,15 @@ export class AuthChildGuard implements CanActivateChild {
 
     ): Observable<boolean> | boolean {
 
-        console.log('Guarda de Rota Filha');
+        if(this.authService.authenticatedUser()){
 
-        return true;
+            return true;
+
+        }
+
+        this.router.navigate(['/login']);
+
+        return false;
 
     }
 

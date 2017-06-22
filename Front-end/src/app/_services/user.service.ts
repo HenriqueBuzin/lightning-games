@@ -40,4 +40,14 @@ export class UserService {
 
     }
 
+    resetPassword(id){
+
+        return this.http.get('http://localhost:8080/lightning/api/user/resetPassword/' + id).map(res => res).catch(error => {
+
+            throw new Error(error.message);
+
+        });
+
+    }
+
 }

@@ -7,17 +7,18 @@
                 <app-form-control [showError]="checkValidTouched(name)" messageError="O campo nome deve ser preenchido."></app-form-control>
             </div>
             <div class="form-group">
-                <label for="email" [ngClass]="applyCssErroLabel(email)">E-mail</label>
+                <label for="email" [ngClass]="applyCssErrorLabel(email)">E-mail</label>
                 <input type="email" name="email" class="form-control" placeholder="ex: henrique@buzin.com" autocomplete="off" id="email" #email="ngModel" email [(ngModel)]="users.email" required>
                 <app-form-control [showError]="checkValidTouched(email)" messageError="O campo e-mail deve ser preenchido e válido."></app-form-control>
             </div>
             <div class="form-group">
                 <label for="password">Senha</label><br>
-                <button id="password">Resetar Senha</button>
+                <button id="password" (click)="resetPassword()">Resetar Senha</button>
             </div>
             <div class="form-group">
                 <label for="image">Imagem</label><br>
                 <img src="{{users.imageFullPath}}" width="150" height="150"><br><br>
+                <p class="note">* imagem atual do usuário</p>
                 <input type="file" name="image" id="image" class="form-control" ngModel>
             </div>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">

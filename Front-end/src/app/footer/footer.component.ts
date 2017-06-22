@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { AuthService } from "../_services/auth.service";
 
 @Component({
     moduleId: module.id,
@@ -6,4 +8,20 @@ import { Component } from '@angular/core';
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.css']
 })
-export class FooterComponent{ }
+export class FooterComponent implements OnInit {
+
+    footer: boolean = false;
+
+    constructor(private authService: AuthService){ }
+
+    ngOnInit(){
+
+        this.authService.footerEmitter.subscribe(show =>
+
+            this.footer = show
+
+        );
+
+    }
+
+}

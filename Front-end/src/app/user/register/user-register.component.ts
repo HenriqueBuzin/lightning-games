@@ -30,10 +30,4 @@ export class UsersRegisterComponent{
 
     }
 
-    onSubmitPassword(form){
-
-        console.log(form);
-
-    }
-
 }
