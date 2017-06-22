@@ -15,7 +15,9 @@ export class UsersListingComponent{
 
     users: User[] = [];
 
-    constructor(public dialog: MdDialog, private userService: UserService){
+    constructor(public dialog: MdDialog, private userService: UserService){ this.loadTable(); }
+
+    loadTable(){
 
         this.userService.getUsers().subscribe(users => { this.users = users; }), erro => console.log(erro);
 
@@ -37,7 +39,13 @@ export class UsersListingComponent{
 
             if(result) {
 
-                this.userService.deleteUser(id).subscribe(games => console.log(games));
+                this.userService.deleteUser(id).subscribe(user => {
+
+                    console.log(user);
+
+                    this.loadTable();
+
+                });
 
             }
 

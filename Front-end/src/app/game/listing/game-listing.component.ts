@@ -15,7 +15,9 @@ export class GamesListingComponent{
 
     games: Game[] = [];
 
-    constructor(public dialog: MdDialog, private gameService: GameService){
+    constructor(public dialog: MdDialog, private gameService: GameService){ this.loadTable(); }
+
+    loadTable(){
 
         this.gameService.getGames().subscribe(games => { this.games = games; }), erro => console.log(erro);
 
@@ -37,7 +39,14 @@ export class GamesListingComponent{
 
             if(result) {
 
-                this.gameService.deleteGame(id).subscribe(games => console.log(games));
+                this.gameService.deleteGame(id).subscribe(games => {
+
+                    console.log(games);
+
+                    this.loadTable();
+
+                });
+
 
             }
 

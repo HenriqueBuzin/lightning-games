@@ -15,7 +15,9 @@ export class PlatformsListingComponent{
 
     platforms: Object[] = [];
 
-    constructor(public dialog: MdDialog, private platformsService : PlatformsService){
+    constructor(public dialog: MdDialog, private platformsService : PlatformsService){ this.loadTable(); }
+
+    loadTable(){
 
         this.platformsService.getPlatforms().subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
 
@@ -37,7 +39,13 @@ export class PlatformsListingComponent{
 
             if(result) {
 
-                this.platformsService.deletePlatform(id).subscribe(games => console.log(games));
+                this.platformsService.deletePlatform(id).subscribe(platform => {
+
+                     console.log(platform);
+
+                    this.loadTable();
+
+                });
 
             }
 

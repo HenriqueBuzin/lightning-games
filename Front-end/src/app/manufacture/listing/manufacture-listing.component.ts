@@ -15,7 +15,9 @@ export class ManufacturesListingComponent{
 
     manufactures: Manufacture[] = [];
 
-    constructor(public dialog: MdDialog, private manufacturesService: ManufactureService){
+    constructor(public dialog: MdDialog, private manufacturesService: ManufactureService){ this.loadTable(); }
+
+    loadTable(){
 
         this.manufacturesService.getManufactures().subscribe(manufactures => { this.manufactures = manufactures; }), erro => console.log(erro);
 
@@ -37,7 +39,13 @@ export class ManufacturesListingComponent{
 
             if(result) {
 
-                this.manufacturesService.deleteManufacture(id).subscribe(games => console.log(games));
+                this.manufacturesService.deleteManufacture(id).subscribe(manufacture => {
+
+                    console.log(manufacture);
+
+                    this.loadTable();
+
+                });
 
             }
 

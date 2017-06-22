@@ -10,6 +10,8 @@ export class SearchGamePipe implements PipeTransform {
 
     transform(games: Game[], typed: string): any {
 
+        if(games == null) return "";
+
         typed = typed.toLowerCase();
 
         /*
