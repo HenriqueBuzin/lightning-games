@@ -8,8 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class FormControlComponent {
 
-    @Input() msgErro: string;
+    @Input() messageError: string;
 
-    @Input() mostrarErro: boolean;
+    @Input() showError: boolean;
 
 }

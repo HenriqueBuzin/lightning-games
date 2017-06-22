@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label for="name" [ngClass]="applyCssErrorLabel(name)">Nome</label>
                 <input type="text" id="name" name="name" placeholder="ex: Rockstar Games" class="form-control" autocomplete="off" #name="ngModel" ngModel required>
-                <app-form-control [mostrarErro]="checkValidTouched(name)" msgErro="O campo nome deve ser preenchido."></app-form-control>
+                <app-form-control [showError]="checkValidTouched(name)" messageError="O campo nome deve ser preenchido."></app-form-control>
             </div>
             <div class="form-group">
                 <label>Imagem</label>

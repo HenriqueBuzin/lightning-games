@@ -2,9 +2,9 @@
     <form  enctype="multipart/form-data" class="row" #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="col-md-8 offset-md-2">
             <div class="form-group">
-                <label for="name" [ngClass]="aplicaCssErroLabel(name)">Nome</label>
+                <label for="name" [ngClass]="applyCssErrorLabel(name)">Nome</label>
                 <input type="text" id="name" placeholder="ex: Playstation 4" name="name" class="form-control" autocomplete="off" #name="ngModel" ngModel required>
-                <app-form-control [mostrarErro]="verificaValidTouched(name)" msgErro="O campo nome deve ser preenchido."></app-form-control>
+                <app-form-control [showError]="checkValidTouched(name)" messageError="O campo nome deve ser preenchido."></app-form-control>
             </div>
             <div class="form-group">
                 <label>Imagem</label>

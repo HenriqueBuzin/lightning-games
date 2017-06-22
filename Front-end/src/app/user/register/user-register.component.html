@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label for="password" [ngClass]="applyCssErrorLabel(password)">Senha</label>
                 <input type="password" id="password" name="password" placeholder="ex: 8cR*DwvjI%QT" class="form-control" autocomplete="off" #password="ngModel" ngModel required>
-                <app-form-control [mostrarErro]="checkValidTouched(password)" msgErro="O campo senha deve ser preenchido."></app-form-control>
+                <app-form-control [showError]="checkValidTouched(password)" messageError="O campo senha deve ser preenchido."></app-form-control>
             </div>
             <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
                 Enviar
@@ -17,12 +17,12 @@
             <div class="form-group">
                 <label for="name" [ngClass]="applyCssErrorLabel(name)">Nome</label>
                 <input type="text" id="name" name="name" class="form-control" placeholder="ex: Henrique Antonio" autocomplete="off" #name="ngModel" ngModel required>
-                <app-form-control [mostrarErro]="checkValidTouched(name)" msgErro="O campo nome deve ser preenchido."></app-form-control>
+                <app-form-control [showError]="checkValidTouched(name)" messageError="O campo nome deve ser preenchido."></app-form-control>
             </div>
             <div class="form-group">
                 <label [ngClass]="applyCssErrorLabel(email)">E-mail</label>
                 <input type="email" name="email" class="form-control" placeholder="ex: henrique@buzin.com" autocomplete="off" id="email" #email="ngModel" email ngModel required>
-                <app-form-control [mostrarErro]="checkValidTouched(email)" msgErro="O campo e-mail deve ser preenchido e válido."></app-form-control>
+                <app-form-control [showError]="checkValidTouched(email)" messageError="O campo e-mail deve ser preenchido e válido."></app-form-control>
             </div>
             <div class="form-group">
                 <label>Imagem</label>
