@@ -6,7 +6,7 @@ import { UsersRegisterComponent } from './register/user-register.component';
 import { UsersListingComponent } from './listing/user-listing.component';
 import { UserEditComponent } from './edit/user-edit.component';
 import { UserService } from '../_services/user.service';
-import {SearchUserPipe} from "./search-user.pipe";
+import { SearchUserPipe } from './search-user.pipe';
 import { UserComponent } from './user.component';
 
 import { routing } from './user.routes';

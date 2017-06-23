@@ -1,5 +1,5 @@
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -22,7 +22,7 @@ export class UserService {
 
     getUser(id: number): Observable<User[]> {
 
-        return this.http.get('http://localhost:8080/lightning/api/platform/' + id).map(res => res.json()).catch(error => {
+        return this.http.get('http://localhost:8080/lightning/api/user/' + id).map(res => res.json()).catch(error => {
 
             throw new Error(error.message);
 
@@ -40,9 +40,23 @@ export class UserService {
 
     }
 
-    resetPassword(id){
+    resetPassword(id: number){
 
         return this.http.get('http://localhost:8080/lightning/api/user/resetPassword/' + id).map(res => res).catch(error => {
+
+            throw new Error(error.message);
+
+        });
+
+    }
+
+    registerUser(user: User): Observable<User[]> {
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post('http://localhost:8080/lightning/api/user', JSON.stringify(user), options).map(res => res).catch(error => {
 
             throw new Error(error.message);
 

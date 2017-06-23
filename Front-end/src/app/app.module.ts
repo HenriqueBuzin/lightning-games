@@ -22,8 +22,8 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 
 // Guards
-import { AuthChildGuard } from "./_guards/auth-child-guard";
-import {AuthGuard} from "./_guards/auth-guard";
+import { AuthChildGuard } from './_guards/auth-child-guard';
+import {AuthGuard} from './_guards/auth-guard';
 
 // External
 import 'hammerjs';

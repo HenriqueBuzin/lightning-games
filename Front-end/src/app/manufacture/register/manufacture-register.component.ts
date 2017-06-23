@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ManufactureService} from "../../_services/manufacture.service";
 
 @Component({
     moduleId: module.id,
@@ -8,9 +9,35 @@ import { Component } from '@angular/core';
 })
 export class ManufacturesRegisterComponent{
 
+    private fileList: FileList;
+
+    constructor(private manufactureService: ManufactureService){}
+
     onSubmit(form){
 
-        console.log(form);
+        if(this.fileList){
+
+            if(this.fileList.length > 0) {
+
+                // Funcionando
+
+            }
+
+        }else{
+
+            this.manufactureService.registerManufacture(form.value).subscribe(form => {
+
+                console.log(form);
+
+            }), erro => console.log(erro);
+
+        }
+
+    }
+
+    fileChange(event) {
+
+        this.fileList = event.target.files;
 
     }
 

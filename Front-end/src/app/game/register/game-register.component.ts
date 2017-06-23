@@ -7,6 +7,7 @@ import { Platform } from '../../_models/platform';
 import {PlatformsService} from "../../_services/platform.service";
 
 import {ManufactureService} from "../../_services/manufacture.service";
+import {GameService} from "../../_services/game.service";
 
 @Component({
     moduleId: module.id,
@@ -20,9 +21,12 @@ export class GamesRegisterComponent {
 
     platforms: Platform[] = [];
 
+    private fileList: FileList;
+
     constructor(
         private platformService: PlatformsService,
-        private manufactureService: ManufactureService
+        private manufactureService: ManufactureService,
+        private gameService: GameService
     ){
 
         this.platformService.getPlatforms().subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
@@ -33,7 +37,29 @@ export class GamesRegisterComponent {
 
     onSubmit(form){
 
-        console.log(form);
+        if(this.fileList){
+
+            if(this.fileList.length > 0) {
+
+                // Funcionando
+
+            }
+
+        }else{
+
+            this.gameService.registerGame(form.value).subscribe(form => {
+
+                console.log(form);
+
+            }), erro => console.log(erro);
+
+        }
+
+    }
+
+    fileChange(event) {
+
+        this.fileList = event.target.files;
 
     }
 

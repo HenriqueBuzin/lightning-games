@@ -1,5 +1,5 @@
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -33,6 +33,20 @@ export class PlatformsService {
     deletePlatform(id: number): Observable<Platform[]>{
 
         return this.http.delete('http://localhost:8080/lightning/api/platform/' + id).map(res => res).catch(error => {
+
+            throw new Error(error.message);
+
+        });
+
+    }
+
+    registerPlatform(platform: Platform): Observable<Platform[]> {
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post('http://localhost:8080/lightning/api/platform', JSON.stringify(platform), options).map(res => res).catch(error => {
 
             throw new Error(error.message);
 

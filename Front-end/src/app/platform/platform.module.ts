@@ -16,7 +16,7 @@ import { PlatformComponent } from './platform.component';
 
 import { FormControlModule } from '../_directives/form-control/form-control.module';
 
-import {SearchPlatformPipe} from "./search-platform.pipe";
+import {SearchPlatformPipe} from './search-platform.pipe';
 
 @NgModule({
     declarations: [

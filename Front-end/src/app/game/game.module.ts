@@ -16,13 +16,13 @@ import { routing } from './game.routes';
 
 import { GameComponent } from './game.component';
 
-import { PlatformsService } from "../_services/platform.service";
+import { PlatformsService } from './../_services/platform.service';
 
-import { ManufactureService } from "../_services/manufacture.service";
+import { ManufactureService } from './../_services/manufacture.service';
 
-import {SearchGamePipe} from "./pipes/search-game.pipe";
+import {SearchGamePipe} from './pipes/search-game.pipe';
 
-import {SeparatorPipe} from "./pipes/separator.pipe";
+import {SeparatorPipe} from './pipes/separator.pipe';
 
 @NgModule({
     declarations: [

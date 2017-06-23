@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {Http} from "@angular/http";
-import {isUndefined} from "util";
+
+import {PlatformsService} from "../../_services/platform.service";
 
 @Component({
     moduleId: module.id,
@@ -10,10 +10,9 @@ import {isUndefined} from "util";
 })
 export class PlatformsRegisterComponent{
 
-
     private fileList: FileList;
 
-    constructor(private http: Http){}
+    constructor(private platformService: PlatformsService){}
 
     onSubmit(form){
 
@@ -25,6 +24,13 @@ export class PlatformsRegisterComponent{
 
             }
 
+        }else{
+
+            this.platformService.registerPlatform(form.value).subscribe(form => {
+
+                console.log(form);
+
+            }), erro => console.log(erro);
 
         }
 

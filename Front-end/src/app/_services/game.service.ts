@@ -1,5 +1,5 @@
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -33,6 +33,20 @@ export class GameService {
     deleteGame(id: number): Observable<Game[]> {
 
         return this.http.delete('http://localhost:8080/lightning/api/game/' + id).map(res => res).catch(error => {
+
+            throw new Error(error.message);
+
+        });
+
+    }
+
+    registerGame(game: Game): Observable<Game[]> {
+
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post('http://localhost:8080/lightning/api/game', JSON.stringify(game), options).map(res => res).catch(error => {
 
             throw new Error(error.message);
 

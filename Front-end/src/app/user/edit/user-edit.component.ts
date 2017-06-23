@@ -12,7 +12,7 @@ import { User } from '../../_models/user';
 })
 export class UserEditComponent {
 
-    users: User[] = [];
+    user: User[] = [];
 
     private id;
 
@@ -20,7 +20,18 @@ export class UserEditComponent {
 
         this.activatedRoute.params.subscribe((params: Params) => { this.id = params['id']; });
 
-        this.userService.getUser(this.id).subscribe(users => this.users = users), erro => console.log(erro);
+        this.userService.getUser(this.id).subscribe(
+            (user: User[]) => {
+
+
+            this.user = user;
+
+            console.log(user);
+
+
+
+
+        }), erro => console.log(erro);
 
     }
 
@@ -42,7 +53,7 @@ export class UserEditComponent {
 
             'textError': this.checkValidTouched(field)
 
-        }
+        };
 
     }
 
