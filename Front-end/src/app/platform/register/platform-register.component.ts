@@ -58,4 +58,15 @@ export class PlatformsRegisterComponent{
 
     }
 
+    applyCssErrorInput(field){
+
+        return {
+
+            'textError': this.checkValidTouched(field)
+
+        }
+
+    }
+
+
 }

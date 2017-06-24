@@ -1,6 +1,6 @@
-import { EventEmitter, Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { Router } from "@angular/router";
+import { EventEmitter, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from '../_models/user';
 
@@ -20,6 +20,7 @@ export class AuthService {
     login(user: User){
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
+
         let options = new RequestOptions({ headers: headers });
 
         this.http

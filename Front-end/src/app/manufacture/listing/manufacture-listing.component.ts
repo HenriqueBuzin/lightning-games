@@ -19,13 +19,16 @@ export class ManufacturesListingComponent{
 
     loadTable(){
 
-        this.manufacturesService.getManufactures().subscribe(manufactures => { this.manufactures = manufactures; }), erro => console.log(erro);
+        this.manufacturesService.getManufactures().subscribe(
+            (manufactures: Manufacture[]) => {
+                this.manufactures = manufactures;
+        }), erro => console.log(erro);
 
     }
 
     dialogRef: MdDialogRef<any>;
 
-    open(message, id) {
+    open(message: string, id: number) {
 
         this.dialogRef = this.dialog.open(DialogComponent, {
 
@@ -39,11 +42,13 @@ export class ManufacturesListingComponent{
 
             if(result) {
 
-                this.manufacturesService.deleteManufacture(id).subscribe(manufacture => {
+                this.manufacturesService.deleteManufacture(id).subscribe(
 
-                    console.log(manufacture);
+                    (manufacture: Manufacture[]) => {
 
-                    this.loadTable();
+                        console.log(manufacture);
+
+                        this.loadTable();
 
                 });
 

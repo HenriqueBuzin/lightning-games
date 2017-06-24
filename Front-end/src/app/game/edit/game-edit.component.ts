@@ -22,8 +22,6 @@ export class GameEditComponent {
 
     games: Game[] = [];
 
-    private id: number;
-
     constructor(
         private activatedRoute: ActivatedRoute,
         private gameService: GameService,
@@ -31,13 +29,24 @@ export class GameEditComponent {
         private platformService: PlatformsService
     ) {
 
-        this.platformService.getPlatforms().subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
+        this.platformService.getPlatforms().subscribe(
+            (platforms: Platform[]) => {
+                this.platforms = platforms;
+        }), erro => console.log(erro);
 
-        this.manufactureService.getManufactures().subscribe(manufactures => { this.manufactures = manufactures; }), erro => console.log(erro);
+        this.manufactureService.getManufactures().subscribe(
+            (manufactures: Manufacture[]) => {
+                this.manufactures = manufactures;
+        }), erro => console.log(erro);
 
-        this.activatedRoute.params.subscribe((params: Params) => { this.id = params['id']; });
-
-        this.gameService.getGame(this.id).subscribe(games => { this.games = games; }), erro => console.log(erro);
+        this.activatedRoute.params.subscribe(
+            (params: Params) => {
+                let id: number = params['id'];
+                this.gameService.getGame(id).subscribe(
+                    (games: Game[]) => {
+                        this.games = games;
+                }), erro => console.log(erro);
+        });
 
     }
 

@@ -8,7 +8,8 @@
             </div>
             <div class="form-group">
                 <label for="image">Imagem</label><br>
-                <img src="{{manufactures.imageFullPath}}" width="150" height="150"><br><br>
+                <img src="{{manufactures.imageFullPath}}" width="150" height="150">
+                <p class="note">* imagem atual do usuário</p>
                 <input type="file" name="image" id="image" class="form-control" ngModel>
             </div>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">

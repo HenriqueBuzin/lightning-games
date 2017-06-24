@@ -29,14 +29,22 @@ export class GamesRegisterComponent {
         private gameService: GameService
     ){
 
-        this.platformService.getPlatforms().subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
+        this.platformService.getPlatforms().subscribe(
+            (platforms: Platform[]) => {
+                this.platforms = platforms;
+        }), erro => console.log(erro);
 
-        this.manufactureService.getManufactures().subscribe(manufactures => { this.manufactures = manufactures; }), erro => console.log(erro);
+        this.manufactureService.getManufactures().subscribe(
+            (manufactures: Manufacture[]) => {
+                this.manufactures = manufactures;
+        }), erro => console.log(erro);
 
     }
 
     onSubmit(form){
 
+        console.log(form);
+        /*
         if(this.fileList){
 
             if(this.fileList.length > 0) {
@@ -54,6 +62,7 @@ export class GamesRegisterComponent {
             }), erro => console.log(erro);
 
         }
+        */
 
     }
 
@@ -70,6 +79,16 @@ export class GamesRegisterComponent {
     }
 
     applyCssErrorLabel(field){
+
+        return {
+
+            'textError': this.checkValidTouched(field)
+
+        }
+
+    }
+
+    applyCssErrorInput(field){
 
         return {
 

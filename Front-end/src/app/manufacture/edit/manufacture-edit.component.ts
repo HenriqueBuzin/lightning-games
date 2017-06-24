@@ -14,13 +14,16 @@ export class ManufactureEditComponent {
 
     manufactures: Manufacture[] = [];
 
-    private id: number;
-
     constructor(private activatedRoute: ActivatedRoute, private manufactureService: ManufactureService) {
 
-        this.activatedRoute.params.subscribe((params: Params) => { this.id = params['id']; });
-
-        this.manufactureService.getManufacture(this.id).subscribe(manufactures => { this.manufactures = manufactures; }), erro => console.log(erro);
+        this.activatedRoute.params.subscribe(
+            (params: Params) => {
+                let id: number = params['id'];
+                this.manufactureService.getManufacture(id).subscribe(
+                    (manufactures: Manufacture[]) => {
+                        this.manufactures = manufactures;
+                }), erro => console.log(erro);
+            });
 
     }
 

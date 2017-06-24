@@ -14,13 +14,16 @@ export class PlatformEditComponent {
 
     platforms: Platform[] = [];
 
-    private id;
-
     constructor(private activatedRoute: ActivatedRoute, private platformService: PlatformsService) {
 
-        this.activatedRoute.params.subscribe((params: Params) => { this.id = params['id']; });
-
-        this.platformService.getPlatform(this.id).subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
+        this.activatedRoute.params.subscribe(
+            (params: Params) => {
+                let id: number = params['id'];
+                this.platformService.getPlatform(id).subscribe(
+                    (platforms: Platform[]) => {
+                        this.platforms = platforms;
+                }), erro => console.log(erro);
+        });
 
     }
 

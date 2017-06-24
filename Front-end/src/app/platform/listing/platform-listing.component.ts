@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { DialogComponent } from '../../_directives/dialog/dialog.component';
 
 import { PlatformsService } from '../../_services/platform.service';
+import {Platform} from "../../_models/platform";
 
 @Component({
     moduleId: module.id,
@@ -19,13 +20,16 @@ export class PlatformsListingComponent{
 
     loadTable(){
 
-        this.platformsService.getPlatforms().subscribe(platforms => { this.platforms = platforms; }), erro => console.log(erro);
+        this.platformsService.getPlatforms().subscribe(
+            (platforms: Platform[]) => {
+                this.platforms = platforms;
+        }), erro => console.log(erro);
 
     }
 
     dialogRef: MdDialogRef<any>;
 
-    open(message, id) {
+    open(message: string, id: number) {
 
         this.dialogRef = this.dialog.open(DialogComponent, {
 
@@ -39,7 +43,8 @@ export class PlatformsListingComponent{
 
             if(result) {
 
-                this.platformsService.deletePlatform(id).subscribe(platform => {
+                this.platformsService.deletePlatform(id).subscribe(
+                    (platform: Platform[]) => {
 
                      console.log(platform);
 

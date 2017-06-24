@@ -19,13 +19,16 @@ export class GamesListingComponent{
 
     loadTable(){
 
-        this.gameService.getGames().subscribe(games => { this.games = games; }), erro => console.log(erro);
+        this.gameService.getGames().subscribe(
+            (games: Game[]) => {
+                this.games = games;
+        }), erro => console.log(erro);
 
     }
 
     dialogRef: MdDialogRef<any>;
 
-    open(message, id) {
+    open(message: string, id: number) {
 
         this.dialogRef = this.dialog.open(DialogComponent, {
 

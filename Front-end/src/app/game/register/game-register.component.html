@@ -46,8 +46,8 @@
             </div>
             <div class="form-group">
                 <label>Em Produção?</label><br />
-                <label class="radio-inline"><input type="radio" name="optradio" value="0">Não</label>
-                <label class="radio-inline"><input type="radio" name="optradio" value="1" checked>Sim</label>
+                <label class="radio-inline"><input type="radio" name="production" value="0" ngModel>Não</label>
+                <label class="radio-inline"><input type="radio" name="production" value="1" ngModel>Sim</label>
             </div>
             <div class="form-group">
                 <label for="description" [ngClass]="applyCssErrorLabel(description)">Descrição</label>

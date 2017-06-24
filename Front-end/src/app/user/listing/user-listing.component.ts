@@ -19,13 +19,16 @@ export class UsersListingComponent{
 
     loadTable(){
 
-        this.userService.getUsers().subscribe(users => { this.users = users; }), erro => console.log(erro);
+        this.userService.getUsers().subscribe(
+            (users: User[]) => {
+                this.users = users;
+        }), erro => console.log(erro);
 
     }
 
     dialogRef: MdDialogRef<any>;
 
-    open(message, id) {
+    open(message: string, id: number) {
 
         this.dialogRef = this.dialog.open(DialogComponent, {
 
@@ -39,12 +42,10 @@ export class UsersListingComponent{
 
             if(result) {
 
-                this.userService.deleteUser(id).subscribe(user => {
-
-                    console.log(user);
-
-                    this.loadTable();
-
+                this.userService.deleteUser(id).subscribe(
+                    (user: User[]) => {
+                        console.log(user);
+                        this.loadTable();
                 });
 
             }

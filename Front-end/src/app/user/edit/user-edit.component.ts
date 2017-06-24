@@ -14,24 +14,18 @@ export class UserEditComponent {
 
     user: User[] = [];
 
-    private id;
+    private id: number;
 
     constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
 
-        this.activatedRoute.params.subscribe((params: Params) => { this.id = params['id']; });
-
-        this.userService.getUser(this.id).subscribe(
-            (user: User[]) => {
-
-
-            this.user = user;
-
-            console.log(user);
-
-
-
-
-        }), erro => console.log(erro);
+        this.activatedRoute.params.subscribe((params: Params) => {
+            this.id = params['id'];
+            this.userService.getUser(this.id).subscribe(
+                (user: User[]) => {
+                    this.user = user;
+                    console.log(user);
+                }), erro => console.log(erro);
+        });
 
     }
 
@@ -57,7 +51,7 @@ export class UserEditComponent {
 
     }
 
-    resetPassword(){
+    resetPassword(id){
 
         this.userService.resetPassword(this.id).subscribe(), erro => console.log(erro);
 
