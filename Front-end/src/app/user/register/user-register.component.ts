@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import {UserService} from "../../_services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -12,7 +13,7 @@ export class UsersRegisterComponent{
 
     private fileList: FileList;
 
-    constructor(private userService: UserService){}
+    constructor(private userService: UserService, private router: Router){}
 
     onSubmit(form){
 
@@ -30,15 +31,19 @@ export class UsersRegisterComponent{
 
                 console.log(form);
 
+                this.router.navigate(['/user']);
+
             }), erro => console.log(erro);
 
         }
 
     }
 
-    fileChange(event) {
+    fileChange(target) {
 
-        this.fileList = event.target.files;
+        this.fileList = target.files;
+
+        console.log(this.fileList);
 
     }
 
@@ -48,7 +53,7 @@ export class UsersRegisterComponent{
 
     }
 
-    applyCssErrorLabel(field){
+    applyCssError(field){
 
         return {
 

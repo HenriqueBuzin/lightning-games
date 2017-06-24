@@ -7,4 +7,5 @@ export class Game {
     production: boolean;
     image: string;
     description: string;
+    platform: string;
 }

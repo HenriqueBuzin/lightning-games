@@ -2,12 +2,12 @@
     <form  enctype="multipart/form-data" class="row" #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="col-md-8 offset-md-2">
             <div class="form-group">
-                <label for="name" [ngClass]="applyCssErrorLabel(name)">Nome</label>
+                <label for="name" [ngClass]="applyCssError(name)">Nome</label>
                 <input type="text" id="name" name="name" placeholder="ex: Street Fighter" class="form-control" autocomplete="off" #name="ngModel" ngModel required>
                 <app-form-control [showError]="checkValidTouched(name)" messageError="O campo nome deve ser preenchido."></app-form-control>
             </div>
             <div class="form-group">
-                <label for="category" [ngClass]="applyCssErrorLabel(category)">Categoria</label>
+                <label for="category" [ngClass]="applyCssError(category)">Categoria</label>
                 <input type="text" id="category" name="category" placeholder="ex: Luta" class="form-control" autocomplete="off" #category="ngModel" ngModel required>
                 <app-form-control [showError]="checkValidTouched(category)" messageError="O campo categoria deve ser preenchido."></app-form-control>
             </div>
@@ -32,15 +32,15 @@
                 </label>
             </div>
             <div class="form-group">
-                <label for="price" [ngClass]="applyCssErrorLabel(price)">Preço</label>
-                <div class="sub" [ngClass]="applyCssErrorInput(price)">
+                <label for="price" [ngClass]="applyCssError(price)">Preço</label>
+                <div class="sub" [ngClass]="applyCssError(price)">
                     <span>R$</span>
                     <input type="number" id="price" name="price" placeholder="ex: 199,99" class="form-control" autocomplete="off" #price="ngModel" ngModel required>
                 </div>
                 <app-form-control [showError]="checkValidTouched(price)" messageError="O campo preço deve ser preenchido."></app-form-control>
             </div>
             <div class="form-group">
-                <label for="quantity"  [ngClass]="applyCssErrorLabel(quantity)">Quantidade</label>
+                <label for="quantity"  [ngClass]="applyCssError(quantity)">Quantidade</label>
                 <input type="number" id="quantity" name="quantity" placeholder="ex: 3" min="0" step="any" class="form-control" autocomplete="off" #quantity="ngModel" ngModel required>
                 <app-form-control [showError]="checkValidTouched(quantity)" messageError="O campo quantidade deve ser preenchido."></app-form-control>
             </div>
@@ -50,13 +50,13 @@
                 <label class="radio-inline"><input type="radio" name="production" value="1" ngModel>Sim</label>
             </div>
             <div class="form-group">
-                <label for="description" [ngClass]="applyCssErrorLabel(description)">Descrição</label>
+                <label for="description" [ngClass]="applyCssError(description)">Descrição</label>
                 <textarea name="description" id="description" class="form-control" placeholder="ex: Considerado um dos melhores jogos de luta da história..." autocomplete="off" #description="ngModel" ngModel required></textarea>
                 <app-form-control [showError]="checkValidTouched(description)" messageError="O campo descrição deve ser preenchido."></app-form-control>
             </div>
             <div class="form-group">
-                <label>Imagem</label>
-                <input type="file" name="image" (change)="fileChange($event)" class="form-control" accept=".png,.jpg">
+                <label for="image">Imagem</label>
+                <input type="file" name="image" (change)="fileChange($event.target)" id="image" class="form-control" accept=".png,.jpg">
             </div>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
                 Enviar

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import {PlatformsService} from "../../_services/platform.service";
+import {Router} from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -12,7 +13,7 @@ export class PlatformsRegisterComponent{
 
     private fileList: FileList;
 
-    constructor(private platformService: PlatformsService){}
+    constructor(private platformService: PlatformsService, private router: Router){}
 
     onSubmit(form){
 
@@ -30,15 +31,19 @@ export class PlatformsRegisterComponent{
 
                 console.log(form);
 
+                this.router.navigate(['/platform']);
+
             }), erro => console.log(erro);
 
         }
 
     }
 
-    fileChange(event) {
+    fileChange(target) {
 
-        this.fileList = event.target.files;
+        this.fileList = target.files;
+
+        console.log(this.fileList);
 
     }
 
@@ -48,7 +53,7 @@ export class PlatformsRegisterComponent{
 
     }
 
-    applyCssErrorLabel(field){
+    applyCssError(field){
 
         return {
 
@@ -57,16 +62,5 @@ export class PlatformsRegisterComponent{
         }
 
     }
-
-    applyCssErrorInput(field){
-
-        return {
-
-            'textError': this.checkValidTouched(field)
-
-        }
-
-    }
-
 
 }

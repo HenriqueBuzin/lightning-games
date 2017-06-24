@@ -1,20 +1,39 @@
-import { Http, Headers, RequestOptions } from '@angular/http';
-import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Injectable, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Game } from '../_models/game';
+import { Game } from './../_models/game';
 
 @Injectable()
-export class GameService {
+export class GameService implements OnInit {
+
+    private headers: Headers;
+
+    private options: RequestOptions;
 
     constructor(private http: Http) { }
 
+    ngOnInit(){
+
+        this.headers = new Headers();
+
+        this.headers.append('Content-Type', 'multipart/form-data');
+
+        this.headers.append('Accept', 'application/json');
+
+        this.options = new RequestOptions({ headers: this.headers });
+
+    }
+
     getGames(): Observable<Game[]> {
 
-        return this.http.get('http://localhost:8080/lightning/api/game').map(res => res.json()).catch(error => {
+        return this.http
+            .get('http://localhost:8080/lightning/api/game', this.options)
+            .map((response: Response) => <Game[]> response.json())
+            .catch(error => {
 
-            throw new Error(error.message);
+                throw new Error(error.message);
 
         });
 
@@ -22,7 +41,10 @@ export class GameService {
 
     getGame(id: number): Observable<Game[]> {
 
-        return this.http.get('http://localhost:8080/lightning/api/game/' + id).map(res => res.json()).catch(error => {
+        return this.http
+            .get('http://localhost:8080/lightning/api/game/' + id, this.options)
+            .map((response: Response) => <Game[]> response.json())
+            .catch(error => {
 
             throw new Error(error.message);
 
@@ -32,7 +54,10 @@ export class GameService {
 
     deleteGame(id: number): Observable<Game[]> {
 
-        return this.http.delete('http://localhost:8080/lightning/api/game/' + id).map(res => res).catch(error => {
+        return this.http
+            .delete('http://localhost:8080/lightning/api/game/' + id, this.options)
+            .map((response: Response) => response)
+            .catch(error => {
 
             throw new Error(error.message);
 
@@ -42,13 +67,51 @@ export class GameService {
 
     registerGame(game: Game): Observable<Game[]> {
 
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        return this.http
+            .post('http://localhost:8080/lightning/api/game', JSON.stringify(game), this.options)
+            .map((response: Response) => response)
+            .catch(error => {
 
-        let options = new RequestOptions({ headers: headers });
+                throw new Error(error.message);
 
-        return this.http.post('http://localhost:8080/lightning/api/game', JSON.stringify(game), options).map(res => res).catch(error => {
+        });
 
-            throw new Error(error.message);
+    }
+
+    registerGameImage(game: Game): Observable<Game[]> {
+
+        return this.http
+            .post('http://localhost:8080/lightning/api/game', JSON.stringify(game), this.options)
+            .map((response: Response) => response)
+            .catch(error => {
+
+                throw new Error(error.message);
+
+        });
+
+    }
+
+    editGameImage(game: Game): Observable<Game[]> {
+
+        return this.http
+            .post('http://localhost:8080/lightning/api/game', JSON.stringify(game), this.options)
+            .map((response: Response) => response)
+            .catch(error => {
+
+                throw new Error(error.message);
+
+        });
+
+    }
+
+    editGame(game: Game): Observable<Game[]> {
+
+        return this.http
+            .put('http://localhost:8080/lightning/api/game', JSON.stringify(game), this.options)
+            .map((response: Response) => response)
+            .catch(error => {
+
+                throw new Error(error.message);
 
         });
 

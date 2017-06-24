@@ -10,7 +10,7 @@ import { GamesRegisterComponent } from './register/game-register.component';
 
 import { CommonModule } from '@angular/common';
 
-import { FormControlModule } from '../_directives/form-control/form-control.module';
+import { FormControlModule } from './../_directives/form-control/form-control.module';
 
 import { routing } from './game.routes';
 
@@ -22,7 +22,9 @@ import { ManufactureService } from './../_services/manufacture.service';
 
 import {SearchGamePipe} from './pipes/search-game.pipe';
 
-import {SeparatorPipe} from './pipes/separator.pipe';
+import { SeparatorArrayPipe } from './pipes/separator-array.pipe';
+
+import { SeparatorCurrencyPipe } from './pipes/separator-currency.pipe';
 
 @NgModule({
     declarations: [
@@ -31,7 +33,8 @@ import {SeparatorPipe} from './pipes/separator.pipe';
         GameEditComponent,
         SearchGamePipe,
         GameComponent,
-        SeparatorPipe
+        SeparatorArrayPipe,
+        SeparatorCurrencyPipe
     ],
     imports: [
         routing,

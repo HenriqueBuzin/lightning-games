@@ -1,20 +1,39 @@
-import { Http, Headers, RequestOptions } from '@angular/http';
-import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import {Injectable, OnInit} from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
 import { User } from '../_models/user';
 
 @Injectable()
-export class UserService {
+export class UserService implements OnInit {
+
+    private headers: Headers;
+
+    private options: RequestOptions;
 
     constructor(private http: Http) { }
 
+    ngOnInit(){
+
+        this.headers = new Headers();
+
+        this.headers.append('Content-Type', 'multipart/form-data');
+
+        this.headers.append('Accept', 'application/json');
+
+        this.options = new RequestOptions({ headers: this.headers });
+
+    }
+
     getUsers(): Observable<User[]> {
 
-        return this.http.get('http://localhost:8080/lightning/api/user').map(res => res.json()).catch(error => {
+        return this.http
+            .get('http://localhost:8080/lightning/api/user', this.options)
+            .map((response: Response) => <User[]> response.json())
+            .catch(error => {
 
-            throw new Error(error.message);
+                throw new Error(error.message);
 
         });
 
@@ -22,9 +41,12 @@ export class UserService {
 
     getUser(id: number): Observable<User[]> {
 
-        return this.http.get('http://localhost:8080/lightning/api/user/' + id).map(res => res.json()).catch(error => {
+        return this.http
+            .get('http://localhost:8080/lightning/api/user/' + id, this.options)
+            .map((response: Response) => <User[]> response.json())
+            .catch(error => {
 
-            throw new Error(error.message);
+                throw new Error(error.message);
 
         });
 
@@ -32,9 +54,12 @@ export class UserService {
 
     deleteUser(id: number): Observable<User[]> {
 
-        return this.http.delete('http://localhost:8080/lightning/api/user/' + id).map(res => res).catch(error => {
+        return this.http
+            .delete('http://localhost:8080/lightning/api/user/' + id, this.options)
+            .map((response: Response) => response)
+            .catch(error => {
 
-            throw new Error(error.message);
+                throw new Error(error.message);
 
         });
 
@@ -42,9 +67,12 @@ export class UserService {
 
     resetPassword(id: number){
 
-        return this.http.get('http://localhost:8080/lightning/api/user/resetPassword/' + id).map(res => res).catch(error => {
+        return this.http
+            .get('http://localhost:8080/lightning/api/user/resetPassword/' + id, this.options)
+            .map((response: Response) => response)
+            .catch(error => {
 
-            throw new Error(error.message);
+                throw new Error(error.message);
 
         });
 
@@ -52,13 +80,12 @@ export class UserService {
 
     registerUser(user: User): Observable<User[]> {
 
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        return this.http
+            .post('http://localhost:8080/lightning/api/user', JSON.stringify(user), this.options)
+            .map((response: Response) => response)
+            .catch(error => {
 
-        let options = new RequestOptions({ headers: headers });
-
-        return this.http.post('http://localhost:8080/lightning/api/user', JSON.stringify(user), options).map(res => res).catch(error => {
-
-            throw new Error(error.message);
+                throw new Error(error.message);
 
         });
 

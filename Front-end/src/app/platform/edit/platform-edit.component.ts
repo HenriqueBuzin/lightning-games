@@ -14,6 +14,8 @@ export class PlatformEditComponent {
 
     platforms: Platform[] = [];
 
+    private fileList: FileList;
+
     constructor(private activatedRoute: ActivatedRoute, private platformService: PlatformsService) {
 
         this.activatedRoute.params.subscribe(
@@ -33,13 +35,21 @@ export class PlatformEditComponent {
 
     }
 
+    fileChange(target) {
+
+        this.fileList = target.files;
+
+        console.log(this.fileList);
+
+    }
+
     checkValidTouched(field){
 
         return !field.valid && field.touched;
 
     }
 
-    applyCssErrorLabel(field){
+    applyCssError(field){
 
         return {
 

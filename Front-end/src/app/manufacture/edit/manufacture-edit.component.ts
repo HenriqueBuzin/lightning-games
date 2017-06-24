@@ -14,6 +14,8 @@ export class ManufactureEditComponent {
 
     manufactures: Manufacture[] = [];
 
+    private fileList: FileList;
+
     constructor(private activatedRoute: ActivatedRoute, private manufactureService: ManufactureService) {
 
         this.activatedRoute.params.subscribe(
@@ -33,13 +35,21 @@ export class ManufactureEditComponent {
 
     }
 
+    fileChange(target) {
+
+        this.fileList = target.files;
+
+        console.log(this.fileList);
+
+    }
+
     checkValidTouched(field){
 
         return !field.valid && field.touched;
 
     }
 
-    applyCssErrorLabel(field){
+    applyCssError(field){
 
         return {
 

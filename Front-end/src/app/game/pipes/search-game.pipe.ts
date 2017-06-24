@@ -8,18 +8,21 @@ import { Game } from '../../_models/game';
 })
 export class SearchGamePipe implements PipeTransform {
 
+    /*
+        Este pipe vai ser o pipe que pesquisa na tabela o jogo procurado e o mostra.
+        Ele tem as seguintes falhas (não consegue pesquisar):
+         Falta pesquisar em plataformas
+         - Platforms
+         Arrumar production de uma maneira melhor de fazer essa parte.
+         - ((game.production ? "sim" : "nao não").includes(typed))
+         Arrumar preço, poder pesquisar com R$...
+     */
+
     transform(games: Game[], typed: string): any {
 
-        if(games == null) return "";
+        if(games == null) return '';
 
         typed = typed.toLowerCase();
-
-        /*
-            Falta pesquisar em plataformas
-            - Platforms
-            Arruma production de uma maneira que o lint não mostre erro.
-            - ((game.production ? "sim" : "nao não").includes(typed))
-        */
 
         return games.filter(game =>
 

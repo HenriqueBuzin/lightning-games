@@ -2,7 +2,7 @@
     <form  enctype="multipart/form-data" class="row" #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="col-md-8 offset-md-2">
             <div class="form-group">
-                <label for="name" [ngClass]="applyCssErrorLabel(name)">Nome</label>
+                <label for="name" [ngClass]="applyCssError(name)">Nome</label>
                 <input type="text" id="name" name="name" placeholder="ex: Playstation 4" class="form-control" autocomplete="off" #name="ngModel" [(ngModel)]="platforms.name" required>
                 <app-form-control [showError]="checkValidTouched(name)" messageError="O campo nome deve ser preenchido."></app-form-control>
             </div>
@@ -10,7 +10,7 @@
                 <label for="image">Imagem</label><br>
                 <img src="{{platforms.imageFullPath}}" width="150" height="150">
                 <p class="note">* imagem atual do usuário</p>
-                <input type="file" name="image" id="image" class="form-control" ngModel>
+                <input type="file" name="image" (change)="fileChange($event.target)" id="image" class="form-control" accept=".png,.jpg">
             </div>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
                 Enviar

@@ -22,6 +22,8 @@ export class GameEditComponent {
 
     games: Game[] = [];
 
+    private fileList: FileList;
+
     constructor(
         private activatedRoute: ActivatedRoute,
         private gameService: GameService,
@@ -54,6 +56,36 @@ export class GameEditComponent {
 
         console.log(form);
 
+        /*
+         if(this.fileList){
+
+         if(this.fileList.length > 0) {
+
+         // Funcionando
+
+         }
+
+         }else{
+
+         this.gameService.registerGame(form.value).subscribe(form => {
+
+         console.log(form);
+
+         this.router.navigate(['/game']);
+
+         }), error => console.log(error);
+
+         }
+         */
+
+    }
+
+    fileChange(target) {
+
+        this.fileList = target.files;
+
+        console.log(this.fileList);
+
     }
 
     checkValidTouched(field){
@@ -62,21 +94,11 @@ export class GameEditComponent {
 
     }
 
-    applyCssErrorInput(field){
+    applyCssError(field){
 
         return {
 
             'subError': this.checkValidTouched(field)
-
-        }
-
-    }
-
-    applyCssErrorLabel(field){
-
-        return {
-
-            'textError': this.checkValidTouched(field)
 
         }
 

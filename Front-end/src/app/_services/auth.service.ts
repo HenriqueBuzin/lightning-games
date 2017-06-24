@@ -1,4 +1,4 @@
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -19,13 +19,13 @@ export class AuthService {
 
     login(user: User){
 
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let headers: Headers = new Headers({ 'Content-Type': 'application/json' });
 
-        let options = new RequestOptions({ headers: headers });
+        let options: RequestOptions = new RequestOptions({ headers: headers });
 
         this.http
             .post('http://localhost:8080/lightning/api/user/login', JSON.stringify(user), options)
-            .map(res => res).subscribe(login => {
+            .map((response: Response) => response).subscribe(login => {
 
                 if(login.json() != null){
 

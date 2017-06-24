@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {ManufactureService} from "../../_services/manufacture.service";
+import { ManufactureService } from '../../_services/manufacture.service';
+import { Router } from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -11,7 +12,7 @@ export class ManufacturesRegisterComponent{
 
     private fileList: FileList;
 
-    constructor(private manufactureService: ManufactureService){}
+    constructor(private manufactureService: ManufactureService, private router: Router){}
 
     onSubmit(form){
 
@@ -29,15 +30,19 @@ export class ManufacturesRegisterComponent{
 
                 console.log(form);
 
+                this.router.navigate(['/manufacture']);
+
             }), erro => console.log(erro);
 
         }
 
     }
 
-    fileChange(event) {
+    fileChange(target) {
 
-        this.fileList = event.target.files;
+        this.fileList = target.files;
+
+        console.log(this.fileList);
 
     }
 
@@ -47,7 +52,7 @@ export class ManufacturesRegisterComponent{
 
     }
 
-    applyCssErrorLabel(field){
+    applyCssError(field){
 
         return {
 

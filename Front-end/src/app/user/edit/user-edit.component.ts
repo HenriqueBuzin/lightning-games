@@ -16,6 +16,8 @@ export class UserEditComponent {
 
     private id: number;
 
+    private fileList: FileList;
+
     constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
 
         this.activatedRoute.params.subscribe((params: Params) => {
@@ -23,7 +25,6 @@ export class UserEditComponent {
             this.userService.getUser(this.id).subscribe(
                 (user: User[]) => {
                     this.user = user;
-                    console.log(user);
                 }), erro => console.log(erro);
         });
 
@@ -31,17 +32,46 @@ export class UserEditComponent {
 
     onSubmit(form){
 
-        console.log(form);
+        if(this.fileList){
+
+            if(this.fileList.length > 0) {
+
+                // Funcionando
+
+            }
+
+        }else{
+
+            /*
+
+            this.userService.registerUser(form.value).subscribe(form => {
+
+                console.log(form);
+
+
+            }), erro => console.log(erro);
+
+            */
+
+        }
+
+    }
+
+    fileChange(target) {
+
+        this.fileList = target.files;
+
+        console.log(this.fileList);
 
     }
 
     checkValidTouched(field){
 
-        return !field.valid && field.touched;
+        return (!field.valid && field.touched);
 
     }
 
-    applyCssErrorLabel(field){
+    applyCssError(field){
 
         return {
 
@@ -51,7 +81,7 @@ export class UserEditComponent {
 
     }
 
-    resetPassword(id){
+    resetPassword(){
 
         this.userService.resetPassword(this.id).subscribe(), erro => console.log(erro);
 

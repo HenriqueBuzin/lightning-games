@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ManufactureService } from '../../_services/manufacture.service';
+import { PlatformsService } from '../../_services/platform.service';
+import { GameService } from '../../_services/game.service';
 
 import { Manufacture } from '../../_models/manufacture';
-
 import { Platform } from '../../_models/platform';
-
-import {PlatformsService} from "../../_services/platform.service";
-
-import {ManufactureService} from "../../_services/manufacture.service";
-import {GameService} from "../../_services/game.service";
 
 @Component({
     moduleId: module.id,
@@ -26,7 +25,8 @@ export class GamesRegisterComponent {
     constructor(
         private platformService: PlatformsService,
         private manufactureService: ManufactureService,
-        private gameService: GameService
+        private gameService: GameService,
+        private router: Router
     ){
 
         this.platformService.getPlatforms().subscribe(
@@ -44,6 +44,7 @@ export class GamesRegisterComponent {
     onSubmit(form){
 
         console.log(form);
+
         /*
         if(this.fileList){
 
@@ -59,16 +60,20 @@ export class GamesRegisterComponent {
 
                 console.log(form);
 
-            }), erro => console.log(erro);
+                this.router.navigate(['/game']);
+
+            }), error => console.log(error);
 
         }
         */
 
     }
 
-    fileChange(event) {
+    fileChange(target) {
 
-        this.fileList = event.target.files;
+        this.fileList = target.files;
+
+        console.log(this.fileList);
 
     }
 
@@ -78,17 +83,7 @@ export class GamesRegisterComponent {
 
     }
 
-    applyCssErrorLabel(field){
-
-        return {
-
-            'textError': this.checkValidTouched(field)
-
-        }
-
-    }
-
-    applyCssErrorInput(field){
+    applyCssError(field){
 
         return {
 
