@@ -24,7 +24,27 @@ export class PlatformsRegisterComponent {
 
     onSubmit(form){
 
-        if (this.fileList){
+        this.platformService.registerPlatform(form.value).subscribe(
+
+            (platform: Platform[]) => {
+
+                console.log(platform);
+
+                this.show = true;
+
+            }), error => {
+
+            console.log(error);
+
+            this.show = true;
+
+            this.success = false;
+
+            this.message = 'Falha ao cadastrar a plataforma.';
+
+        };
+
+        if (this.fileList) {
 
             if (this.fileList.length > 0) {
 
@@ -35,7 +55,6 @@ export class PlatformsRegisterComponent {
                 formData.append('uploadFile', file, file.name);
 
                 this.platformService.registerPlatformImage(formData).subscribe(
-
                     (platform: Platform[]) => {
 
                         console.log(platform);
@@ -55,28 +74,6 @@ export class PlatformsRegisterComponent {
                 };
 
             }
-
-        } else {
-
-            this.platformService.registerPlatform(form.value).subscribe(
-
-                (platform: Platform[]) => {
-
-                console.log(platform);
-
-                this.show = true;
-
-            }), error => {
-
-                console.log(error);
-
-                this.show = true;
-
-                this.success = false;
-
-                this.message = 'Falha ao cadastrar a plataforma.';
-
-            };
 
         }
 

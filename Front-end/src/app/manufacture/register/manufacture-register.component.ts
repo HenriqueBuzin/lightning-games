@@ -24,6 +24,26 @@ export class ManufacturesRegisterComponent{
 
     onSubmit(form) {
 
+        this.manufactureService.registerManufacture(form.value).subscribe(
+
+            (manufacture: Manufacture[]) => {
+
+                console.log(manufacture);
+
+                this.show = true;
+
+            }), error => {
+
+            console.log(error);
+
+            this.show = true;
+
+            this.success = false;
+
+            this.message = 'Falha ao cadastrar a fabricante.';
+
+        };
+
         if (this.fileList) {
 
             if (this.fileList.length > 0) {
@@ -55,28 +75,6 @@ export class ManufacturesRegisterComponent{
                 };
 
             }
-
-        }else{
-
-            this.manufactureService.registerManufacture(form.value).subscribe(
-
-                (manufacture: Manufacture[]) => {
-
-                    console.log(manufacture);
-
-                    this.show = true;
-
-                }), error => {
-
-                console.log(error);
-
-                this.show = true;
-
-                this.success = false;
-
-                this.message = 'Falha ao cadastrar a fabricante.';
-
-            };
 
         }
 

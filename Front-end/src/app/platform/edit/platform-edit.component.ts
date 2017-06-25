@@ -42,7 +42,27 @@ export class PlatformEditComponent {
 
     }
 
-    onSubmit(form){
+    onSubmit(form) {
+
+        this.platformService.editPlatform(form.value).subscribe(
+
+            (platform: Platform[]) => {
+
+                console.log(platform);
+
+                this.show = true;
+
+            }), error => {
+
+            console.log(error);
+
+            this.show = true;
+
+            this.success = false;
+
+            this.message = 'Falha ao cadastrar a plataforma.';
+
+        };
 
         if (this.fileList){
 
@@ -75,28 +95,6 @@ export class PlatformEditComponent {
                 };
 
             }
-
-        } else {
-
-            this.platformService.editPlatform(form.value).subscribe(
-
-                (platform: Platform[]) => {
-
-                    console.log(platform);
-
-                    this.show = true;
-
-                }), error => {
-
-                console.log(error);
-
-                this.show = true;
-
-                this.success = false;
-
-                this.message = 'Falha ao cadastrar a plataforma.';
-
-            };
 
         }
 

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Response} from '@angular/http';
 
 import { UserService } from '../../_services/user.service';
 
@@ -10,7 +11,7 @@ import {User} from '../../_models/user';
     templateUrl: './user-register.component.html',
     styleUrls: ['./user-register.component.css' ]
 })
-export class UsersRegisterComponent{
+export class UsersRegisterComponent {
 
     success = true;
 
@@ -24,21 +25,23 @@ export class UsersRegisterComponent{
 
     onSubmit(form) {
 
-        this.userService.registerUser(form.value).subscribe((user: User[]) => {
+        this.userService.registerUser(form.value).subscribe(
 
-            console.log(user);
+            (user: User[]) => {
 
-            this.show = true;
+                console.log(user);
 
-        }), error => {
+                this.show = true;
 
-            console.log(error);
+        }), (error: Response) => {
 
-            this.show = true;
+                console.log(error);
 
-            this.success = false;
+                this.show = true;
 
-            this.message = 'Falha ao cadastrar o usuário.';
+                this.success = false;
+
+                this.message = 'Falha ao cadastrar o usuário.';
 
         };
 
@@ -59,7 +62,7 @@ export class UsersRegisterComponent{
 
                     this.show = true;
 
-                }), error => {
+                }), (error: Response) => {
 
                     console.log(error);
 

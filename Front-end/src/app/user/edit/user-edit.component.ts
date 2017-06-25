@@ -1,5 +1,6 @@
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component } from '@angular/core';
+import { Response } from '@angular/http';
 
 import { UserService } from '../../_services/user.service';
 import { User } from '../../_models/user';
@@ -36,13 +37,37 @@ export class UserEditComponent {
 
                     this.user = user;
 
-                }), erro => console.log(erro);
+                }), (error: Response) => {
+
+                    console.log(error);
+
+                };
 
         });
 
     }
 
     onSubmit(form){
+
+        this.userService.editUser(form.value).subscribe(
+
+            (user: User[]) => {
+
+                console.log(user);
+
+                this.show = true;
+
+            }), (error: Response) => {
+
+                console.log(error);
+
+                this.show = true;
+
+                this.success = false;
+
+                this.message = 'Falha ao cadastrar o usuário.';
+
+        };
 
         if(this.fileList){
 
@@ -62,9 +87,9 @@ export class UserEditComponent {
 
                         this.show = true;
 
-                    }), erro => {
+                    }), (error: Response) => {
 
-                    console.log(erro);
+                    console.log(error);
 
                     this.show = true;
 
@@ -75,28 +100,6 @@ export class UserEditComponent {
                 };
 
             }
-
-        }else{
-
-            this.userService.editUser(form.value).subscribe(
-
-                (user: User[]) => {
-
-                    console.log(user);
-
-                    this.show = true;
-
-            }), error => {
-
-                console.log(error);
-
-                this.show = true;
-
-                this.success = false;
-
-                this.message = 'Falha ao cadastrar o usuário.';
-
-            };
 
         }
 
@@ -128,7 +131,13 @@ export class UserEditComponent {
 
     resetPassword(){
 
-        this.userService.resetPassword(this.id).subscribe(), error => console.log(error);
+        this.userService.resetPassword(this.id).subscribe(
+
+            (user: User[]) => {
+
+                console.log(user);
+
+            }), (error: Response) => console.log(error);
 
     }
 

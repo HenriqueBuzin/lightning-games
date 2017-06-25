@@ -48,6 +48,24 @@ export class GamesRegisterComponent {
 
     onSubmit(form) {
 
+        this.gameService.registerGame(form.value).subscribe(form => {
+
+            console.log(form);
+
+            this.show = true;
+
+        }), erro => {
+
+            console.log(erro);
+
+            this.show = true;
+
+            this.success = false;
+
+            this.message = 'Falha ao cadastrar o jogo.';
+
+        };
+
         if (this.fileList) {
 
             if (this.fileList.length > 0) {
@@ -78,26 +96,6 @@ export class GamesRegisterComponent {
                 };
 
             }
-
-        }else{
-
-            this.gameService.registerGame(form.value).subscribe(form => {
-
-                console.log(form);
-
-                this.show = true;
-
-            }), erro => {
-
-                console.log(erro);
-
-                this.show = true;
-
-                this.success = false;
-
-                this.message = 'Falha ao cadastrar o jogo.';
-
-            };
 
         }
 
