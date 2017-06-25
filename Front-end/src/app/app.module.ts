@@ -14,6 +14,7 @@ import 'rxjs/add/operator/map';
 
 // Services
 import { FormControlModule } from './_directives/form-control/form-control.module';
+import {FooterService} from './_services/footer.service';
 import { AuthService } from './_services/auth.service';
 
 // Others
@@ -52,7 +53,8 @@ import 'hammerjs';
         },
         AuthChildGuard,
         AuthService,
-        AuthGuard
+        AuthGuard,
+        FooterService
     ],
     entryComponents: [ DialogComponent ],
     bootstrap: [ AppComponent ]

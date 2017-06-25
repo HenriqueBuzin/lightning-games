@@ -1,8 +1,11 @@
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Component } from '@angular/core';
+import { Response } from '@angular/http';
 
 import { DialogComponent } from '../../_directives/dialog/dialog.component';
+
 import { UserService } from '../../_services/user.service';
+
 import { User } from '../../_models/user';
 
 @Component({
@@ -15,14 +18,17 @@ export class UsersListingComponent{
 
     users: User[] = [];
 
-    constructor(public dialog: MdDialog, private userService: UserService){ this.loadTable(); }
+    constructor(public dialog: MdDialog, private userService: UserService) { this.loadTable(); }
 
     loadTable(){
 
         this.userService.getUsers().subscribe(
+
             (users: User[]) => {
+
                 this.users = users;
-        }), erro => console.log(erro);
+
+        }), (error: Response) => console.log(error);
 
     }
 
@@ -43,9 +49,13 @@ export class UsersListingComponent{
             if(result) {
 
                 this.userService.deleteUser(id).subscribe(
+
                     (user: User[]) => {
+
                         console.log(user);
+
                         this.loadTable();
+
                 });
 
             }

@@ -1,26 +1,20 @@
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
 import { Game } from './../_models/game';
 
 @Injectable()
-export class GameService implements OnInit {
+export class GameService {
 
     private headers: Headers;
 
     private options: RequestOptions;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
 
-    ngOnInit(){
-
-        this.headers = new Headers();
-
-        this.headers.append('Content-Type', 'multipart/form-data');
-
-        this.headers.append('Accept', 'application/json');
+        this.headers = new Headers({'Content-Type': 'application/json'});
 
         this.options = new RequestOptions({ headers: this.headers });
 
@@ -78,10 +72,12 @@ export class GameService implements OnInit {
 
     }
 
-    registerGameImage(game: Game): Observable<Game[]> {
+    registerGameImage(image: FormData): Observable<Game[]> {
+
+        this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
 
         return this.http
-            .post('http://localhost:8080/lightning/api/game', JSON.stringify(game), this.options)
+            .post('http://localhost:8080/lightning/api/image', image, this.options)
             .map((response: Response) => response)
             .catch(error => {
 
@@ -91,10 +87,12 @@ export class GameService implements OnInit {
 
     }
 
-    editGameImage(game: Game): Observable<Game[]> {
+    editGameImage(image: FormData): Observable<Game[]> {
+
+        this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
 
         return this.http
-            .post('http://localhost:8080/lightning/api/game', JSON.stringify(game), this.options)
+            .put('http://localhost:8080/lightning/api/image', image, this.options)
             .map((response: Response) => response)
             .catch(error => {
 

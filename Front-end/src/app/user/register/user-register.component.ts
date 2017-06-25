@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import {UserService} from "../../_services/user.service";
-import {Router} from "@angular/router";
+import { UserService } from '../../_services/user.service';
+
+import {User} from '../../_models/user';
 
 @Component({
     moduleId: module.id,
@@ -11,29 +12,66 @@ import {Router} from "@angular/router";
 })
 export class UsersRegisterComponent{
 
+    success = true;
+
+    show = false;
+
+    message = 'O usuário foi cadastrado com sucesso.';
+
     private fileList: FileList;
 
-    constructor(private userService: UserService, private router: Router){}
+    constructor(private userService: UserService) { }
 
-    onSubmit(form){
+    onSubmit(form) {
 
-        if(this.fileList){
+        this.userService.registerUser(form.value).subscribe((user: User[]) => {
 
-            if(this.fileList.length > 0) {
+            console.log(user);
 
-                // Funcionando
+            this.show = true;
+
+        }), error => {
+
+            console.log(error);
+
+            this.show = true;
+
+            this.success = false;
+
+            this.message = 'Falha ao cadastrar o usuário.';
+
+        };
+
+        if (this.fileList){
+
+            if (this.fileList.length > 0) {
+
+                let file: File = this.fileList[0];
+
+                let formData: FormData = new FormData();
+
+                formData.append('uploadFile', file, file.name);
+
+                this.userService.registerUserImage(formData).subscribe(
+                    (user: User[]) => {
+
+                    console.log(user);
+
+                    this.show = true;
+
+                }), error => {
+
+                    console.log(error);
+
+                    this.show = true;
+
+                    this.success = false;
+
+                    this.message = 'Falha ao cadastrar o usuário.';
+
+                };
 
             }
-
-        }else{
-
-            this.userService.registerUser(form.value).subscribe(form => {
-
-                console.log(form);
-
-                this.router.navigate(['/user']);
-
-            }), erro => console.log(erro);
 
         }
 

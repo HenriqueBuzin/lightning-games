@@ -1,26 +1,20 @@
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
 import { Platform } from '../_models/platform';
 
 @Injectable()
-export class PlatformsService implements OnInit {
+export class PlatformsService {
 
     private headers: Headers;
 
     private options: RequestOptions;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
 
-    ngOnInit(){
-
-        this.headers = new Headers();
-
-        this.headers.append('Content-Type', 'multipart/form-data');
-
-        this.headers.append('Accept', 'application/json');
+        this.headers = new Headers({'Content-Type': 'application/json'});
 
         this.options = new RequestOptions({ headers: this.headers });
 
@@ -52,7 +46,7 @@ export class PlatformsService implements OnInit {
 
     }
 
-    deletePlatform(id: number): Observable<Platform[]>{
+    deletePlatform(id: number): Observable<Platform[]> {
 
         return this.http
             .delete('http://localhost:8080/lightning/api/platform/' + id, this.options)
@@ -78,10 +72,12 @@ export class PlatformsService implements OnInit {
 
     }
 
-    registerPlatformImage(platform: Platform): Observable<Platform[]> {
+    registerPlatformImage(image: FormData): Observable<Platform[]> {
+
+        this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
 
         return this.http
-            .post('http://localhost:8080/lightning/api/platform', JSON.stringify(platform), this.options)
+            .post('http://localhost:8080/lightning/api/image', image, this.options)
             .map((response: Response) => response)
             .catch(error => {
 
@@ -91,10 +87,12 @@ export class PlatformsService implements OnInit {
 
     }
 
-    editPlatformImage(platform: Platform): Observable<Platform[]> {
+    editPlatformImage(image: FormData): Observable<Platform[]> {
+
+        this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
 
         return this.http
-            .post('http://localhost:8080/lightning/api/platform', JSON.stringify(platform), this.options)
+            .put('http://localhost:8080/lightning/api/image', image, this.options)
             .map((response: Response) => response)
             .catch(error => {
 
@@ -107,7 +105,7 @@ export class PlatformsService implements OnInit {
     editPlatform(platform: Platform): Observable<Platform[]> {
 
         return this.http
-            .post('http://localhost:8080/lightning/api/platform', JSON.stringify(platform), this.options)
+            .put('http://localhost:8080/lightning/api/platform', JSON.stringify(platform), this.options)
             .map((response: Response) => response)
             .catch(error => {
 

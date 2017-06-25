@@ -5,15 +5,15 @@
                 <div class="form-group">
                     <label for="email" [ngClass]="applyCssErrorLabel(email)">E-mail</label>
                     <input type="email" id="email" name="email" placeholder="ex: henrique@buzin.com" class="form-control" autocomplete="off" #email="ngModel" email [(ngModel)]="user.email" required>
-                    <app-form-control [showError]="checkValidTouched(email)" messageError="O campo e-mail deve ser preenchido e válido."></app-form-control>
+                    <app-form-control [show]="checkValidTouched(email)" message="O campo e-mail deve ser preenchido e válido."></app-form-control>
                 </div>
                 <div class="form-group">
                     <label for="password" [ngClass]="applyCssErrorLabel(password)">Senha</label>
                     <input type="password" id="password" name="password" placeholder="ex: 8cR*DwvjI%QT" class="form-control" autocomplete="off" #password="ngModel" [(ngModel)]="user.password" required>
-                    <app-form-control [showError]="checkValidTouched(password)" messageError="O campo senha deve ser preenchido."></app-form-control>
+                    <app-form-control [show]="checkValidTouched(password)" message="O campo senha deve ser preenchido."></app-form-control>
                 </div>
-                <app-form-control [showError]="alert" messageError="E-mail ou senha inválido."></app-form-control>
-                <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+                <app-form-control [show]="alert" message="E-mail ou senha inválido."></app-form-control>
+                <button type="submit" class="btn btn-primary submit" [disabled]="!form.valid">
                     Enviar
                 </button>
             </div>

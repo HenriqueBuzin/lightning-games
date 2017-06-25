@@ -14,6 +14,12 @@ export class UserEditComponent {
 
     user: User[] = [];
 
+    success: boolean = true;
+
+    show = false;
+
+    message = 'O usuário foi cadastrado com sucesso.';
+
     private id: number;
 
     private fileList: FileList;
@@ -21,11 +27,17 @@ export class UserEditComponent {
     constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
 
         this.activatedRoute.params.subscribe((params: Params) => {
+
             this.id = params['id'];
+
             this.userService.getUser(this.id).subscribe(
+
                 (user: User[]) => {
+
                     this.user = user;
+
                 }), erro => console.log(erro);
+
         });
 
     }
@@ -36,22 +48,55 @@ export class UserEditComponent {
 
             if(this.fileList.length > 0) {
 
-                // Funcionando
+                let file: File = this.fileList[0];
+
+                let formData: FormData = new FormData();
+
+                formData.append('uploadFile', file, file.name);
+
+                this.userService.editUserImage(formData).subscribe(
+
+                    (user: User[]) => {
+
+                        console.log(user);
+
+                        this.show = true;
+
+                    }), erro => {
+
+                    console.log(erro);
+
+                    this.show = true;
+
+                    this.success = false;
+
+                    this.message = 'Falha ao cadastrar o usuário.';
+
+                };
 
             }
 
         }else{
 
-            /*
+            this.userService.editUser(form.value).subscribe(
 
-            this.userService.registerUser(form.value).subscribe(form => {
+                (user: User[]) => {
 
-                console.log(form);
+                    console.log(user);
 
+                    this.show = true;
 
-            }), erro => console.log(erro);
+            }), error => {
 
-            */
+                console.log(error);
+
+                this.show = true;
+
+                this.success = false;
+
+                this.message = 'Falha ao cadastrar o usuário.';
+
+            };
 
         }
 
@@ -83,7 +128,7 @@ export class UserEditComponent {
 
     resetPassword(){
 
-        this.userService.resetPassword(this.id).subscribe(), erro => console.log(erro);
+        this.userService.resetPassword(this.id).subscribe(), error => console.log(error);
 
     }
 

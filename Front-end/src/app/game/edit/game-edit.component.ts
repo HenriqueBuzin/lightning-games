@@ -24,6 +24,12 @@ export class GameEditComponent {
 
     private fileList: FileList;
 
+    success = true;
+
+    show = false;
+
+    message = 'O jogo foi cadastrado com sucesso.';
+
     constructor(
         private activatedRoute: ActivatedRoute,
         private gameService: GameService,
@@ -52,31 +58,60 @@ export class GameEditComponent {
 
     }
 
-    onSubmit(form){
+    onSubmit(form) {
 
-        console.log(form);
+        if (this.fileList) {
 
-        /*
-         if(this.fileList){
+            if (this.fileList.length > 0) {
 
-         if(this.fileList.length > 0) {
+                let file: File = this.fileList[0];
 
-         // Funcionando
+                let formData: FormData = new FormData();
 
-         }
+                formData.append('uploadFile', file, file.name);
 
-         }else{
+                this.gameService.editGameImage(formData).subscribe(
+                    (game: Game[]) => {
 
-         this.gameService.registerGame(form.value).subscribe(form => {
+                        console.log(game);
 
-         console.log(form);
+                        this.show = true;
 
-         this.router.navigate(['/game']);
+                    }), erro => {
 
-         }), error => console.log(error);
+                    console.log(erro);
 
-         }
-         */
+                    this.show = true;
+
+                    this.success = false;
+
+                    this.message = 'Falha ao cadastrar o jogo.';
+
+                };
+
+            }
+
+        } else {
+
+            this.gameService.editGame(form.value).subscribe(form => {
+
+                console.log(form);
+
+                this.show = true;
+
+            }), erro => {
+
+                console.log(erro);
+
+                this.show = true;
+
+                this.success = false;
+
+                this.message = 'Falha ao cadastrar o jogo.';
+
+            };
+
+        }
 
     }
 

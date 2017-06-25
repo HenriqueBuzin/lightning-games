@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
-import { AuthService } from '../_services/auth.service';
-import { User } from '../_models/user';
+import { AuthService } from './../_services/auth.service';
+import { User } from './../_models/user';
+import {FooterService} from './../_services/footer.service';
 
 @Component({
     moduleId: module.id,
@@ -9,13 +10,17 @@ import { User } from '../_models/user';
     templateUrl: './login.component.html',
     styleUrls: [ './login.component.css' ]
 })
-export class LoginComponent{
+export class LoginComponent {
 
     private user: User = new User();
 
-    alert: boolean = false;
+    alert = false;
 
-    constructor(private authService: AuthService){ }
+    constructor(private authService: AuthService, footerService: FooterService) {
+
+        footerService.fixFooter(true);
+
+    }
 
     onSubmit(){
 

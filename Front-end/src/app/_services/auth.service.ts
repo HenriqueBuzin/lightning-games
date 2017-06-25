@@ -3,37 +3,40 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from '../_models/user';
+import {FooterService} from "./footer.service";
 
 @Injectable()
 export class AuthService {
+
+    private authenticated = false;
+
+    private headers: Headers;
+
+    private options: RequestOptions;
 
     menuEmitter = new EventEmitter<boolean>();
 
     alertEmitter = new EventEmitter<boolean>();
 
-    footerEmitter = new EventEmitter<boolean>();
+    constructor(private http: Http, private router: Router, private footerService: FooterService) {
 
-    private authenticated: boolean = false;
+        this.headers = new Headers({'Content-Type': 'application/json'});
 
-    constructor(private http: Http, private router: Router) { }
+        this.options = new RequestOptions({ headers: this.headers });
+
+    }
 
     login(user: User){
 
-        let headers: Headers = new Headers({ 'Content-Type': 'application/json' });
-
-        let options: RequestOptions = new RequestOptions({ headers: headers });
-
         this.http
-            .post('http://localhost:8080/lightning/api/user/login', JSON.stringify(user), options)
+            .post('http://localhost:8080/lightning/api/user/login', JSON.stringify(user), this.options)
             .map((response: Response) => response).subscribe(login => {
 
-                if(login.json() != null){
+                if (login.json() != null) {
 
                     this.authenticated = true;
 
                     this.menuEmitter.emit(true);
-
-                    this.footerEmitter.emit(true);
 
                     localStorage.setItem('userName', login.json().name);
 
@@ -67,7 +70,7 @@ export class AuthService {
 
         this.alertEmitter.emit(false);
 
-        this.footerEmitter.emit(false);
+        this.footerService.fixFooter(true);
 
         localStorage.removeItem('userName');
 

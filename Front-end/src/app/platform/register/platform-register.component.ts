@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
-import {PlatformsService} from "../../_services/platform.service";
-import {Router} from "@angular/router";
+import { PlatformsService } from '../../_services/platform.service';
+
+import { Platform } from './../../_models/platform';
 
 @Component({
     moduleId: module.id,
@@ -9,31 +10,73 @@ import {Router} from "@angular/router";
     templateUrl: './platform-register.component.html',
     styleUrls: ['./platform-register.component.css' ]
 })
-export class PlatformsRegisterComponent{
+export class PlatformsRegisterComponent {
+
+    success = true;
+
+    show = false;
+
+    message = 'A plataforma foi cadastrada com sucesso.';
 
     private fileList: FileList;
 
-    constructor(private platformService: PlatformsService, private router: Router){}
+    constructor(private platformService: PlatformsService) { }
 
     onSubmit(form){
 
-        if(this.fileList){
+        if (this.fileList){
 
-            if(this.fileList.length > 0) {
+            if (this.fileList.length > 0) {
 
-                // Funcionando
+                let file: File = this.fileList[0];
+
+                let formData: FormData = new FormData();
+
+                formData.append('uploadFile', file, file.name);
+
+                this.platformService.registerPlatformImage(formData).subscribe(
+
+                    (platform: Platform[]) => {
+
+                        console.log(platform);
+
+                        this.show = true;
+
+                    }), error => {
+
+                    console.log(error);
+
+                    this.show = true;
+
+                    this.success = false;
+
+                    this.message = 'Falha ao cadastrar a plataforma.';
+
+                };
 
             }
 
-        }else{
+        } else {
 
-            this.platformService.registerPlatform(form.value).subscribe(form => {
+            this.platformService.registerPlatform(form.value).subscribe(
 
-                console.log(form);
+                (platform: Platform[]) => {
 
-                this.router.navigate(['/platform']);
+                console.log(platform);
 
-            }), erro => console.log(erro);
+                this.show = true;
+
+            }), error => {
+
+                console.log(error);
+
+                this.show = true;
+
+                this.success = false;
+
+                this.message = 'Falha ao cadastrar a plataforma.';
+
+            };
 
         }
 

@@ -1,5 +1,5 @@
-<div *ngIf="showError">
-    <div class="alert alert-danger" role="alert">
-        {{messageError}}
+<div *ngIf="show">
+    <div class="alert" [class.alert-danger]="!type" [class.alert-success]="type" role="alert">
+        {{message}}
     </div>
 </div>

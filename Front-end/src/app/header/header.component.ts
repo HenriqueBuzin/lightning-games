@@ -10,11 +10,11 @@ import { AuthService } from "../_services/auth.service";
 })
 export class HeaderComponent implements OnInit {
 
-    menu: boolean = false;
+    menu = false;
 
     constructor(private authService: AuthService){ }
 
-    ngOnInit(){
+    ngOnInit() {
 
         this.authService.menuEmitter.subscribe(show =>
 

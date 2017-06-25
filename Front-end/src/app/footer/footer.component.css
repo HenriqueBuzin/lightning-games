@@ -4,6 +4,7 @@
     background-color: #292b2c;
     border-radius: 0;
     color: rgba(255,255,255,.5);
+    width: 100%;
 }
 .jumbotron > h1, .jumbotron > p {
     margin-bottom: 0;
@@ -12,4 +13,8 @@
     text-shadow: 0 0.05rem 0.1rem rgba(0,0,0,.5);
     color: #FFF;
     text-decoration: none;
+}
+.fix {
+    position: fixed;
+    bottom: 0;
 }

@@ -14,24 +14,91 @@ export class PlatformEditComponent {
 
     platforms: Platform[] = [];
 
+    success = true;
+
+    show = false;
+
+    message = 'A plataforma foi cadastrada com sucesso.';
+
     private fileList: FileList;
 
     constructor(private activatedRoute: ActivatedRoute, private platformService: PlatformsService) {
 
         this.activatedRoute.params.subscribe(
+
             (params: Params) => {
+
                 let id: number = params['id'];
+
                 this.platformService.getPlatform(id).subscribe(
+
                     (platforms: Platform[]) => {
+
                         this.platforms = platforms;
-                }), erro => console.log(erro);
+
+                }), error => console.log(error);
+
         });
 
     }
 
     onSubmit(form){
 
-        console.log(form);
+        if (this.fileList){
+
+            if (this.fileList.length > 0) {
+
+                let file: File = this.fileList[0];
+
+                let formData: FormData = new FormData();
+
+                formData.append('uploadFile', file, file.name);
+
+                this.platformService.editPlatformImage(formData).subscribe(
+
+                    (platform: Platform[]) => {
+
+                        console.log(platform);
+
+                        this.show = true;
+
+                    }), error => {
+
+                    console.log(error);
+
+                    this.show = true;
+
+                    this.success = false;
+
+                    this.message = 'Falha ao cadastrar a plataforma.';
+
+                };
+
+            }
+
+        } else {
+
+            this.platformService.editPlatform(form.value).subscribe(
+
+                (platform: Platform[]) => {
+
+                    console.log(platform);
+
+                    this.show = true;
+
+                }), error => {
+
+                console.log(error);
+
+                this.show = true;
+
+                this.success = false;
+
+                this.message = 'Falha ao cadastrar a plataforma.';
+
+            };
+
+        }
 
     }
 

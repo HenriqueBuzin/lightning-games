@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { ManufactureService } from '../../_services/manufacture.service';
 import { PlatformsService } from '../../_services/platform.service';
@@ -7,6 +6,7 @@ import { GameService } from '../../_services/game.service';
 
 import { Manufacture } from '../../_models/manufacture';
 import { Platform } from '../../_models/platform';
+import {Game} from '../../_models/game';
 
 @Component({
     moduleId: module.id,
@@ -20,13 +20,18 @@ export class GamesRegisterComponent {
 
     platforms: Platform[] = [];
 
+    success = true;
+
+    show = false;
+
+    message = 'O jogo foi cadastrado com sucesso.';
+
     private fileList: FileList;
 
     constructor(
         private platformService: PlatformsService,
         private manufactureService: ManufactureService,
-        private gameService: GameService,
-        private router: Router
+        private gameService: GameService
     ){
 
         this.platformService.getPlatforms().subscribe(
@@ -41,16 +46,36 @@ export class GamesRegisterComponent {
 
     }
 
-    onSubmit(form){
+    onSubmit(form) {
 
-        console.log(form);
+        if (this.fileList) {
 
-        /*
-        if(this.fileList){
+            if (this.fileList.length > 0) {
 
-            if(this.fileList.length > 0) {
+                let file: File = this.fileList[0];
 
-                // Funcionando
+                let formData: FormData = new FormData();
+
+                formData.append('uploadFile', file, file.name);
+
+                this.gameService.registerGameImage(formData).subscribe(
+                    (game: Game[]) => {
+
+                        console.log(game);
+
+                        this.show = true;
+
+                    }), erro => {
+
+                    console.log(erro);
+
+                    this.show = true;
+
+                    this.success = false;
+
+                    this.message = 'Falha ao cadastrar o jogo.';
+
+                };
 
             }
 
@@ -60,12 +85,21 @@ export class GamesRegisterComponent {
 
                 console.log(form);
 
-                this.router.navigate(['/game']);
+                this.show = true;
 
-            }), error => console.log(error);
+            }), erro => {
+
+                console.log(erro);
+
+                this.show = true;
+
+                this.success = false;
+
+                this.message = 'Falha ao cadastrar o jogo.';
+
+            };
 
         }
-        */
 
     }
 

@@ -1,10 +1,10 @@
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Component } from '@angular/core';
 
-import { DialogComponent } from '../../_directives/dialog/dialog.component';
+import { DialogComponent } from './../../_directives/dialog/dialog.component';
 
-import { PlatformsService } from '../../_services/platform.service';
-import {Platform} from "../../_models/platform";
+import { PlatformsService } from './../../_services/platform.service';
+import { Platform } from './../../_models/platform';
 
 @Component({
     moduleId: module.id,
@@ -16,7 +16,11 @@ export class PlatformsListingComponent{
 
     platforms: Object[] = [];
 
-    constructor(public dialog: MdDialog, private platformsService : PlatformsService){ this.loadTable(); }
+    constructor(public dialog: MdDialog, private platformsService: PlatformsService) {
+
+        this.loadTable();
+
+    }
 
     loadTable(){
 

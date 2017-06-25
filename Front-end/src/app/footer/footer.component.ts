@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthService } from "../_services/auth.service";
+import { FooterService } from '../_services/footer.service';
 
 @Component({
     moduleId: module.id,
@@ -10,17 +10,19 @@ import { AuthService } from "../_services/auth.service";
 })
 export class FooterComponent implements OnInit {
 
-    footer: boolean = false;
+    fix = false;
 
-    constructor(private authService: AuthService){ }
+    constructor(private footerService: FooterService) { }
 
-    ngOnInit(){
+    ngOnInit() {
 
-        this.authService.footerEmitter.subscribe(show =>
+        this.footerService.footerEmitter.subscribe(
 
-            this.footer = show
+            (fix: boolean) => {
 
-        );
+                this.fix = fix;
+
+        });
 
     }
 

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import {FooterService} from './../_services/footer.service';
+
 @Component({
     moduleId: module.id,
     selector: 'app-home',
@@ -9,5 +11,11 @@ import { Component } from '@angular/core';
 export class HomeComponent{
 
     userName: string = localStorage.getItem('userName');
+
+    constructor(footerService: FooterService) {
+
+        footerService.fixFooter(false);
+
+    }
 
 }

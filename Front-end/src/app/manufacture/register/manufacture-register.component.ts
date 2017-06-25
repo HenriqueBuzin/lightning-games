@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+
 import { ManufactureService } from '../../_services/manufacture.service';
-import { Router } from '@angular/router';
+
+import { Manufacture } from './../../_models/manufacture';
 
 @Component({
     moduleId: module.id,
@@ -12,27 +14,69 @@ export class ManufacturesRegisterComponent{
 
     private fileList: FileList;
 
-    constructor(private manufactureService: ManufactureService, private router: Router){}
+    success = true;
 
-    onSubmit(form){
+    show = false;
 
-        if(this.fileList){
+    message = 'A fabricante foi cadastrada com sucesso.';
 
-            if(this.fileList.length > 0) {
+    constructor(private manufactureService: ManufactureService) { }
 
-                // Funcionando
+    onSubmit(form) {
+
+        if (this.fileList) {
+
+            if (this.fileList.length > 0) {
+
+                let file: File = this.fileList[0];
+
+                let formData: FormData = new FormData();
+
+                formData.append('uploadFile', file, file.name);
+
+                this.manufactureService.registerManufactureImage(formData).subscribe(
+
+                    (manufacture: Manufacture[]) => {
+
+                        console.log(manufacture);
+
+                        this.show = true;
+
+                    }), error => {
+
+                    console.log(error);
+
+                    this.show = true;
+
+                    this.success = false;
+
+                    this.message = 'Falha ao cadastrar a fabricante.';
+
+                };
 
             }
 
         }else{
 
-            this.manufactureService.registerManufacture(form.value).subscribe(form => {
+            this.manufactureService.registerManufacture(form.value).subscribe(
 
-                console.log(form);
+                (manufacture: Manufacture[]) => {
 
-                this.router.navigate(['/manufacture']);
+                    console.log(manufacture);
 
-            }), erro => console.log(erro);
+                    this.show = true;
+
+                }), error => {
+
+                console.log(error);
+
+                this.show = true;
+
+                this.success = false;
+
+                this.message = 'Falha ao cadastrar a fabricante.';
+
+            };
 
         }
 
@@ -48,7 +92,7 @@ export class ManufacturesRegisterComponent{
 
     checkValidTouched(field){
 
-        return !field.valid && field.touched;
+        return (!field.valid && field.touched);
 
     }
 

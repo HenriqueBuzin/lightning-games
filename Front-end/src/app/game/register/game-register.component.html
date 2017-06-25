@@ -4,12 +4,12 @@
             <div class="form-group">
                 <label for="name" [ngClass]="applyCssError(name)">Nome</label>
                 <input type="text" id="name" name="name" placeholder="ex: Street Fighter" class="form-control" autocomplete="off" #name="ngModel" ngModel required>
-                <app-form-control [showError]="checkValidTouched(name)" messageError="O campo nome deve ser preenchido."></app-form-control>
+                <app-form-control [show]="checkValidTouched(name)" message="O campo nome deve ser preenchido."></app-form-control>
             </div>
             <div class="form-group">
                 <label for="category" [ngClass]="applyCssError(category)">Categoria</label>
                 <input type="text" id="category" name="category" placeholder="ex: Luta" class="form-control" autocomplete="off" #category="ngModel" ngModel required>
-                <app-form-control [showError]="checkValidTouched(category)" messageError="O campo categoria deve ser preenchido."></app-form-control>
+                <app-form-control [show]="checkValidTouched(category)" message = "O campo categoria deve ser preenchido."></app-form-control>
             </div>
             <div class="form-group">
                 <label>Fabricante</label><br>
@@ -37,12 +37,12 @@
                     <span>R$</span>
                     <input type="number" id="price" name="price" placeholder="ex: 199,99" class="form-control" autocomplete="off" #price="ngModel" ngModel required>
                 </div>
-                <app-form-control [showError]="checkValidTouched(price)" messageError="O campo preço deve ser preenchido."></app-form-control>
+                <app-form-control [show]="checkValidTouched(price)" message = "O campo preço deve ser preenchido."></app-form-control>
             </div>
             <div class="form-group">
-                <label for="quantity"  [ngClass]="applyCssError(quantity)">Quantidade</label>
+                <label for="quantity"  [ngClass] = "applyCssError(quantity)">Quantidade</label>
                 <input type="number" id="quantity" name="quantity" placeholder="ex: 3" min="0" step="any" class="form-control" autocomplete="off" #quantity="ngModel" ngModel required>
-                <app-form-control [showError]="checkValidTouched(quantity)" messageError="O campo quantidade deve ser preenchido."></app-form-control>
+                <app-form-control [show] = "checkValidTouched(quantity)" message = "O campo quantidade deve ser preenchido."></app-form-control>
             </div>
             <div class="form-group">
                 <label>Em Produção?</label><br />
@@ -52,12 +52,13 @@
             <div class="form-group">
                 <label for="description" [ngClass]="applyCssError(description)">Descrição</label>
                 <textarea name="description" id="description" class="form-control" placeholder="ex: Considerado um dos melhores jogos de luta da história..." autocomplete="off" #description="ngModel" ngModel required></textarea>
-                <app-form-control [showError]="checkValidTouched(description)" messageError="O campo descrição deve ser preenchido."></app-form-control>
+                <app-form-control [show]="checkValidTouched(description)" message="O campo descrição deve ser preenchido."></app-form-control>
             </div>
             <div class="form-group">
                 <label for="image">Imagem</label>
                 <input type="file" name="image" (change)="fileChange($event.target)" id="image" class="form-control" accept=".png,.jpg">
             </div>
+            <app-form-control [show]="show" [message]="message" [type]="success"></app-form-control>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
                 Enviar
             </button>

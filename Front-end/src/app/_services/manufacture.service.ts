@@ -1,32 +1,26 @@
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
 import { Manufacture } from '../_models/manufacture';
 
 @Injectable()
-export class ManufactureService implements OnInit {
+export class ManufactureService {
 
     private headers: Headers;
 
     private options: RequestOptions;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
 
-    ngOnInit(){
-
-        this.headers = new Headers();
-
-        this.headers.append('Content-Type', 'multipart/form-data');
-
-        this.headers.append('Accept', 'application/json');
+        this.headers = new Headers({'Content-Type': 'application/json'});
 
         this.options = new RequestOptions({ headers: this.headers });
 
     }
 
-    getManufactures(): Observable<Manufacture[]>{
+    getManufactures(): Observable<Manufacture[]> {
 
         return this.http
             .get('http://localhost:8080/lightning/api/manufacture', this.options)
@@ -52,7 +46,7 @@ export class ManufactureService implements OnInit {
 
     }
 
-    deleteManufacture(id: number): Observable<Manufacture[]>{
+    deleteManufacture(id: number): Observable<Manufacture[]> {
 
         return this.http
             .delete('http://localhost:8080/lightning/api/manufacture/' + id, this.options)
@@ -65,7 +59,7 @@ export class ManufactureService implements OnInit {
 
     }
 
-    registerManufacture(manufacture: Manufacture){
+    registerManufacture(manufacture: Manufacture): Observable<Manufacture[]> {
 
         return this.http
             .post('http://localhost:8080/lightning/api/manufacture', JSON.stringify(manufacture), this.options)
@@ -78,10 +72,12 @@ export class ManufactureService implements OnInit {
 
     }
 
-    registerManufactureImage(manufacture: Manufacture){
+    registerManufactureImage(image: FormData): Observable<Manufacture[]> {
+
+        this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
 
         return this.http
-            .post('http://localhost:8080/lightning/api/manufacture', JSON.stringify(manufacture), this.options)
+            .post('http://localhost:8080/lightning/api/image', image, this.options)
             .map((response: Response) => response)
             .catch(error => {
 
@@ -91,10 +87,12 @@ export class ManufactureService implements OnInit {
 
     }
 
-    editManufactureImage(manufacture: Manufacture){
+    editManufactureImage(image: FormData): Observable<Manufacture[]> {
+
+        this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
 
         return this.http
-            .post('http://localhost:8080/lightning/api/manufacture', JSON.stringify(manufacture), this.options)
+            .put('http://localhost:8080/lightning/api/image', image, this.options)
             .map((response: Response) => response)
             .catch(error => {
 
@@ -104,10 +102,10 @@ export class ManufactureService implements OnInit {
 
     }
 
-    editManufacture(manufacture: Manufacture){
+    editManufacture(manufacture: Manufacture): Observable<Manufacture[]> {
 
         return this.http
-            .post('http://localhost:8080/lightning/api/manufacture', JSON.stringify(manufacture), this.options)
+            .put('http://localhost:8080/lightning/api/manufacture', JSON.stringify(manufacture), this.options)
             .map((response: Response) => response)
             .catch(error => {
 
