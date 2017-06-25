@@ -1,17 +1,20 @@
+// Angular
 import { RouterModule, Routes } from '@angular/router';
 
+// Components
 import { UsersRegisterComponent  } from './register/user-register.component';
 import { UsersListingComponent } from './listing/user-listing.component';
 import { UserEditComponent } from './edit/user-edit.component';
+import { UserComponent } from './user.component';
 
-import { UserModule } from './user.module';
-import {AuthChildGuard} from "../_guards/auth-child-guard";
+// Guard (Child)
+import { AuthChildGuard } from './../_guards/auth-child-guard';
 
 const userRoutes: Routes = [
 
     {
 
-        path: '', component: UserModule, canActivateChild: [ AuthChildGuard ],
+        path: '', component: UserComponent, canActivateChild: [ AuthChildGuard ],
 
         children: [
 

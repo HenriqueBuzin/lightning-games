@@ -1,9 +1,12 @@
+// Angular
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-
+// Model
 import { Game } from './../_models/game';
+
+// Essential
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class GameService {

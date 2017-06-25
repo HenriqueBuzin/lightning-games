@@ -1,6 +1,8 @@
+// Angular
 import { Component, OnInit } from '@angular/core';
 
-import { AuthService } from "../_services/auth.service";
+// Service
+import { AuthService } from './../_services/auth.service';
 
 @Component({
     moduleId: module.id,

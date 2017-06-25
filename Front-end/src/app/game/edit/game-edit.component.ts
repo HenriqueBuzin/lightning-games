@@ -1,12 +1,16 @@
+// Angulae
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component } from '@angular/core';
 
-import { Manufacture } from '../../_models/manufacture';
-import { GameService } from '../../_services/game.service';
-import { Platform } from '../../_models/platform';
-import { Game } from '../../_models/game';
-import {ManufactureService} from "../../_services/manufacture.service";
-import {PlatformsService} from "../../_services/platform.service";
+// Models
+import { Manufacture } from './../../_models/manufacture';
+import { GameService } from './../../_services/game.service';
+import { Platform } from './../../_models/platform';
+import { Game } from './../../_models/game';
+
+// Service
+import { ManufactureService } from './../../_services/manufacture.service';
+import { PlatformsService } from './../../_services/platform.service';
 
 @Component({
     moduleId: module.id,
@@ -38,22 +42,35 @@ export class GameEditComponent {
     ) {
 
         this.platformService.getPlatforms().subscribe(
+
             (platforms: Platform[]) => {
+
                 this.platforms = platforms;
-        }), erro => console.log(erro);
+
+        }), error => console.log(error);
 
         this.manufactureService.getManufactures().subscribe(
+
             (manufactures: Manufacture[]) => {
+
                 this.manufactures = manufactures;
-        }), erro => console.log(erro);
+
+        }), error => console.log(error);
 
         this.activatedRoute.params.subscribe(
+
             (params: Params) => {
+
                 let id: number = params['id'];
+
                 this.gameService.getGame(id).subscribe(
+
                     (games: Game[]) => {
+
                         this.games = games;
-                }), erro => console.log(erro);
+
+                }), error => console.log(error);
+
         });
 
     }
@@ -66,9 +83,9 @@ export class GameEditComponent {
 
             this.show = true;
 
-        }), erro => {
+        }), error => {
 
-            console.log(erro);
+            console.log(error);
 
             this.show = true;
 
@@ -95,9 +112,9 @@ export class GameEditComponent {
 
                         this.show = true;
 
-                    }), erro => {
+                    }), error => {
 
-                    console.log(erro);
+                    console.log(error);
 
                     this.show = true;
 

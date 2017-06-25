@@ -1,8 +1,12 @@
+// Angular
 import { Component } from '@angular/core';
 
-import { AuthService } from './../_services/auth.service';
-import { User } from './../_models/user';
+// Services
 import {FooterService} from './../_services/footer.service';
+import { AuthService } from './../_services/auth.service';
+
+// Model
+import { User } from './../_models/user';
 
 @Component({
     moduleId: module.id,

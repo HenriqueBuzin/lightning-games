@@ -1,22 +1,24 @@
+// Angular
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { CommonModule } from '@angular/common';
-
-import { routing } from './platform.route';
-
-import { PlatformsService } from '../_services/platform.service';
-
-import { PlatformEditComponent } from './edit/platform-edit.component';
-
-import { PlatformsListingComponent } from './listing/platform-listing.component';
-
+// Component
 import { PlatformsRegisterComponent } from './register/platform-register.component';
-
+import { PlatformsListingComponent } from './listing/platform-listing.component';
+import { PlatformEditComponent } from './edit/platform-edit.component';
 import { PlatformComponent } from './platform.component';
 
-import { FormControlModule } from '../_directives/form-control/form-control.module';
+// External Component
+import { FormControlModule } from './../_directives/form-control/form-control.module';
 
-import {SearchPlatformPipe} from './search-platform.pipe';
+// Service
+import { PlatformsService } from './../_services/platform.service';
+
+// Pipe
+import { SearchPlatformPipe } from './search-platform.pipe';
+
+// Routes
+import { routing } from './platform.route';
 
 @NgModule({
     declarations: [

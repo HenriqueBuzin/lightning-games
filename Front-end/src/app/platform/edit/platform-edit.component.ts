@@ -1,8 +1,12 @@
+// Angular
 import { ActivatedRoute, Params } from '@angular/router';
 import { Component } from '@angular/core';
 
-import { PlatformsService } from '../../_services/platform.service';
-import { Platform } from '../../_models/platform';
+// Service
+import { PlatformsService } from './../../_services/platform.service';
+
+// Model
+import { Platform } from './../../_models/platform';
 
 @Component({
     moduleId: module.id,

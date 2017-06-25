@@ -1,10 +1,12 @@
+// Angular
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { CommonModule } from '@angular/common';
-
-import { routing } from './home.routes';
-
+// Component
 import { HomeComponent } from './home.component';
+
+// Routes
+import { routing } from './home.routes';
 
 @NgModule({
     declarations: [

@@ -1,6 +1,8 @@
+// Angular
 import { Pipe , PipeTransform } from '@angular/core';
 
-import { Manufacture } from '../_models/manufacture';
+// Model
+import { Manufacture } from './../_models/manufacture';
 
 @Pipe({
     name: 'searchManufacture',

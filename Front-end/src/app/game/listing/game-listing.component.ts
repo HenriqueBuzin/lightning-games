@@ -1,9 +1,15 @@
+// Angular
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Component } from '@angular/core';
 
-import { DialogComponent } from '../../_directives/dialog/dialog.component';
-import { GameService } from '../../_services/game.service';
-import { Game } from '../../_models/game';
+// Directive
+import { DialogComponent } from './../../_directives/dialog/dialog.component';
+
+// Service
+import { GameService } from './../../_services/game.service';
+
+// Model
+import { Game } from './../../_models/game';
 
 @Component({
     moduleId: module.id,

@@ -1,8 +1,12 @@
+// Angular
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { ManufactureService } from '../../_services/manufacture.service';
-import { Manufacture } from '../../_models/manufacture';
+// Service
+import { ManufactureService } from './../../_services/manufacture.service';
+
+// Model
+import { Manufacture } from './../../_models/manufacture';
 
 @Component({
     moduleId: module.id,

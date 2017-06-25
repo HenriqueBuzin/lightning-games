@@ -1,9 +1,13 @@
+// Angular
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { User } from '../_models/user';
-import {FooterService} from "./footer.service";
+// Service
+import { FooterService } from './footer.service';
+
+// Model
+import { User } from './../_models/user';
 
 @Injectable()
 export class AuthService {

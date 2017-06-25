@@ -1,9 +1,12 @@
+// Angular
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
+// Model
+import { Platform } from './../_models/platform';
+
+// Essential
 import { Observable } from 'rxjs/Observable';
-
-import { Platform } from '../_models/platform';
 
 @Injectable()
 export class PlatformsService {

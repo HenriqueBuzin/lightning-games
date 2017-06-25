@@ -1,9 +1,12 @@
-import {Component} from '@angular/core';
-import {Response} from '@angular/http';
+// Angular
+import { Component } from '@angular/core';
+import { Response } from '@angular/http';
 
-import { UserService } from '../../_services/user.service';
+// Service
+import { UserService } from './../../_services/user.service';
 
-import {User} from '../../_models/user';
+// Model
+import { User } from './../../_models/user';
 
 @Component({
     moduleId: module.id,

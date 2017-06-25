@@ -1,6 +1,8 @@
+// Angular
 import { Pipe , PipeTransform } from '@angular/core';
 
-import { User } from '../_models/user';
+// Model
+import { User } from './../_models/user';
 
 @Pipe({
     name: 'searchUser',

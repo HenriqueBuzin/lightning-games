@@ -1,5 +1,5 @@
 // Angular
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { MdDialogModule } from '@angular/material';
@@ -12,19 +12,21 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routes';
 import 'rxjs/add/operator/map';
 
-// Services
+// Directives
 import { FormControlModule } from './_directives/form-control/form-control.module';
+
+// Services
 import {FooterService} from './_services/footer.service';
 import { AuthService } from './_services/auth.service';
 
-// Others
+// Component
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 
 // Guards
 import { AuthChildGuard } from './_guards/auth-child-guard';
-import {AuthGuard} from './_guards/auth-guard';
+import { AuthGuard } from './_guards/auth-guard';
 
 // External
 import 'hammerjs';
@@ -52,12 +54,11 @@ import 'hammerjs';
             useValue: 'pt-BR'
         },
         AuthChildGuard,
+        FooterService,
         AuthService,
-        AuthGuard,
-        FooterService
+        AuthGuard
     ],
     entryComponents: [ DialogComponent ],
     bootstrap: [ AppComponent ]
 })
-
 export class AppModule { }

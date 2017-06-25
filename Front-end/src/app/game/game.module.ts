@@ -1,30 +1,28 @@
+// Angular
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { GameService } from '../_services/game.service';
-
-import { GameEditComponent } from './edit/game-edit.component';
-
-import { GamesListingComponent } from './listing/game-listing.component';
-
+// Component
 import { GamesRegisterComponent } from './register/game-register.component';
-
-import { CommonModule } from '@angular/common';
-
-import { FormControlModule } from './../_directives/form-control/form-control.module';
-
-import { routing } from './game.routes';
-
+import { GamesListingComponent } from './listing/game-listing.component';
+import { GameEditComponent } from './edit/game-edit.component';
 import { GameComponent } from './game.component';
 
-import { PlatformsService } from './../_services/platform.service';
-
+// Services
 import { ManufactureService } from './../_services/manufacture.service';
+import { PlatformsService } from './../_services/platform.service';
+import { GameService } from './../_services/game.service';
 
-import {SearchGamePipe} from './pipes/search-game.pipe';
+// Directive
+import { FormControlModule } from './../_directives/form-control/form-control.module';
 
-import { SeparatorArrayPipe } from './pipes/separator-array.pipe';
+// Routes
+import { routing } from './game.routes';
 
+// Pipes
 import { SeparatorCurrencyPipe } from './pipes/separator-currency.pipe';
+import { SeparatorArrayPipe } from './pipes/separator-array.pipe';
+import { SearchGamePipe } from './pipes/search-game.pipe';
 
 @NgModule({
     declarations: [

@@ -1,9 +1,14 @@
+// Angular
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Component } from '@angular/core';
 
+// Component
 import { DialogComponent } from './../../_directives/dialog/dialog.component';
 
+// Service
 import { PlatformsService } from './../../_services/platform.service';
+
+// Model
 import { Platform } from './../../_models/platform';
 
 @Component({

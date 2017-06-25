@@ -1,9 +1,15 @@
+// Angular
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Component } from '@angular/core';
 
-import { DialogComponent } from '../../_directives/dialog/dialog.component';
-import { ManufactureService } from '../../_services/manufacture.service';
-import { Manufacture } from '../../_models/manufacture';
+// Directives
+import { DialogComponent } from './../../_directives/dialog/dialog.component';
+
+// Service
+import { ManufactureService } from './../../_services/manufacture.service';
+
+// Manufacture
+import { Manufacture } from './../../_models/manufacture';
 
 @Component({
     moduleId: module.id,

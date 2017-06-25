@@ -1,9 +1,12 @@
+// Angular
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
+// Model
+import { User } from './../_models/user';
+
+// Essential
 import { Observable } from 'rxjs/Observable';
-
-import { User } from '../_models/user';
 
 @Injectable()
 export class UserService {

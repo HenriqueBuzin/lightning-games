@@ -1,22 +1,24 @@
+// Angular
 import { NgModule } from '@angular/core';
-
 import { CommonModule } from '@angular/common';
 
-import { ManufactureService } from '../_services/manufacture.service';
+// Services
+import { ManufactureService } from './../_services/manufacture.service';
 
-import { ManufactureEditComponent } from './edit/manufacture-edit.component';
-
-import { ManufacturesListingComponent } from './listing/manufacture-listing.component';
-
+// Components
 import { ManufacturesRegisterComponent } from './register/manufacture-register.component';
-
-import { routing } from './manufacture.routes';
-
+import { ManufacturesListingComponent } from './listing/manufacture-listing.component';
+import { ManufactureEditComponent } from './edit/manufacture-edit.component';
 import { ManufactureComponent } from './manufacture.component';
 
-import { FormControlModule } from '../_directives/form-control/form-control.module';
+// External Component
+import { FormControlModule } from './../_directives/form-control/form-control.module';
 
+// Pipe
 import {SearchManufacturePipe} from './search-manufacture.pipe';
+
+// Routes
+import { routing } from './manufacture.routes';
 
 @NgModule({
     declarations: [
@@ -27,9 +29,9 @@ import {SearchManufacturePipe} from './search-manufacture.pipe';
         ManufactureComponent
     ],
     imports: [
-        routing,
         FormControlModule,
-        CommonModule
+        CommonModule,
+        routing
     ],
     providers: [
         ManufactureService

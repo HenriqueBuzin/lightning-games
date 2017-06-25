@@ -1,6 +1,8 @@
+// Angular
 import { Component, OnInit } from '@angular/core';
 
-import { FooterService } from '../_services/footer.service';
+// Service
+import { FooterService } from './../_services/footer.service';
 
 @Component({
     moduleId: module.id,

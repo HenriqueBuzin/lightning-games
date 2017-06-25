@@ -1,12 +1,16 @@
+// Angualar
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Component } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { DialogComponent } from '../../_directives/dialog/dialog.component';
+// Directive
+import { DialogComponent } from './../../_directives/dialog/dialog.component';
 
-import { UserService } from '../../_services/user.service';
+// Service
+import { UserService } from './../../_services/user.service';
 
-import { User } from '../../_models/user';
+// Model
+import { User } from './../../_models/user';
 
 @Component({
     moduleId: module.id,

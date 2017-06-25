@@ -1,7 +1,10 @@
+// Angular
 import { Component } from '@angular/core';
 
-import { PlatformsService } from '../../_services/platform.service';
+// Service
+import { PlatformsService } from './../../_services/platform.service';
 
+// Model
 import { Platform } from './../../_models/platform';
 
 @Component({

@@ -1,12 +1,15 @@
+// Angular
 import { Component } from '@angular/core';
 
-import { ManufactureService } from '../../_services/manufacture.service';
-import { PlatformsService } from '../../_services/platform.service';
-import { GameService } from '../../_services/game.service';
+// Service
+import { ManufactureService } from './../../_services/manufacture.service';
+import { PlatformsService } from './../../_services/platform.service';
+import { GameService } from './../../_services/game.service';
 
-import { Manufacture } from '../../_models/manufacture';
-import { Platform } from '../../_models/platform';
-import {Game} from '../../_models/game';
+// Model
+import { Manufacture } from './../../_models/manufacture';
+import { Platform } from './../../_models/platform';
+import { Game } from './../../_models/game';
 
 @Component({
     moduleId: module.id,
@@ -15,6 +18,8 @@ import {Game} from '../../_models/game';
     styleUrls: ['./game-register.component.css' ]
 })
 export class GamesRegisterComponent {
+
+    private fileList: FileList;
 
     manufactures: Manufacture[] = [];
 
@@ -26,8 +31,6 @@ export class GamesRegisterComponent {
 
     message = 'O jogo foi cadastrado com sucesso.';
 
-    private fileList: FileList;
-
     constructor(
         private platformService: PlatformsService,
         private manufactureService: ManufactureService,
@@ -35,14 +38,20 @@ export class GamesRegisterComponent {
     ){
 
         this.platformService.getPlatforms().subscribe(
+
             (platforms: Platform[]) => {
+
                 this.platforms = platforms;
-        }), erro => console.log(erro);
+
+        }), error => console.log(error);
 
         this.manufactureService.getManufactures().subscribe(
+
             (manufactures: Manufacture[]) => {
+
                 this.manufactures = manufactures;
-        }), erro => console.log(erro);
+
+            }), error => console.log(error);
 
     }
 
@@ -54,9 +63,9 @@ export class GamesRegisterComponent {
 
             this.show = true;
 
-        }), erro => {
+        }), error => {
 
-            console.log(erro);
+            console.log(error);
 
             this.show = true;
 
@@ -83,9 +92,9 @@ export class GamesRegisterComponent {
 
                         this.show = true;
 
-                    }), erro => {
+                    }), error => {
 
-                    console.log(erro);
+                    console.log(error);
 
                     this.show = true;
 

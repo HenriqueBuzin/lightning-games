@@ -1,9 +1,12 @@
+// Angular
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
+// Model
+import { Manufacture } from './../_models/manufacture';
+
+// Essential
 import { Observable } from 'rxjs/Observable';
-
-import { Manufacture } from '../_models/manufacture';
 
 @Injectable()
 export class ManufactureService {

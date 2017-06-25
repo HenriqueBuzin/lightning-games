@@ -1,7 +1,10 @@
+// Angular
 import { Component } from '@angular/core';
 
-import { ManufactureService } from '../../_services/manufacture.service';
+// Service
+import { ManufactureService } from './../../_services/manufacture.service';
 
+// Model
 import { Manufacture } from './../../_models/manufacture';
 
 @Component({
