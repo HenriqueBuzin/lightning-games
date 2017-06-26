@@ -1,9 +1,10 @@
 // Angular
-import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 // Service
 import { ManufactureService } from './../../_services/manufacture.service';
+import { FooterService } from './../../_services/footer.service';
 
 // Model
 import { Manufacture } from './../../_models/manufacture';
@@ -14,7 +15,7 @@ import { Manufacture } from './../../_models/manufacture';
     templateUrl: './manufacture-edit.component.html',
     styleUrls: ['./manufacture-edit.component.css' ]
 })
-export class ManufactureEditComponent {
+export class ManufactureEditComponent implements OnInit {
 
     manufactures: Manufacture[] = [];
 
@@ -26,7 +27,13 @@ export class ManufactureEditComponent {
 
     private fileList: FileList;
 
-    constructor(private activatedRoute: ActivatedRoute, private manufactureService: ManufactureService) {
+    constructor(private activatedRoute: ActivatedRoute, private manufactureService: ManufactureService, footerService: FooterService) {
+
+        footerService.fixFooter(false);
+
+    }
+
+    ngOnInit() {
 
         this.activatedRoute.params.subscribe(
 
@@ -42,7 +49,7 @@ export class ManufactureEditComponent {
 
                 }), erro => console.log(erro);
 
-            });
+        });
 
     }
 

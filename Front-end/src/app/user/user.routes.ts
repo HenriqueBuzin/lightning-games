@@ -28,9 +28,6 @@ const userRoutes: Routes = [
 
     }
 
-
-
-
 ];
 
 export const routing = RouterModule.forChild(userRoutes);

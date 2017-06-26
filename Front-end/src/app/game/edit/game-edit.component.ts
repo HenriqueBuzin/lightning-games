@@ -1,6 +1,6 @@
 // Angulae
 import { ActivatedRoute, Params } from '@angular/router';
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 // Models
 import { Manufacture } from './../../_models/manufacture';
@@ -11,6 +11,7 @@ import { Game } from './../../_models/game';
 // Service
 import { ManufactureService } from './../../_services/manufacture.service';
 import { PlatformsService } from './../../_services/platform.service';
+import {FooterService} from "../../_services/footer.service";
 
 @Component({
     moduleId: module.id,
@@ -18,7 +19,7 @@ import { PlatformsService } from './../../_services/platform.service';
     templateUrl: './game-edit.component.html',
     styleUrls: ['./game-edit.component.css' ]
 })
-export class GameEditComponent {
+export class GameEditComponent implements OnInit {
 
     manufactures: Manufacture[] = [];
 
@@ -35,11 +36,18 @@ export class GameEditComponent {
     message = 'O jogo foi cadastrado com sucesso.';
 
     constructor(
+        private manufactureService: ManufactureService,
+        private platformService: PlatformsService,
         private activatedRoute: ActivatedRoute,
         private gameService: GameService,
-        private manufactureService: ManufactureService,
-        private platformService: PlatformsService
+        footerService: FooterService
     ) {
+
+        footerService.fixFooter(false);
+
+    }
+
+    ngOnInit() {
 
         this.platformService.getPlatforms().subscribe(
 

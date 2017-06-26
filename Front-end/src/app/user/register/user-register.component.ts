@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Response } from '@angular/http';
 
 // Service
+import { FooterService } from './../../_services/footer.service';
 import { UserService } from './../../_services/user.service';
 
 // Model
@@ -24,7 +25,11 @@ export class UsersRegisterComponent {
 
     private fileList: FileList;
 
-    constructor(private userService: UserService) { }
+    constructor(private userService: UserService, footerService: FooterService) {
+
+        footerService.fixFooter(false);
+
+    }
 
     onSubmit(form) {
 

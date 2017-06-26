@@ -1,9 +1,10 @@
 // Angular
 import { ActivatedRoute, Params } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 
 // Service
+import { FooterService } from './../../_services/footer.service';
 import { UserService } from './../../_services/user.service';
 
 // Model
@@ -15,11 +16,11 @@ import { User } from './../../_models/user';
     templateUrl: './user-edit.component.html',
     styleUrls: ['./user-edit.component.css' ]
 })
-export class UserEditComponent {
+export class UserEditComponent implements OnInit {
 
     user: User[] = [];
 
-    success: boolean = true;
+    success = true;
 
     show = false;
 
@@ -29,7 +30,13 @@ export class UserEditComponent {
 
     private fileList: FileList;
 
-    constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
+    constructor(private activatedRoute: ActivatedRoute, private userService: UserService, footerService: FooterService) {
+
+        footerService.fixFooter(false);
+
+    }
+
+    ngOnInit() {
 
         this.activatedRoute.params.subscribe((params: Params) => {
 
@@ -45,7 +52,7 @@ export class UserEditComponent {
 
                     console.log(error);
 
-                };
+            };
 
         });
 

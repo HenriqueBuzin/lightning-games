@@ -1,9 +1,10 @@
 // Angular
 import { ActivatedRoute, Params } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // Service
 import { PlatformsService } from './../../_services/platform.service';
+import { FooterService } from './../../_services/footer.service';
 
 // Model
 import { Platform } from './../../_models/platform';
@@ -14,7 +15,7 @@ import { Platform } from './../../_models/platform';
     templateUrl: './platform-edit.component.html',
     styleUrls: ['./platform-edit.component.css' ]
 })
-export class PlatformEditComponent {
+export class PlatformEditComponent implements OnInit {
 
     platforms: Platform[] = [];
 
@@ -26,7 +27,13 @@ export class PlatformEditComponent {
 
     private fileList: FileList;
 
-    constructor(private activatedRoute: ActivatedRoute, private platformService: PlatformsService) {
+    constructor(private activatedRoute: ActivatedRoute, private platformService: PlatformsService, footerService: FooterService) {
+
+        footerService.fixFooter(false);
+
+    }
+
+    ngOnInit() {
 
         this.activatedRoute.params.subscribe(
 

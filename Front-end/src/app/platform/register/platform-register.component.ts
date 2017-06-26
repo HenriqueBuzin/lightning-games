@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 
 // Service
 import { PlatformsService } from './../../_services/platform.service';
+import { FooterService } from './../../_services/footer.service';
 
 // Model
 import { Platform } from './../../_models/platform';
@@ -23,7 +24,11 @@ export class PlatformsRegisterComponent {
 
     private fileList: FileList;
 
-    constructor(private platformService: PlatformsService) { }
+    constructor(private platformService: PlatformsService, footerService: FooterService) {
+
+        footerService.fixFooter(true);
+
+    }
 
     onSubmit(form){
 

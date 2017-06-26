@@ -12,17 +12,13 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routes';
 import 'rxjs/add/operator/map';
 
-// Directives
-import { FormControlModule } from './_directives/form-control/form-control.module';
-
 // Services
-import {FooterService} from './_services/footer.service';
+import { FooterService } from './_services/footer.service';
 import { AuthService } from './_services/auth.service';
 
 // Component
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { LoginComponent } from './login/login.component';
 
 // Guards
 import { AuthChildGuard } from './_guards/auth-child-guard';
@@ -36,12 +32,10 @@ import 'hammerjs';
         FooterComponent,
         HeaderComponent,
         DialogComponent,
-        LoginComponent,
         AppComponent
     ],
     imports: [
         BrowserAnimationsModule,
-        FormControlModule,
         MdDialogModule,
         BrowserModule,
         FormsModule,

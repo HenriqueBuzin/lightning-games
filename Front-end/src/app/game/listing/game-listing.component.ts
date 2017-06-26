@@ -1,11 +1,12 @@
 // Angular
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 // Directive
 import { DialogComponent } from './../../_directives/dialog/dialog.component';
 
 // Service
+import { FooterService } from './../../_services/footer.service';
 import { GameService } from './../../_services/game.service';
 
 // Model
@@ -17,11 +18,21 @@ import { Game } from './../../_models/game';
     templateUrl: './game-listing.component.html',
     styleUrls: [ './game-listing.component.css' ]
 })
-export class GamesListingComponent{
+export class GamesListingComponent implements OnInit {
 
     games: Game[] = [];
 
-    constructor(public dialog: MdDialog, private gameService: GameService){ this.loadTable(); }
+    constructor(public dialog: MdDialog, private gameService: GameService, footerService: FooterService) {
+
+        footerService.fixFooter(false);
+
+    }
+
+    ngOnInit() {
+
+        this.loadTable();
+
+    }
 
     loadTable(){
 

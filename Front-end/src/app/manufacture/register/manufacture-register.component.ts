@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 
 // Service
 import { ManufactureService } from './../../_services/manufacture.service';
+import { FooterService } from './../../_services/footer.service';
 
 // Model
 import { Manufacture } from './../../_models/manufacture';
@@ -23,7 +24,11 @@ export class ManufacturesRegisterComponent{
 
     message = 'A fabricante foi cadastrada com sucesso.';
 
-    constructor(private manufactureService: ManufactureService) { }
+    constructor(private manufactureService: ManufactureService, footerService: FooterService) {
+
+        footerService.fixFooter(true);
+
+    }
 
     onSubmit(form) {
 

@@ -1,12 +1,13 @@
 // Angular
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // Component
 import { DialogComponent } from './../../_directives/dialog/dialog.component';
 
 // Service
 import { PlatformsService } from './../../_services/platform.service';
+import { FooterService } from './../../_services/footer.service';
 
 // Model
 import { Platform } from './../../_models/platform';
@@ -17,11 +18,17 @@ import { Platform } from './../../_models/platform';
     templateUrl: './platform-listing.component.html',
     styleUrls: [ './platform-listing.component.css' ]
 })
-export class PlatformsListingComponent{
+export class PlatformsListingComponent implements OnInit {
 
     platforms: Object[] = [];
 
-    constructor(public dialog: MdDialog, private platformsService: PlatformsService) {
+    constructor(public dialog: MdDialog, private platformsService: PlatformsService, footerService: FooterService) {
+
+        footerService.fixFooter(false);
+
+    }
+
+    ngOnInit() {
 
         this.loadTable();
 

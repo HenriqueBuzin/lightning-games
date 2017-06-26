@@ -16,5 +16,4 @@ import { FormControlComponent } from './form-control.component';
     ],
     exports: [ FormControlComponent, FormsModule ]
 })
-
 export class FormControlModule { }

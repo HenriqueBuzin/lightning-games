@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 
 // Services
-import {FooterService} from './../_services/footer.service';
+import { FooterService } from './../_services/footer.service';
 import { AuthService } from './../_services/auth.service';
 
 // Model

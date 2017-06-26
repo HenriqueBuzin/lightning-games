@@ -1,9 +1,10 @@
 // Angular
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // Service
 import { ManufactureService } from './../../_services/manufacture.service';
 import { PlatformsService } from './../../_services/platform.service';
+import { FooterService } from './../../_services/footer.service';
 import { GameService } from './../../_services/game.service';
 
 // Model
@@ -17,7 +18,7 @@ import { Game } from './../../_models/game';
     templateUrl: './game-register.component.html',
     styleUrls: ['./game-register.component.css' ]
 })
-export class GamesRegisterComponent {
+export class GamesRegisterComponent implements OnInit {
 
     private fileList: FileList;
 
@@ -34,8 +35,15 @@ export class GamesRegisterComponent {
     constructor(
         private platformService: PlatformsService,
         private manufactureService: ManufactureService,
-        private gameService: GameService
+        private gameService: GameService,
+        footerService: FooterService
     ){
+
+        footerService.fixFooter(false);
+
+    }
+
+    ngOnInit() {
 
         this.platformService.getPlatforms().subscribe(
 
@@ -51,15 +59,19 @@ export class GamesRegisterComponent {
 
                 this.manufactures = manufactures;
 
-            }), error => console.log(error);
+        }), error => console.log(error);
 
     }
 
     onSubmit(form) {
 
-        this.gameService.registerGame(form.value).subscribe(form => {
+        console.log(form.value);
 
-            console.log(form);
+        this.gameService.registerGame(form.value).subscribe(
+
+            (game: Game[]) => {
+
+            console.log(game);
 
             this.show = true;
 

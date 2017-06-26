@@ -13,22 +13,25 @@
             </div>
             <div class="form-group">
                 <label>Fabricante</label><br>
-                <label class="radio-inline" *ngFor="let manufacture of manufactures">
-                    <input type="radio" name="manufacture" value="{{manufactures.id}}">
-                    <span>
-                        {{manufacture.name}}
-                        <img src="{{manufacture.imageFullPath}}" width="50" height="50">
-                    </span>
-                </label>
+                <div *ngFor="let manufacture of manufactures; let i = index" style="display: inline-block">
+                    <label class="radio-inline" for="manufacture-{{i}}">
+                        <input type="radio" name="manufacture" #manufacture="ngModel" id="manufacture-{{i}}" value="{{manufacture.id}}" ngModel required>
+                        <span>
+                            {{manufacture.name}}
+                            <img src="{{manufacture.imageFullPath}}" width="50" height="50">
+                        </span>
+                    </label>
+                </div>
+                <p class="note">* é necessário selecionar uma fabricante</p>
             </div>
             <div class="form-group">
                 <label>Plataforma(s)</label><br>
-                <label class="checkbox-inline" *ngFor="let platform of platforms">
-                    <input type="checkbox" value="{{platform.id}}">
+                <label class="checkbox-inline" *ngFor="let platform of platforms; let i = index">
+                    <input name="platform-{{i}}" type="checkbox" value="{{platform.id}}" ngModel>
                     <span>
-                            {{platform.name}}
-                            <img src="{{platform.imageFullPath}}" width="50" height="50">
-                        </span>
+                        {{platform.name}}
+                        <img src="{{platform.imageFullPath}}" width="50" height="50">
+                    </span>
                 </label>
             </div>
             <div class="form-group">

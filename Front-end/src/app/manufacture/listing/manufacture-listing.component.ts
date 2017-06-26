@@ -1,12 +1,13 @@
 // Angular
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // Directives
 import { DialogComponent } from './../../_directives/dialog/dialog.component';
 
 // Service
 import { ManufactureService } from './../../_services/manufacture.service';
+import { FooterService } from './../../_services/footer.service';
 
 // Manufacture
 import { Manufacture } from './../../_models/manufacture';
@@ -17,11 +18,21 @@ import { Manufacture } from './../../_models/manufacture';
     templateUrl: './manufacture-listing.component.html',
     styleUrls: [ './manufacture-listing.component.css' ]
 })
-export class ManufacturesListingComponent{
+export class ManufacturesListingComponent implements OnInit {
 
     manufactures: Manufacture[] = [];
 
-    constructor(public dialog: MdDialog, private manufacturesService: ManufactureService){ this.loadTable(); }
+    constructor(public dialog: MdDialog, private manufacturesService: ManufactureService, footerService: FooterService) {
+
+        footerService.fixFooter(false);
+
+    }
+
+    ngOnInit() {
+
+        this.loadTable();
+
+    }
 
     loadTable(){
 

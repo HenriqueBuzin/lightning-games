@@ -1,12 +1,13 @@
 // Angualar
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 
 // Directive
 import { DialogComponent } from './../../_directives/dialog/dialog.component';
 
 // Service
+import { FooterService } from './../../_services/footer.service';
 import { UserService } from './../../_services/user.service';
 
 // Model
@@ -18,11 +19,21 @@ import { User } from './../../_models/user';
     templateUrl: './user-listing.component.html',
     styleUrls: [ './user-listing.component.css' ]
 })
-export class UsersListingComponent{
+export class UsersListingComponent implements OnInit {
 
     users: User[] = [];
 
-    constructor(public dialog: MdDialog, private userService: UserService) { this.loadTable(); }
+    constructor(public dialog: MdDialog, private userService: UserService, footerService: FooterService) {
+
+        footerService.fixFooter(false);
+
+    }
+
+    ngOnInit() {
+
+        this.loadTable();
+
+    }
 
     loadTable(){
 

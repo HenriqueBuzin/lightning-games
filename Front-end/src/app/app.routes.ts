@@ -1,11 +1,8 @@
 // Angular
 import { RouterModule, Routes } from '@angular/router';
 
-// Component
-import { LoginComponent } from './login/login.component';
-
 // Guard
-import {AuthGuard} from './_guards/auth-guard';
+import { AuthGuard } from './_guards/auth-guard';
 
 const appRoutes: Routes = [
 
@@ -21,7 +18,7 @@ const appRoutes: Routes = [
 
     { path: 'usuario', canActivate: [ AuthGuard ], loadChildren: 'app/user/user.module#UserModule' },
 
-    { path: 'login', component: LoginComponent },
+    { path: 'login', loadChildren: 'app/login/login.module#LoginModule' },
 
     { path: '**', redirectTo: '', pathMatch: 'full' }
 
