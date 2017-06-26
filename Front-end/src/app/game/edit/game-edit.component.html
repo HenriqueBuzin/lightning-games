@@ -31,21 +31,27 @@
             </div>
             <div class="form-group">
                 <label>Fabricante</label><br>
-                <label class="radio-inline" *ngFor="let manufacture of manufactures">
-                    <input type="radio" name="manufacture" value="{{manufactures.id}}" [checked]="manufactures.id == games.manufactures?.id">
-                    <span>
-                        {{manufacture.name}}
-                        <img [src]="manufacture.imageFullPath" width="50" height="50">
-                    </span>
-                </label>
+                <p class="note">* A fabricante atual é: {{games.manufacture?.name}}</p>
+                <div *ngFor="let manufacture of manufactures; let i = index" style="display: inline-block">
+                    <!--
+                        [checked]="manufacture.id = games.manufactures?.id"
+                    -->
+                    <label class="radio-inline" for="manufacture-{{i}}">
+                        <input type="radio" name="manufacture" id="manufacture-{{i}}" value="{{manufacture.id}}" ngModel required>
+                        <span>
+                            {{manufacture.name}}
+                            <img src="{{manufacture.imageFullPath}}" width="50" height="50">
+                        </span>
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 <label>Plataforma(s)</label><br>
                 <label class="checkbox-inline" *ngFor="let platform of platforms">
                     <input type="checkbox" value="{{platform.id}}">
-                        <span>
+                    <span>
                             {{platform.name}}
-                            <img [src]="platform.imageFullPath" width="50" height="50">
+                            <img src="{{platform.imageFullPath}}" width="50" height="50">
                         </span>
                 </label>
             </div>

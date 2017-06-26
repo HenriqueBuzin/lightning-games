@@ -77,6 +77,8 @@ export class GameEditComponent implements OnInit {
 
                         this.games = games;
 
+                        console.log(games);
+
                 }), error => console.log(error);
 
         });
