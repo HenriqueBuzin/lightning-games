@@ -15,7 +15,11 @@
                 <label>Fabricante</label><br>
                 <div *ngFor="let manufacture of manufactures; let i = index" style="display: inline-block">
                     <label class="radio-inline" for="manufacture-{{i}}">
-                        <input type="radio" name="manufacture" #manufacture="ngModel" id="manufacture-{{i}}" value="{{manufacture.id}}" ngModel required>
+                        <input type="radio"
+                               (focusout)="setterFocusOut()"
+                               (focus)="setterFocus()"
+                               (click)="setterSelected()"
+                               name="manufacture" id="manufacture-{{i}}" value="{{manufacture.id}}" ngModel required>
                         <span>
                             {{manufacture.name}}
                             <img src="{{manufacture.imageFullPath}}" width="50" height="50">
@@ -23,8 +27,9 @@
                     </label>
                 </div>
                 <p class="note">* é necessário selecionar uma fabricante</p>
-            </div>
-            <div class="form-group">
+                <app-form-control [show]="checkValidRadio()"
+                                  message="Selecione uma fabricante."></app-form-control>
+
                 <label>Plataforma(s)</label><br>
                 <label class="checkbox-inline" *ngFor="let platform of platforms; let i = index">
                     <input name="platform-{{i}}" type="checkbox" value="{{platform.id}}" ngModel>

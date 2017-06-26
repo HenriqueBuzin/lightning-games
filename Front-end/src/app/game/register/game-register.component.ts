@@ -146,4 +146,53 @@ export class GamesRegisterComponent implements OnInit {
 
     }
 
+    private selected = false;
+
+    private focusOut = true;
+
+    private focus = false;
+
+    setterFocus(){
+
+        this.focus = true;
+
+        console.log('Focus: ', this.focus);
+
+    }
+
+    setterSelected() {
+
+        this.selected = true;
+
+        console.log('Selected: ', this.selected);
+    }
+
+    setterFocusOut() {
+
+        this.focusOut = false;
+
+        console.log('Focus: ', this.focusOut);
+
+    }
+
+    checkValidRadio() {
+
+       let flag: boolean;
+
+       if (this.focus == true && this.focusOut == false && this.selected == false) {
+
+           flag = true;
+
+       } else {
+
+           flag = false;
+
+       }
+
+       console.log('Flag: ', flag);
+
+       return flag;
+
+    }
+
 }
