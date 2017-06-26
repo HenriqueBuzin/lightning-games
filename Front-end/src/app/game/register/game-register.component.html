@@ -27,15 +27,19 @@
                     </label>
                 </div>
                 <p class="note">* é necessário selecionar uma fabricante</p>
-                <app-form-control [show]="checkValidRadio()" message="Selecione uma fabricante."></app-form-control>
-                <label>Plataforma(s)</label><br>
-                <label class="checkbox-inline" *ngFor="let platform of platforms; let i = index">
-                    <input name="platform-{{i}}" type="checkbox" value="{{platform.id}}" ngModel>
-                    <span>
-                        {{platform.name}}
-                        <img src="{{platform.imageFullPath}}" width="50" height="50">
-                    </span>
-                </label>
+            </div>
+            <div ngModelGroup="platforms">
+                <div class="form-group">
+                    <app-form-control [show]="checkValidRadio()" message="Selecione uma fabricante."></app-form-control>
+                    <label>Plataforma(s)</label><br>
+                    <label class="checkbox-inline" *ngFor="let platform of platforms; let i = index">
+                        <input name="{{i}}" type="checkbox" value="{{platform.id}}" ngModel>
+                        <span>
+                            {{platform.name}}
+                            <img src="{{platform.imageFullPath}}" width="50" height="50">
+                        </span>
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 <label for="price" [ngClass]="applyCssError(price)">Preço</label>

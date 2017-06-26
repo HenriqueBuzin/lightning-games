@@ -75,12 +75,18 @@ export class GameService {
 
     }
 
-    registerGameImage(image: FormData): Observable<Game[]> {
+    registerGameImage(image: FormData, id: number): Observable<Game[]> {
 
         this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
 
+        let array: any[] = [];
+
+        array.push(image);
+
+        array.push(id);
+
         return this.http
-            .post('http://localhost:8080/lightning/api/image', image, this.options)
+            .post('http://localhost:8080/lightning/api/image/game', array, this.options)
             .map((response: Response) => response)
             .catch(error => {
 
@@ -90,12 +96,18 @@ export class GameService {
 
     }
 
-    editGameImage(image: FormData): Observable<Game[]> {
+    editGameImage(image: FormData, id: number): Observable<Game[]> {
 
         this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
 
+        let array: any[] = [];
+
+        array.push(image);
+
+        array.push(id);
+
         return this.http
-            .put('http://localhost:8080/lightning/api/image', image, this.options)
+            .put('http://localhost:8080/lightning/api/image/game', array, this.options)
             .map((response: Response) => response)
             .catch(error => {
 

@@ -20,11 +20,11 @@ export class UserEditComponent implements OnInit {
 
     user: User[] = [];
 
-    success = true;
+    success: boolean;
 
-    show = false;
+    show: boolean;
 
-    message = 'O usuário foi cadastrado com sucesso.';
+    message: string;
 
     private id: number;
 
@@ -37,6 +37,12 @@ export class UserEditComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        this.success = true;
+
+        this.show = false;
+
+        this.message = 'O usuário foi cadastrado com sucesso.';
 
         this.activatedRoute.params.subscribe((params: Params) => {
 
@@ -58,7 +64,9 @@ export class UserEditComponent implements OnInit {
 
     }
 
-    onSubmit(form){
+    onSubmit(form) {
+
+        console.log(JSON.stringify(form.value));
 
         this.userService.editUser(form.value).subscribe(
 
@@ -80,9 +88,9 @@ export class UserEditComponent implements OnInit {
 
         };
 
-        if(this.fileList){
+        if (this.fileList) {
 
-            if(this.fileList.length > 0) {
+            if (this.fileList.length > 0) {
 
                 let file: File = this.fileList[0];
 
@@ -90,7 +98,7 @@ export class UserEditComponent implements OnInit {
 
                 formData.append('uploadFile', file, file.name);
 
-                this.userService.editUserImage(formData).subscribe(
+                this.userService.editUserImage(formData, this.id).subscribe(
 
                     (user: User[]) => {
 
@@ -124,13 +132,13 @@ export class UserEditComponent implements OnInit {
 
     }
 
-    checkValidTouched(field){
+    checkValidTouched(field) {
 
         return (!field.valid && field.touched);
 
     }
 
-    applyCssError(field){
+    applyCssError(field) {
 
         return {
 
@@ -140,7 +148,7 @@ export class UserEditComponent implements OnInit {
 
     }
 
-    resetPassword(){
+    resetPassword() {
 
         this.userService.resetPassword(this.id).subscribe(
 

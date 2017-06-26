@@ -52,6 +52,8 @@ export class ManufacturesRegisterComponent{
 
         };
 
+        /*
+
         if (this.fileList) {
 
             if (this.fileList.length > 0) {
@@ -85,6 +87,8 @@ export class ManufacturesRegisterComponent{
             }
 
         }
+
+        */
 
     }
 

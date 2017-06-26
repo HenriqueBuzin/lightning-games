@@ -75,12 +75,18 @@ export class PlatformsService {
 
     }
 
-    registerPlatformImage(image: FormData): Observable<Platform[]> {
+    registerPlatformImage(image: FormData, id: number): Observable<Platform[]> {
 
         this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
 
+        let array: any[] = [];
+
+        array.push(image);
+
+        array.push(id);
+
         return this.http
-            .post('http://localhost:8080/lightning/api/image', image, this.options)
+            .post('http://localhost:8080/lightning/api/image/platform', array, this.options)
             .map((response: Response) => response)
             .catch(error => {
 
@@ -90,12 +96,18 @@ export class PlatformsService {
 
     }
 
-    editPlatformImage(image: FormData): Observable<Platform[]> {
+    editPlatformImage(image: FormData, id: number): Observable<Platform[]> {
 
         this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
 
+        let array: any[] = [];
+
+        array.push(image);
+
+        array.push(id);
+
         return this.http
-            .put('http://localhost:8080/lightning/api/image', image, this.options)
+            .put('http://localhost:8080/lightning/api/image/platform', array, this.options)
             .map((response: Response) => response)
             .catch(error => {
 

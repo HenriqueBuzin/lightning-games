@@ -102,14 +102,20 @@ export class UserService {
 
     }
 
-    registerUserImage(image: FormData): Observable<User[]> {
+    registerUserImage(image: FormData, id: number): Observable<User[]> {
 
         this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
 
         this.options = new RequestOptions({ headers: this.headers });
 
+        let array: any[] = [];
+
+        array.push(image);
+
+        array.push(id);
+
         return this.http
-            .post('http://localhost:8080/lightning/api/image', image, this.options)
+            .post('http://localhost:8080/lightning/api/image/user', array, this.options)
             .map((response: Response) => response)
             .catch(error => {
 
@@ -119,14 +125,20 @@ export class UserService {
 
     }
 
-    editUserImage(image: FormData): Observable<User[]> {
+    editUserImage(image: FormData, id: number): Observable<User[]> {
 
         this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
 
         this.options = new RequestOptions({ headers: this.headers });
 
+        let array: any[] = [];
+
+        array.push(image);
+
+        array.push(id);
+
         return this.http
-            .put('http://localhost:8080/lightning/api/image', image, this.options)
+            .put('http://localhost:8080/lightning/api/image/user', array, this.options)
             .map((response: Response) => response)
             .catch(error => {
 
@@ -137,6 +149,8 @@ export class UserService {
     }
 
     editUser(user: User): Observable<User[]> {
+
+        console.log(JSON.stringify(user));
 
         this.headers = new Headers({'Content-Type': 'application/json'});
 

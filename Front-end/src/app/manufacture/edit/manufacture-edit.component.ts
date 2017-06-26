@@ -19,11 +19,13 @@ export class ManufactureEditComponent implements OnInit {
 
     manufactures: Manufacture[] = [];
 
-    success = true;
+    success: boolean;
 
-    show = false;
+    show: boolean;
 
-    message = 'A fabricante foi cadastrada com sucesso.';
+    message: string;
+
+    private id: number;
 
     private fileList: FileList;
 
@@ -35,13 +37,19 @@ export class ManufactureEditComponent implements OnInit {
 
     ngOnInit() {
 
+        this.success = true;
+
+        this.show = false;
+
+        this.message = 'A fabricante foi cadastrada com sucesso.';
+
         this.activatedRoute.params.subscribe(
 
             (params: Params) => {
 
-                let id: number = params['id'];
+                this.id = params['id'];
 
-                this.manufactureService.getManufacture(id).subscribe(
+                this.manufactureService.getManufacture(this.id).subscribe(
 
                     (manufactures: Manufacture[]) => {
 
@@ -85,7 +93,7 @@ export class ManufactureEditComponent implements OnInit {
 
                 formData.append('uploadFile', file, file.name);
 
-                this.manufactureService.editManufactureImage(formData).subscribe(
+                this.manufactureService.editManufactureImage(formData, this.id).subscribe(
 
                     (manufacture: Manufacture[]) => {
 

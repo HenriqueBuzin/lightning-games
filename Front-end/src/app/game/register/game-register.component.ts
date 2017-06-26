@@ -87,6 +87,8 @@ export class GamesRegisterComponent implements OnInit {
 
         };
 
+        /*
+
         if (this.fileList) {
 
             if (this.fileList.length > 0) {
@@ -119,6 +121,8 @@ export class GamesRegisterComponent implements OnInit {
             }
 
         }
+
+        */
 
     }
 

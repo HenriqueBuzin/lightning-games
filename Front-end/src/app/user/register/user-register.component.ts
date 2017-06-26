@@ -53,6 +53,8 @@ export class UsersRegisterComponent {
 
         };
 
+        /*
+
         if (this.fileList){
 
             if (this.fileList.length > 0) {
@@ -62,6 +64,8 @@ export class UsersRegisterComponent {
                 let formData: FormData = new FormData();
 
                 formData.append('uploadFile', file, file.name);
+
+                console.log(this.fileList[0]);
 
                 this.userService.registerUserImage(formData).subscribe(
                     (user: User[]) => {
@@ -85,6 +89,8 @@ export class UsersRegisterComponent {
             }
 
         }
+
+        */
 
     }
 

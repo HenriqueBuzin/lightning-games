@@ -52,6 +52,8 @@ export class PlatformsRegisterComponent {
 
         };
 
+        /*
+
         if (this.fileList) {
 
             if (this.fileList.length > 0) {
@@ -84,6 +86,8 @@ export class PlatformsRegisterComponent {
             }
 
         }
+
+        */
 
     }
 

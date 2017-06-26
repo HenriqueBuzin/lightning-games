@@ -19,11 +19,13 @@ export class PlatformEditComponent implements OnInit {
 
     platforms: Platform[] = [];
 
-    success = true;
+    success: boolean;
 
-    show = false;
+    show: boolean;
 
-    message = 'A plataforma foi cadastrada com sucesso.';
+    message: string;
+
+    private id: number;
 
     private fileList: FileList;
 
@@ -35,13 +37,19 @@ export class PlatformEditComponent implements OnInit {
 
     ngOnInit() {
 
+        this.success = true;
+
+        this.show = false;
+
+        this.message = 'A plataforma foi cadastrada com sucesso.';
+
         this.activatedRoute.params.subscribe(
 
             (params: Params) => {
 
-                let id: number = params['id'];
+                this.id = params['id'];
 
-                this.platformService.getPlatform(id).subscribe(
+                this.platformService.getPlatform(this.id).subscribe(
 
                     (platforms: Platform[]) => {
 
@@ -85,7 +93,7 @@ export class PlatformEditComponent implements OnInit {
 
                 formData.append('uploadFile', file, file.name);
 
-                this.platformService.editPlatformImage(formData).subscribe(
+                this.platformService.editPlatformImage(formData, this.id).subscribe(
 
                     (platform: Platform[]) => {
 

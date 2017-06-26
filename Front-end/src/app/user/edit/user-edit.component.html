@@ -21,7 +21,8 @@
                 <p class="note">* imagem atual do usuário</p>
                 <input type="file" name="image" (change)="fileChange($event.target)" id="image" class="form-control" accept=".png,.jpg">
             </div>
-            <app-form-control [show] = "show" [message] = "message" [type] = "success"></app-form-control>
+            <app-form-control [show]="show" [message]="message" [type]="success"></app-form-control>
+            <input type="hidden" [(ngModel)]="user.id" name="id" ngModel>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
                 Enviar
             </button>

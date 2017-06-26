@@ -27,13 +27,16 @@ export class GameEditComponent implements OnInit {
 
     games: Game[] = [];
 
+    success: boolean;
+
+    show: boolean;
+
+    message: string;
+
+    private id: number;
+
     private fileList: FileList;
 
-    success = true;
-
-    show = false;
-
-    message = 'O jogo foi cadastrado com sucesso.';
 
     constructor(
         private manufactureService: ManufactureService,
@@ -48,6 +51,12 @@ export class GameEditComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        this.show = false;
+
+        this.success = true;
+
+        this.message = 'O jogo foi cadastrado com sucesso.';
 
         this.platformService.getPlatforms().subscribe(
 
@@ -69,9 +78,9 @@ export class GameEditComponent implements OnInit {
 
             (params: Params) => {
 
-                let id: number = params['id'];
+                this.id = params['id'];
 
-                this.gameService.getGame(id).subscribe(
+                this.gameService.getGame(this.id).subscribe(
 
                     (games: Game[]) => {
 
@@ -115,7 +124,7 @@ export class GameEditComponent implements OnInit {
 
                 formData.append('uploadFile', file, file.name);
 
-                this.gameService.editGameImage(formData).subscribe(
+                this.gameService.editGameImage(formData, this.id).subscribe(
                     (game: Game[]) => {
 
                         console.log(game);
