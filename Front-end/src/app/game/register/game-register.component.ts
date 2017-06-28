@@ -38,11 +38,11 @@ export class GamesRegisterComponent implements OnInit {
 
     private focus: boolean;
 
-    private focusCheckbox: boolean;
+    private selectedPlatform: boolean;
 
-    private focusOutCheckbox: boolean;
+    private focusOutPlatform: boolean;
 
-    private idPlatform: number[] = [];
+    private focusPlatform: boolean;
 
     constructor(
         private platformService: PlatformsService,
@@ -57,10 +57,6 @@ export class GamesRegisterComponent implements OnInit {
 
     ngOnInit() {
 
-        this.focusCheckbox = true;
-
-        this.focusOutCheckbox = false;
-
         this.message = 'O jogo foi cadastrado com sucesso.';
 
         this.success = true;
@@ -73,13 +69,19 @@ export class GamesRegisterComponent implements OnInit {
 
         this.focus = false;
 
+        this.selectedPlatform = false;
+
+        this.focusOutPlatform = true;
+
+        this.focusPlatform = false;
+
         this.platformService.getPlatforms().subscribe(
 
             (platforms: Platform[]) => {
 
                 this.platforms = platforms;
 
-        }), error => console.log(error);
+        }, error => console.log(error));
 
         this.manufactureService.getManufactures().subscribe(
 
@@ -87,7 +89,7 @@ export class GamesRegisterComponent implements OnInit {
 
                 this.manufactures = manufactures;
 
-        }), error => console.log(error);
+        }, error => console.log(error));
 
     }
 
@@ -109,7 +111,9 @@ export class GamesRegisterComponent implements OnInit {
 
     onSubmit(form) {
 
-        this.gameService.registerGame(form).subscribe(
+        console.log(form.value);
+
+        this.gameService.registerGame(form.value).subscribe(
 
             (game: Game[]) => {
 
@@ -117,9 +121,7 @@ export class GamesRegisterComponent implements OnInit {
 
             this.show = true;
 
-            // this.uploadImage(1);
-
-        }), error => this.callBack(error);
+        }, (error: any) => this.callBack(error));
 
     }
 
@@ -191,7 +193,7 @@ export class GamesRegisterComponent implements OnInit {
 
     // Validar Radio
 
-    setterFocus(){
+    setterFocus() {
 
         this.focus = true;
 
@@ -234,75 +236,48 @@ export class GamesRegisterComponent implements OnInit {
 
     }
 
-    // Validar Checkbox
+    // Validar Plataformas
 
-    setterFocusCheckbox() {
+    setterFocusPlatform() {
 
-        this.focusCheckbox = false;
+        this.focusPlatform = true;
 
-        // console.log('---');
-
-        // console.log('FocusOut Checkbox: ', this.focusOutCheckbox);
-
-        // console.log('---');
+        // console.log('Focus: ', this.focus);
 
     }
 
-    setterFocusOutCheckbox() {
+    setterSelectedPlatform() {
 
-        this.focusCheckbox = true;
+        this.selectedPlatform = true;
 
-        // console.log('---');
+        // console.log('Selected: ', this.selected);
+    }
 
-        // console.log('Focus Checkbox: ', this.focusCheckbox);
+    setterFocusOutPlatform() {
 
-        // console.log('---');
+        this.focusOutPlatform = false;
+
+        // console.log('Focus: ', this.focusOut);
 
     }
 
-    verifyCheckbox() {
+    checkValidRadioPlatform() {
 
         let flag: boolean;
 
-        if(this.focusOutCheckbox == true){
+        if (this.focusPlatform == true && this.focusOutPlatform == false && this.selectedPlatform == false) {
 
             flag = true;
 
-        }else{
+        } else {
 
             flag = false;
 
         }
 
-        // console.log('XXX');
-
         // console.log('Flag: ', flag);
 
-        // console.log('XXX');
-
         return flag;
-
-    }
-
-    onClicked(platform, event) {
-
-        if(this.idPlatform.indexOf(platform.id) !== -1){
-
-            this.idPlatform.splice(this.idPlatform.indexOf(platform.id), 1);
-
-        }else{
-
-            this.idPlatform.push(platform.id);
-
-        }
-
-        // console.log('---');
-
-        // console.log('Id da Plataforma: ', this.idPlatform);
-
-        // console.log('Ver: ', event.target.checked);
-
-        // console.log('---');
 
     }
 

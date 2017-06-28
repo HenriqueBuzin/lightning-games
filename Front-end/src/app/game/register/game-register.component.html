@@ -1,5 +1,5 @@
 <div class="container">
-    <form  enctype="multipart/form-data" class="row" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <form class="row" #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="col-md-8 offset-md-2">
             <div class="form-group">
                 <label for="name" [ngClass]="applyCssError(name)">Nome</label>
@@ -22,7 +22,6 @@
                                name="manufacture" id="manufacture-{{i}}" value="{{manufacture.id}}" ngModel required>
                         <span>
                             {{manufacture.name}}
-                            <!-- <img src="{{manufacture.imageFullPath}}" width="50" height="50"> -->
                         </span>
                     </label>
                 </div>
@@ -30,38 +29,20 @@
             </div>
             <div class="form-group">
                 <label>Plataforma(s)</label><br>
-                <div *ngFor="let platform of platform; let i = index" style="display: inline-block">
+                <div *ngFor="let platform of platforms; let i = index;" style="display: inline-block">
                     <label class="radio-inline" for="platform-{{i}}">
                         <input type="radio"
-                               (focusout)="setterFocusOut()"
-                               (focus)="setterFocus()"
-                               (click)="setterSelected()"
+                               (focusout)="setterFocusOutPlatform()"
+                               (focus)="setterFocusPlatform()"
+                               (click)="setterSelectedPlatform()"
                                name="platform" id="platform-{{i}}" value="{{platform.id}}" ngModel required>
                         <span>
                             {{platform.name}}
-                            <!-- <img src="{{manufacture.imageFullPath}}" width="50" height="50"> -->
                         </span>
                     </label>
                 </div>
                 <app-form-control [show]="checkValidRadio()" message="É necessário selecionar uma plataforma."></app-form-control>
             </div>
-            <!--
-            <div ngModelGroup="platformas">
-                <div class="form-group">
-                    <label>Plataforma(s)</label><br>
-                    <div (focus)="setterFocusCheckbox()" (focusout)="setterFocusOutCheckbox()">
-                        <label class="checkbox-inline" *ngFor="let platform of platforms; let i = index;">
-                            <input type="checkbox" name="{{platform.id}}" (change)="onClicked(platform, $event)" ngModel>
-                            <span>
-                                {{platform.name}}
-                                <img src="{{platform.imageFullPath}}" width="50" height="50">
-                            </span>
-                        </label>
-                    </div>
-                    <app-form-control [show]="verifyCheckbox()" message="É necessário selecionar no mínimo uma plataforma."></app-form-control>
-                </div>
-            </div>
-            -->
             <div class="form-group">
                 <label for="price" [ngClass]="applyCssError(price)">Preço</label>
                 <div class="sub" [ngClass]="applyCssError(price)">
@@ -85,12 +66,6 @@
                 <textarea name="description" id="description" class="form-control" placeholder="ex: Considerado um dos melhores jogos de luta da história..." autocomplete="off" #description="ngModel" ngModel required></textarea>
                 <app-form-control [show]="checkValidTouched(description)" message="O campo descrição deve ser preenchido."></app-form-control>
             </div>
-            <!--
-                <div class="form-group">
-                    <label for="image">Imagem</label>
-                    <input type="file" name="image" (change)="fileChange($event.target)" id="image" class="form-control" accept=".png,.jpg">
-                </div>
-            -->
             <app-form-control [show]="show" [message]="message" [type]="success"></app-form-control>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
                 Enviar
