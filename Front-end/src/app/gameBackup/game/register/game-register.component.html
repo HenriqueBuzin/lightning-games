@@ -28,24 +28,6 @@
                 </div>
                 <app-form-control [show]="checkValidRadio()" message="É necessário selecionar uma fabricante."></app-form-control>
             </div>
-            <div class="form-group">
-                <label>Plataforma(s)</label><br>
-                <div *ngFor="let platform of platform; let i = index" style="display: inline-block">
-                    <label class="radio-inline" for="platform-{{i}}">
-                        <input type="radio"
-                               (focusout)="setterFocusOut()"
-                               (focus)="setterFocus()"
-                               (click)="setterSelected()"
-                               name="platform" id="platform-{{i}}" value="{{platform.id}}" ngModel required>
-                        <span>
-                            {{platform.name}}
-                            <!-- <img src="{{manufacture.imageFullPath}}" width="50" height="50"> -->
-                        </span>
-                    </label>
-                </div>
-                <app-form-control [show]="checkValidRadio()" message="É necessário selecionar uma plataforma."></app-form-control>
-            </div>
-            <!--
             <div ngModelGroup="platformas">
                 <div class="form-group">
                     <label>Plataforma(s)</label><br>
@@ -54,14 +36,13 @@
                             <input type="checkbox" name="{{platform.id}}" (change)="onClicked(platform, $event)" ngModel>
                             <span>
                                 {{platform.name}}
-                                <img src="{{platform.imageFullPath}}" width="50" height="50">
+                                <!-- <img src="{{platform.imageFullPath}}" width="50" height="50"> -->
                             </span>
                         </label>
                     </div>
                     <app-form-control [show]="verifyCheckbox()" message="É necessário selecionar no mínimo uma plataforma."></app-form-control>
                 </div>
             </div>
-            -->
             <div class="form-group">
                 <label for="price" [ngClass]="applyCssError(price)">Preço</label>
                 <div class="sub" [ngClass]="applyCssError(price)">

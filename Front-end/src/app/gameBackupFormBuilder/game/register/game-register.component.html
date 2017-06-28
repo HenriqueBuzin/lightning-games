@@ -1,0 +1,45 @@
+<div class="container">
+    <form class="row" (ngSubmit)="onSubmit()" [formGroup]="form">
+        <div class="col-md-8 offset-md-2">
+            <div class="form-group">
+                <label for="name" [ngClass]="applyCssError('name')">Nome</label>
+                <input type="text" id="name" name="name" placeholder="ex: Street Fighter" class="form-control" autocomplete="off" formControlName="name">
+                <app-form-control [show]="checkValidTouched('name')" message="O campo nome deve ser preenchido."></app-form-control>
+            </div>
+            <div class="form-group">
+                <label for="category" [ngClass]="applyCssError('category')">Categoria</label>
+                <input type="text" id="category" name="category" placeholder="ex: Luta" class="form-control" autocomplete="off" formControlName="category">
+                <app-form-control [show]="checkValidTouched('category')" message="O campo categoria deve ser preenchido."></app-form-control>
+            </div>
+            <div class="form-group">
+                <label for="price" [ngClass]="applyCssError('price')">Preço</label>
+                <div class="sub">
+                    <span  [ngClass]="applyCssError('price')">R$</span>
+                    <input type="number" id="price" name="price" placeholder="ex: 199,99" class="form-control" autocomplete="off" formControlName="price">
+                </div>
+                <app-form-control [show]="checkValidTouched('price')" message="O campo preço deve ser preenchido."></app-form-control>
+            </div>
+            <div class="form-group">
+                <label  [ngClass]="applyCssError('production')">Em Produção?</label><br />
+                <label class="radio-inline"><input type="radio" name="production" value="0">Não</label>
+                <label class="radio-inline"><input type="radio" name="production" value="1" checked>Sim</label>
+                <app-form-control [show]="checkValidTouched('production')" message="Deve ser selecionado se o jogo está ou não em produção."></app-form-control>
+            </div>
+            <div class="form-group">
+                <label for="quantity" [ngClass]="applyCssError('quantity')">Quantidade</label>
+                <input type="number" id="quantity" name="quantity" placeholder="ex: 3" min="0" step="any" class="form-control" autocomplete="off" formControlName="quantity">
+                <app-form-control [show]="checkValidTouched('quantity')" message="O campo quantidade deve ser preenchido."></app-form-control>
+            </div>
+            <div class="form-group">
+                <label for="description" [ngClass]="applyCssError('description')">Descrição</label>
+                <textarea name="description" id="description" class="form-control" placeholder="ex: Considerado um dos melhores jogos de luta da história..." autocomplete="off" formControlName="description"></textarea>
+                <app-form-control [show]="checkValidTouched('description')" message="O campo descrição deve ser preenchido."></app-form-control>
+            </div>
+            <app-form-control [show]="show" [message]="message" [type]="success"></app-form-control>
+            <button type="submit" class="btn btn-primary">
+                Enviar
+            </button>
+            <a [routerLink]="['/jogo']" class="btn btn-primary">Voltar</a>
+        </div>
+    </form>
+</div>
