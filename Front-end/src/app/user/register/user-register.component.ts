@@ -41,6 +41,65 @@ export class UsersRegisterComponent implements OnInit {
 
     }
 
+    // Função de callback, retorna erro ao usuário
+
+    callBack(error) {
+
+
+        console.log(error);
+
+        this.show = true;
+
+        this.success = false;
+
+        this.message = 'Falha ao cadastrar o usuário.'
+
+
+
+    }
+
+    // Realiza o envio da imagem
+
+    uploadImage(id) {
+
+         if (this.fileList){
+
+             if (this.fileList.length > 0) {
+
+                let file: File = this.fileList[0];
+
+                let formData: FormData = new FormData();
+
+                formData.append('uploadFile', file, file.name);
+
+                console.log(this.fileList[0]);
+
+                this.userService.registerUserImage(formData, id).subscribe(
+
+                     (user: User[]) => {
+
+                        console.log(user);
+
+                        this.show = true;
+
+                }), error => this.callBack(error);
+
+             } else {
+
+                 this.callBack('Validação menor ou igual a 0');
+
+             }
+
+         } else {
+
+             this.callBack('Validação imagem retornou null');
+
+         }
+
+    }
+
+    // Função chamda ao subemter o formulário
+
     onSubmit(form) {
 
         this.userService.registerUser(form.value).subscribe(
@@ -51,58 +110,13 @@ export class UsersRegisterComponent implements OnInit {
 
                 this.show = true;
 
-        }), (error: Response) => {
+                // this.uploadImage(1);
 
-                console.log(error);
-
-                this.show = true;
-
-                this.success = false;
-
-                this.message = 'Falha ao cadastrar o usuário.';
-
-        };
-
-        /*
-
-        if (this.fileList){
-
-            if (this.fileList.length > 0) {
-
-                let file: File = this.fileList[0];
-
-                let formData: FormData = new FormData();
-
-                formData.append('uploadFile', file, file.name);
-
-                console.log(this.fileList[0]);
-
-                this.userService.registerUserImage(formData).subscribe(
-                    (user: User[]) => {
-
-                    console.log(user);
-
-                    this.show = true;
-
-                }), (error: Response) => {
-
-                    console.log(error);
-
-                    this.show = true;
-
-                    this.success = false;
-
-                    this.message = 'Falha ao cadastrar o usuário.';
-
-                };
-
-            }
-
-        }
-
-        */
+        }), error => this.callBack(error);
 
     }
+
+    // Adiciona globalmente a imagem para o formulário ser submetido como único
 
     fileChange(target) {
 
@@ -111,6 +125,8 @@ export class UsersRegisterComponent implements OnInit {
         console.log(this.fileList);
 
     }
+
+    // Validações
 
     checkValidTouched(field){
 

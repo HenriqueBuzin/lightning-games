@@ -65,29 +65,23 @@ export class PlatformEditComponent implements OnInit {
 
     }
 
-    onSubmit(form) {
+    // Função de callback, retorna um aviso de erro ao usuário
 
-        console.log(JSON.stringify(form.value));
+    callBack(error) {
 
-        this.platformService.editPlatform(form.value).subscribe(
+        console.log(error);
 
-            (platform: Platform[]) => {
+        this.show = true;
 
-                console.log(platform);
+        this.success = false;
 
-                this.show = true;
+        this.message = 'Falha ao cadastrar a plataforma.';
 
-            }), error => {
+    }
 
-            console.log(error);
+    // Realiza o procedimento de envio de imagem
 
-            this.show = true;
-
-            this.success = false;
-
-            this.message = 'Falha ao editar a plataforma.';
-
-        };
+    uploadImage(id) {
 
         if (this.fileList){
 
@@ -101,7 +95,7 @@ export class PlatformEditComponent implements OnInit {
 
                 formData.append('uploadFile', file, file.name);
 
-                this.platformService.editPlatformImage(formData, this.id).subscribe(
+                this.platformService.editPlatformImage(formData, id).subscribe(
 
                     (platform: Platform[]) => {
 
@@ -109,23 +103,41 @@ export class PlatformEditComponent implements OnInit {
 
                         this.show = true;
 
-                    }), error => {
+                    }), error => this.callBack(error);
 
-                    console.log(error);
+            } else {
 
-                    this.show = true;
-
-                    this.success = false;
-
-                    this.message = 'Falha ao cadastrar a plataforma.';
-
-                };
+                this.callBack('Validação menor ou igual a 0');
 
             }
+
+        } else {
+
+            this.callBack('Validação imagem retornou null');
 
         }
 
     }
+
+    // Função chamada ao submeter o formulário
+
+    onSubmit(form) {
+
+        console.log(JSON.stringify(form.value));
+
+        this.platformService.editPlatform(form.value).subscribe(
+
+            (platform: Platform[]) => {
+
+                console.log(platform);
+
+                this.show = true;
+
+        }), error => this.callBack(error);
+
+    }
+
+    // Função que adiciona globalmente a imagem para ser submetida com o formulário
 
     fileChange(target) {
 
@@ -134,6 +146,8 @@ export class PlatformEditComponent implements OnInit {
         console.log(this.fileList);
 
     }
+
+    // Validações
 
     checkValidTouched(field){
 

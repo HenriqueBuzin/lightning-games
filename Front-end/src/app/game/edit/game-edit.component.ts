@@ -115,27 +115,23 @@ export class GameEditComponent implements OnInit {
 
     }
 
-    onSubmit(form) {
+    // Retorna um callback para o usuário
 
-        console.log(form.value);
+    callBack(error) {
 
-        this.gameService.editGame(form.value).subscribe(form => {
+        console.log(error);
 
-            console.log(form);
+        this.show = true;
 
-            this.show = true;
+        this.success = false;
 
-        }), error => {
+        this.message = 'Falha ao editar o jogo.';
 
-            console.log(error);
+    }
 
-            this.show = true;
+    // Realiza o procedimento de cadastro da imagem.
 
-            this.success = false;
-
-            this.message = 'Falha ao editar o jogo.';
-
-        };
+    uploadImage(id) {
 
         if (this.fileList) {
 
@@ -147,30 +143,46 @@ export class GameEditComponent implements OnInit {
 
                 formData.append('uploadFile', file, file.name);
 
-                this.gameService.editGameImage(formData, this.id).subscribe(
+                this.gameService.editGameImage(formData, id).subscribe(
                     (game: Game[]) => {
 
                         console.log(game);
 
                         this.show = true;
 
-                    }), error => {
+                    }), error => this.callBack(error);
 
-                    console.log(error);
+            } else {
 
-                    this.show = true;
-
-                    this.success = false;
-
-                    this.message = 'Falha ao editar o jogo.';
-
-                };
+                this.callBack('Validação menor ou igual a 0');
 
             }
+
+        } else {
+
+            this.callBack('Validação imagem retornou null');
 
         }
 
     }
+
+    // Função do form sendo submetido
+
+    onSubmit(form) {
+
+        console.log(form.value);
+
+        this.gameService.editGame(form.value).subscribe(form => {
+
+            console.log(form);
+
+            this.show = true;
+
+        }), error => this.callBack(error);
+
+    }
+
+    // Ao selecionar a imagem, esta função adiciona ela a variável global para ser acessada no formulário como único.
 
     fileChange(target) {
 
@@ -180,9 +192,90 @@ export class GameEditComponent implements OnInit {
 
     }
 
+    // Validações
+
     checkValidTouched(field){
 
         return !field.valid && field.touched;
+
+    }
+
+    applyCssError(field){
+
+        return {
+
+            'subError': this.checkValidTouched(field)
+
+        }
+
+    }
+
+    // Validar Radio
+
+    setterFocus(){
+
+        this.focus = true;
+
+        console.log('Focus: ', this.focus);
+
+    }
+
+    setterSelected() {
+
+        this.selected = true;
+
+        // console.log('Selected: ', this.selected);
+    }
+
+    setterFocusOut() {
+
+        this.focusOut = false;
+
+        // console.log('Focus: ', this.focusOut);
+
+    }
+
+    checkValidRadio() {
+
+        let flag: boolean;
+
+        if (this.focus == true && this.focusOut == false && this.selected == false) {
+
+            flag = true;
+
+        } else {
+
+            flag = false;
+
+        }
+
+        // console.log('Flag: ', flag);
+
+        return flag;
+
+    }
+
+    // Validar Checkbox
+
+    onClicked(platform, event) {
+
+        if(this.idPlatform.indexOf(platform.id) !== -1){
+
+            this.idPlatform.splice(this.idPlatform.indexOf(platform.id), 1);
+
+        }else{
+
+            this.idPlatform.push(platform.id);
+
+        }
+
+        console.log('---');
+
+        console.log('Id da Plataforma: ', this.idPlatform);
+
+        console.log('Ver: ', event.target.checked);
+
+        console.log('---');
 
     }
 
@@ -215,81 +308,6 @@ export class GameEditComponent implements OnInit {
         let flag: boolean;
 
         if (this.focusCheckbox == true && this.focusOutCheckbox == false && this.idPlatform == null) {
-
-            flag = true;
-
-        } else {
-
-            flag = false;
-
-        }
-
-        // console.log('Flag: ', flag);
-
-        return flag;
-
-    }
-
-    onClicked(platform, event) {
-
-        if(this.idPlatform.indexOf(platform.id) !== -1){
-
-            this.idPlatform.splice(this.idPlatform.indexOf(platform.id), 1);
-
-        }else{
-
-            this.idPlatform.push(platform.id);
-
-        }
-
-        console.log('---');
-
-        console.log('Id da Plataforma: ', this.idPlatform);
-
-        console.log('Ver: ', event.target.checked);
-
-        console.log('---');
-
-    }
-
-    applyCssError(field){
-
-        return {
-
-            'subError': this.checkValidTouched(field)
-
-        }
-
-    }
-
-    setterFocus(){
-
-        this.focus = true;
-
-        console.log('Focus: ', this.focus);
-
-    }
-
-    setterSelected() {
-
-        this.selected = true;
-
-        // console.log('Selected: ', this.selected);
-    }
-
-    setterFocusOut() {
-
-        this.focusOut = false;
-
-        // console.log('Focus: ', this.focusOut);
-
-    }
-
-    checkValidRadio() {
-
-        let flag: boolean;
-
-        if (this.focus == true && this.focusOut == false && this.selected == false) {
 
             flag = true;
 

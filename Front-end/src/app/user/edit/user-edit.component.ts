@@ -64,6 +64,60 @@ export class UserEditComponent implements OnInit {
 
     }
 
+    // Função de callback, retorna erro ao usuário
+
+    callBack(error: any) {
+
+        console.log(error);
+
+        this.show = true;
+
+        this.success = false;
+
+        this.message = 'Falha ao cadastrar o usuário.';
+
+    }
+
+    // Realiza o procedimento de submeter a imagem
+
+    uploadImage(id) {
+
+        if (this.fileList) {
+
+             if (this.fileList.length > 0) {
+
+                 let file: File = this.fileList[0];
+
+                 let formData: FormData = new FormData();
+
+                 formData.append('uploadFile', file, file.name);
+
+                 this.userService.editUserImage(formData, id).subscribe(
+
+                     (user: User[]) => {
+
+                         console.log(user);
+
+                         this.show = true;
+
+                 }), error => this.callBack(error);
+
+             } else {
+
+                 this.callBack('Validação menor ou igual a 0');
+
+             }
+
+        } else {
+
+            this.callBack('Validação imagem retornou null');
+
+        }
+
+    }
+
+    // Função chamada ao submeter o formulário
+
     onSubmit(form) {
 
         console.log(JSON.stringify(form.value));
@@ -76,57 +130,11 @@ export class UserEditComponent implements OnInit {
 
                 this.show = true;
 
-            }), (error: Response) => {
-
-                console.log(error);
-
-                this.show = true;
-
-                this.success = false;
-
-                this.message = 'Falha ao cadastrar o usuário.';
-
-        };
-
-        /*
-
-        if (this.fileList) {
-
-            if (this.fileList.length > 0) {
-
-                let file: File = this.fileList[0];
-
-                let formData: FormData = new FormData();
-
-                formData.append('uploadFile', file, file.name);
-
-                this.userService.editUserImage(formData, this.id).subscribe(
-
-                    (user: User[]) => {
-
-                        console.log(user);
-
-                        this.show = true;
-
-                    }), (error: Response) => {
-
-                    console.log(error);
-
-                    this.show = true;
-
-                    this.success = false;
-
-                    this.message = 'Falha ao cadastrar o usuário.';
-
-                };
-
-            }
-
-        }
-
-        */
+            }), error => this.callBack(error);
 
     }
+
+    // Adiciona a imagem ao scopo global para ser submetido
 
     fileChange(target) {
 
@@ -135,6 +143,8 @@ export class UserEditComponent implements OnInit {
         console.log(this.fileList);
 
     }
+
+    // Validações
 
     checkValidTouched(field) {
 
@@ -151,6 +161,8 @@ export class UserEditComponent implements OnInit {
         };
 
     }
+
+    // Função chamada ao clicar no botão resetar senha, ela faz a requisição e coloca a senha como 1234
 
     resetPassword() {
 

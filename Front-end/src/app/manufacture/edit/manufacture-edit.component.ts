@@ -61,27 +61,23 @@ export class ManufactureEditComponent implements OnInit {
 
     }
 
-    onSubmit(form) {
+    // Função de callback, retorna um erro ao usuário.
 
-        this.manufactureService.editManufacture(form.value).subscribe(
+    callBack(error) {
 
-            (manufacture: Manufacture[]) => {
+        console.log(error);
 
-                console.log(manufacture);
+        this.show = true;
 
-                this.show = true;
+        this.success = false;
 
-            }), error => {
+        this.message = 'Falha ao editar a fabricante.';
 
-            console.log(error);
+    }
 
-            this.show = true;
+    // Função para upload de imagem
 
-            this.success = false;
-
-            this.message = 'Falha ao editar a fabricante.';
-
-        };
+    uploadImage(id) {
 
         if (this.fileList) {
 
@@ -93,7 +89,7 @@ export class ManufactureEditComponent implements OnInit {
 
                 formData.append('uploadFile', file, file.name);
 
-                this.manufactureService.editManufactureImage(formData, this.id).subscribe(
+                this.manufactureService.editManufactureImage(formData, id).subscribe(
 
                     (manufacture: Manufacture[]) => {
 
@@ -101,23 +97,53 @@ export class ManufactureEditComponent implements OnInit {
 
                         this.show = true;
 
-                    }), error => {
+                    }), error => this.callBack(error);
 
-                    console.log(error);
+            } else {
 
-                    this.show = true;
-
-                    this.success = false;
-
-                    this.message = 'Falha ao editar a fabricante.';
-
-                };
+                this.callBack('Validação menor ou igual a 0');
 
             }
+
+        } else {
+
+            this.callBack('Validação imagem retornou null');
 
         }
 
     }
+
+    // Função chamada após submeter o formulário
+
+    onSubmit(form) {
+
+        this.manufactureService.editManufacture(form.value).subscribe(
+
+            (manufacture: Manufacture[]) => {
+
+                console.log(manufacture);
+
+                this.show = true;
+
+                /*
+
+                     if (this.fileList) {
+
+                        this.uploadImage(1);
+
+                     }else{
+
+                         this.show = true;
+
+                     }
+
+                 */
+
+            }), error => this.callBack(error);
+
+    }
+
+    // Função que adiciona a imagem na variável global, para que o formulário seja submetido como único.
 
     fileChange(target) {
 
@@ -126,6 +152,8 @@ export class ManufactureEditComponent implements OnInit {
         console.log(this.fileList);
 
     }
+
+    // Validações
 
     checkValidTouched(field){
 

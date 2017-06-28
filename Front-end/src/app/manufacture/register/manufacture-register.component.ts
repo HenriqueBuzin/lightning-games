@@ -40,6 +40,60 @@ export class ManufacturesRegisterComponent implements OnInit {
 
     }
 
+    // Função de callBack, retorna um aviso de erro ao usuário.
+
+    callBack(error) {
+
+        console.log(error);
+
+        this.show = true;
+
+        this.success = false;
+
+        this.message = 'Falha ao cadastrar a fabricante.';
+
+    }
+
+    // Função para upload de imagem
+
+    uploadImage(id) {
+
+         if (this.fileList) {
+
+             if (this.fileList.length > 0) {
+
+                 let file: File = this.fileList[0];
+
+                 let formData: FormData = new FormData();
+
+                 formData.append('uploadFile', file, file.name);
+
+                 this.manufactureService.registerManufactureImage(formData, id).subscribe(
+
+                 (manufacture: Manufacture[]) => {
+
+                     console.log(manufacture);
+
+                     this.show = true;
+
+                 }), error => this.callBack(error);
+
+             } else {
+
+                 this.callBack('Validação menor ou igual a 0');
+
+             }
+
+         } else {
+
+             this.callBack('Validação imagem retornou null');
+
+         }
+
+    }
+
+    // Função chamada ao formulário ser submetido.
+
     onSubmit(form) {
 
         this.manufactureService.registerManufacture(form.value).subscribe(
@@ -50,57 +104,11 @@ export class ManufacturesRegisterComponent implements OnInit {
 
                 this.show = true;
 
-            }), error => {
-
-            console.log(error);
-
-            this.show = true;
-
-            this.success = false;
-
-            this.message = 'Falha ao cadastrar a fabricante.';
-
-        };
-
-        /*
-
-        if (this.fileList) {
-
-            if (this.fileList.length > 0) {
-
-                let file: File = this.fileList[0];
-
-                let formData: FormData = new FormData();
-
-                formData.append('uploadFile', file, file.name);
-
-                this.manufactureService.registerManufactureImage(formData).subscribe(
-
-                    (manufacture: Manufacture[]) => {
-
-                        console.log(manufacture);
-
-                        this.show = true;
-
-                    }), error => {
-
-                    console.log(error);
-
-                    this.show = true;
-
-                    this.success = false;
-
-                    this.message = 'Falha ao cadastrar a fabricante.';
-
-                };
-
-            }
-
-        }
-
-        */
+            }), error => this.callBack(error);
 
     }
+
+    // Função que adiciona globalmente a imagem para que o formulário seja submetido como único.
 
     fileChange(target) {
 
@@ -109,6 +117,8 @@ export class ManufacturesRegisterComponent implements OnInit {
         console.log(this.fileList);
 
     }
+
+    // Validações
 
     checkValidTouched(field){
 
