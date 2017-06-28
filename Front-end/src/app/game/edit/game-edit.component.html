@@ -12,6 +12,36 @@
                 <app-form-control [show]="checkValidTouched(category)" message="O campo categoria deve ser preenchido."></app-form-control>
             </div>
             <div class="form-group">
+                <label>Fabricante</label><br>
+                <p class="note">* A fabricante atual é: {{games.manufacture?.name}}</p>
+                <div *ngFor="let manufacture of manufactures; let i = index" style="display: inline-block">
+                    <!--
+                        [checked]="manufacture.id = games.manufactures?.id"
+                    -->
+                    <label class="radio-inline" for="manufacture-{{i}}">
+                        <input type="radio" name="manufacture" id="manufacture-{{i}}" value="{{manufacture.id}}" ngModel required>
+                        <span>
+                            {{manufacture.name}}
+                            <!-- <img src="{{manufacture.imageFullPath}}" width="50" height="50"> -->
+                        </span>
+                    </label>
+                </div>
+                <app-form-control [show]="checkValidRadio()" message="É necessário selecionar uma fabricante."></app-form-control>
+            </div>
+            <div ngModelGroup="platformas">
+                <div class="form-group" (focus)="setterFocusCheckbox()" (focusout)="setterFocusOutCheckbox()">
+                    <label>Plataforma(s)</label><br>
+                    <label class="checkbox-inline" *ngFor="let platform of platforms">
+                        <input type="checkbox" (change)="onClicked(platform, $event)" value="{{platform.id}}">
+                        <span>
+                                {{platform.name}}
+                            <!-- <img src="{{platform.imageFullPath}}" width="50" height="50"> -->
+                        </span>
+                    </label>
+                    <app-form-control [show]="verifyCheckbox()" message="É necessário selecionar no mínimo uma plataforma."></app-form-control>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="quantity" [ngClass]="applyCssError(quantity)">Quantidade</label>
                 <input type="number" id="quantity" name="quantity" placeholder="ex: 3" class="form-control" autocomplete="off" #quantity="ngModel" [(ngModel)]="games.quantity" required>
                 <app-form-control [show]="checkValidTouched(quantity)" message = "O campo quantidade deve ser preenchido."></app-form-control>
@@ -29,40 +59,16 @@
                 <textarea id="description" class="form-control" placeholder="ex: Considerado um dos melhores jogos de luta da história..." name="description" autocomplete="off" #description="ngModel" [(ngModel)]="games.description" required></textarea>
                 <app-form-control [show]="checkValidTouched(description)" message = "O campo descrição deve ser preenchido."></app-form-control>
             </div>
-            <div class="form-group">
-                <label>Fabricante</label><br>
-                <p class="note">* A fabricante atual é: {{games.manufacture?.name}}</p>
-                <div *ngFor="let manufacture of manufactures; let i = index" style="display: inline-block">
-                    <!--
-                        [checked]="manufacture.id = games.manufactures?.id"
-                    -->
-                    <label class="radio-inline" for="manufacture-{{i}}">
-                        <input type="radio" name="manufacture" id="manufacture-{{i}}" value="{{manufacture.id}}" ngModel required>
-                        <span>
-                            {{manufacture.name}}
-                            <img src="{{manufacture.imageFullPath}}" width="50" height="50">
-                        </span>
-                    </label>
+            <!--
+                <div class="form-group">
+                    <label for="image">Imagem</label><br>
+                    <img src="{{games.imageFullPath}}" width="150" height="150">
+                    <p class="note">* imagem atual do usuário</p>
+                    <input type="file" name="image" (change)="fileChange($event.target)" id="image" class="form-control" accept=".png,.jpg">
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Plataforma(s)</label><br>
-                <label class="checkbox-inline" *ngFor="let platform of platforms">
-                    <input type="checkbox" value="{{platform.id}}">
-                    <span>
-                            {{platform.name}}
-                            <img src="{{platform.imageFullPath}}" width="50" height="50">
-                        </span>
-                </label>
-            </div>
-            <div class="form-group">
-                <label for="image">Imagem</label><br>
-                <img src="{{games.imageFullPath}}" width="150" height="150">
-                <p class="note">* imagem atual do usuário</p>
-                <input type="file" name="image" (change)="fileChange($event.target)" id="image" class="form-control" accept=".png,.jpg">
-            </div>
-            <app-form-control [show]="show" [message]="message" [type]="success"></app-form-control>
+            -->
             <input type="hidden" [(ngModel)]="games.id" name="id" ngModel>
+            <app-form-control [show]="show" [message]="message" [type]="success"></app-form-control>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
                 Enviar
             </button>

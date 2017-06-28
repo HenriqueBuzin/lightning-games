@@ -1,5 +1,5 @@
 // Angular
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // Service
 import { PlatformsService } from './../../_services/platform.service';
@@ -14,15 +14,17 @@ import { Platform } from './../../_models/platform';
     templateUrl: './platform-register.component.html',
     styleUrls: ['./platform-register.component.css' ]
 })
-export class PlatformsRegisterComponent {
+export class PlatformsRegisterComponent implements OnInit {
 
-    success = true;
+    success: boolean;
 
-    show = false;
+    show: boolean;
 
-    message = 'A plataforma foi cadastrada com sucesso.';
+    message: string;
 
     private fileList: FileList;
+
+    private id: number;
 
     constructor(private platformService: PlatformsService, footerService: FooterService) {
 
@@ -30,15 +32,74 @@ export class PlatformsRegisterComponent {
 
     }
 
+    ngOnInit() {
+
+        this.success = true;
+
+        this.show = false;
+
+        this.message = 'A plataforma foi cadastrada com sucesso.';
+
+    }
+
+    sendImage() {
+
+
+
+    }
+
     onSubmit(form){
+
+        // console.log(form.value);
 
         this.platformService.registerPlatform(form.value).subscribe(
 
-            (platform: Platform[]) => {
+            (platform: Platform) => {
 
                 console.log(platform);
 
+                this.id = platform.id;
+
+                console.log(platform.id);
+
                 this.show = true;
+
+                if (this.fileList) {
+
+                    if (this.fileList.length > 0) {
+
+                        let file: File = this.fileList[0];
+
+                        let formData: FormData = new FormData();
+
+                        formData.append('uploadFile', file, file.name);
+
+                        this.platformService.registerPlatformImage(formData, this.id).subscribe(
+                            (platform: Platform[]) => {
+
+                                console.log(platform);
+
+                                this.show = true;
+
+                            }), error => {
+
+                            console.log(error);
+
+                            this.show = true;
+
+                            this.success = false;
+
+                            this.message = 'Falha ao cadastrar a plataforma.';
+
+                        };
+
+                    }
+
+                }
+
+
+
+
 
             }), error => {
 
@@ -51,43 +112,6 @@ export class PlatformsRegisterComponent {
             this.message = 'Falha ao cadastrar a plataforma.';
 
         };
-
-        /*
-
-        if (this.fileList) {
-
-            if (this.fileList.length > 0) {
-
-                let file: File = this.fileList[0];
-
-                let formData: FormData = new FormData();
-
-                formData.append('uploadFile', file, file.name);
-
-                this.platformService.registerPlatformImage(formData).subscribe(
-                    (platform: Platform[]) => {
-
-                        console.log(platform);
-
-                        this.show = true;
-
-                    }), error => {
-
-                    console.log(error);
-
-                    this.show = true;
-
-                    this.success = false;
-
-                    this.message = 'Falha ao cadastrar a plataforma.';
-
-                };
-
-            }
-
-        }
-
-        */
 
     }
 

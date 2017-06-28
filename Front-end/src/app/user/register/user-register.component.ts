@@ -1,5 +1,5 @@
 // Angular
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 
 // Service
@@ -15,19 +15,29 @@ import { User } from './../../_models/user';
     templateUrl: './user-register.component.html',
     styleUrls: ['./user-register.component.css' ]
 })
-export class UsersRegisterComponent {
+export class UsersRegisterComponent implements OnInit {
 
-    success = true;
+    success: boolean;
 
-    show = false;
+    show: boolean;
 
-    message = 'O usuário foi cadastrado com sucesso.';
+    message: string;
 
     private fileList: FileList;
 
     constructor(private userService: UserService, footerService: FooterService) {
 
         footerService.fixFooter(false);
+
+    }
+
+    ngOnInit() {
+
+        this.success = true;
+
+        this.show = false;
+
+        this.message = 'O usuário foi cadastrado com sucesso.';
 
     }
 

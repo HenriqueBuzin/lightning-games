@@ -63,7 +63,7 @@ export class GameService {
     }
 
     registerGame(game: Game): Observable<Game[]> {
-
+        console.log('post game-> ' + JSON.stringify(game));
         return this.http
             .post('http://localhost:8080/lightning/api/game', JSON.stringify(game), this.options)
             .map((response: Response) => response)

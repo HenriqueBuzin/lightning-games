@@ -17,7 +17,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Foto</th>
+                <!-- <th>Foto</th> -->
                 <th>Nome</th>
                 <th>E-mail</th>
                 <th>Data de Registro</th>
@@ -27,7 +27,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let user of users | searchUser:SearchedText.value">
-                    <td><img src="{{user.imageFullPath}}" width="150" height="150" /></td>
+                    <!-- <td><img src="{{user.imageFullPath}}" width="150" height="150" /></td> -->
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.registrationDate | date: 'dd/MM/yyyy'}}</td>

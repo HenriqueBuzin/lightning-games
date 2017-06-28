@@ -29,6 +29,8 @@ export class PlatformEditComponent implements OnInit {
 
     private fileList: FileList;
 
+    private fileName: string;
+
     constructor(private activatedRoute: ActivatedRoute, private platformService: PlatformsService, footerService: FooterService) {
 
         footerService.fixFooter(false);
@@ -41,7 +43,7 @@ export class PlatformEditComponent implements OnInit {
 
         this.show = false;
 
-        this.message = 'A plataforma foi cadastrada com sucesso.';
+        this.message = 'A plataforma foi editada com sucesso.';
 
         this.activatedRoute.params.subscribe(
 
@@ -55,6 +57,8 @@ export class PlatformEditComponent implements OnInit {
 
                         this.platforms = platforms;
 
+                        console.log(platforms);
+
                 }), error => console.log(error);
 
         });
@@ -62,6 +66,8 @@ export class PlatformEditComponent implements OnInit {
     }
 
     onSubmit(form) {
+
+        console.log(JSON.stringify(form.value));
 
         this.platformService.editPlatform(form.value).subscribe(
 
@@ -79,7 +85,7 @@ export class PlatformEditComponent implements OnInit {
 
             this.success = false;
 
-            this.message = 'Falha ao cadastrar a plataforma.';
+            this.message = 'Falha ao editar a plataforma.';
 
         };
 
@@ -88,6 +94,8 @@ export class PlatformEditComponent implements OnInit {
             if (this.fileList.length > 0) {
 
                 let file: File = this.fileList[0];
+
+                this.fileName = file.name;
 
                 let formData: FormData = new FormData();
 

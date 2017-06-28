@@ -41,7 +41,7 @@ export class ManufactureEditComponent implements OnInit {
 
         this.show = false;
 
-        this.message = 'A fabricante foi cadastrada com sucesso.';
+        this.message = 'A fabricante foi editada com sucesso.';
 
         this.activatedRoute.params.subscribe(
 
@@ -79,7 +79,7 @@ export class ManufactureEditComponent implements OnInit {
 
             this.success = false;
 
-            this.message = 'Falha ao cadastrar a fabricante.';
+            this.message = 'Falha ao editar a fabricante.';
 
         };
 
@@ -109,7 +109,7 @@ export class ManufactureEditComponent implements OnInit {
 
                     this.success = false;
 
-                    this.message = 'Falha ao cadastrar a fabricante.';
+                    this.message = 'Falha ao editar a fabricante.';
 
                 };
 

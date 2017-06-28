@@ -37,6 +37,17 @@ export class GameEditComponent implements OnInit {
 
     private fileList: FileList;
 
+    private selected: boolean;
+
+    private focusOut: boolean;
+
+    private focus: boolean;
+
+    private focusCheckbox: boolean;
+
+    private focusOutCheckbox: boolean;
+
+    private idPlatform: number[] = [];
 
     constructor(
         private manufactureService: ManufactureService,
@@ -52,11 +63,21 @@ export class GameEditComponent implements OnInit {
 
     ngOnInit() {
 
+        this.focusCheckbox = true;
+
+        this.focusOutCheckbox = false;
+
+        this.selected = false;
+
+        this.focusOut = true;
+
+        this.focus = false;
+
         this.show = false;
 
         this.success = true;
 
-        this.message = 'O jogo foi cadastrado com sucesso.';
+        this.message = 'O jogo foi editado com sucesso.';
 
         this.platformService.getPlatforms().subscribe(
 
@@ -96,6 +117,8 @@ export class GameEditComponent implements OnInit {
 
     onSubmit(form) {
 
+        console.log(form.value);
+
         this.gameService.editGame(form.value).subscribe(form => {
 
             console.log(form);
@@ -110,7 +133,7 @@ export class GameEditComponent implements OnInit {
 
             this.success = false;
 
-            this.message = 'Falha ao cadastrar o jogo.';
+            this.message = 'Falha ao editar o jogo.';
 
         };
 
@@ -139,7 +162,7 @@ export class GameEditComponent implements OnInit {
 
                     this.success = false;
 
-                    this.message = 'Falha ao cadastrar o jogo.';
+                    this.message = 'Falha ao editar o jogo.';
 
                 };
 
@@ -163,6 +186,72 @@ export class GameEditComponent implements OnInit {
 
     }
 
+    setterFocusCheckbox() {
+
+        this.focusCheckbox = false;
+
+        console.log('---');
+
+        console.log('FocusOut Checkbox: ', this.focusOutCheckbox);
+
+        console.log('---');
+
+    }
+
+    setterFocusOutCheckbox() {
+
+        this.focusCheckbox = true;
+
+        console.log('---');
+
+        console.log('Focus Checkbox: ', this.focusCheckbox);
+
+        console.log('---');
+
+    }
+
+    verifyCheckbox() {
+
+        let flag: boolean;
+
+        if (this.focusCheckbox == true && this.focusOutCheckbox == false && this.idPlatform == null) {
+
+            flag = true;
+
+        } else {
+
+            flag = false;
+
+        }
+
+        // console.log('Flag: ', flag);
+
+        return flag;
+
+    }
+
+    onClicked(platform, event) {
+
+        if(this.idPlatform.indexOf(platform.id) !== -1){
+
+            this.idPlatform.splice(this.idPlatform.indexOf(platform.id), 1);
+
+        }else{
+
+            this.idPlatform.push(platform.id);
+
+        }
+
+        console.log('---');
+
+        console.log('Id da Plataforma: ', this.idPlatform);
+
+        console.log('Ver: ', event.target.checked);
+
+        console.log('---');
+
+    }
+
     applyCssError(field){
 
         return {
@@ -170,6 +259,49 @@ export class GameEditComponent implements OnInit {
             'subError': this.checkValidTouched(field)
 
         }
+
+    }
+
+    setterFocus(){
+
+        this.focus = true;
+
+        console.log('Focus: ', this.focus);
+
+    }
+
+    setterSelected() {
+
+        this.selected = true;
+
+        // console.log('Selected: ', this.selected);
+    }
+
+    setterFocusOut() {
+
+        this.focusOut = false;
+
+        // console.log('Focus: ', this.focusOut);
+
+    }
+
+    checkValidRadio() {
+
+        let flag: boolean;
+
+        if (this.focus == true && this.focusOut == false && this.selected == false) {
+
+            flag = true;
+
+        } else {
+
+            flag = false;
+
+        }
+
+        // console.log('Flag: ', flag);
+
+        return flag;
 
     }
 

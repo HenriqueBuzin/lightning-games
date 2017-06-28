@@ -1,5 +1,5 @@
 // Angular
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // Service
 import { ManufactureService } from './../../_services/manufacture.service';
@@ -14,19 +14,29 @@ import { Manufacture } from './../../_models/manufacture';
     templateUrl: './manufacture-register.component.html',
     styleUrls: ['./manufacture-register.component.css' ]
 })
-export class ManufacturesRegisterComponent{
+export class ManufacturesRegisterComponent implements OnInit {
 
     private fileList: FileList;
 
-    success = true;
+    success: boolean;
 
-    show = false;
+    show: boolean;
 
-    message = 'A fabricante foi cadastrada com sucesso.';
+    message: string;
 
     constructor(private manufactureService: ManufactureService, footerService: FooterService) {
 
         footerService.fixFooter(true);
+
+    }
+
+    ngOnInit() {
+
+        this.success = true;
+
+        this.show = false;
+
+        this.message = 'A fabricante foi cadastrada com sucesso.';
 
     }
 

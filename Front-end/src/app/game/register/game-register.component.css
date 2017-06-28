@@ -1,5 +1,6 @@
 .radio-inline > input {
-    margin-right: 5px;
+    /* margin-right: 5px; */
+    margin: 0 5px 0 5px;
 }
 .checkbox-inline > span {
     margin: 0 5px 0 5px;

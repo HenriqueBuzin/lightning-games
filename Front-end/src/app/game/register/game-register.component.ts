@@ -26,11 +26,23 @@ export class GamesRegisterComponent implements OnInit {
 
     platforms: Platform[] = [];
 
-    success = true;
+    success: boolean;
 
-    show = false;
+    show: boolean;
 
-    message = 'O jogo foi cadastrado com sucesso.';
+    message: string;
+
+    private selected: boolean;
+
+    private focusOut: boolean;
+
+    private focus: boolean;
+
+    private focusCheckbox: boolean;
+
+    private focusOutCheckbox: boolean;
+
+    private idPlatform: number[] = [];
 
     constructor(
         private platformService: PlatformsService,
@@ -44,6 +56,22 @@ export class GamesRegisterComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        this.focusCheckbox = true;
+
+        this.focusOutCheckbox = false;
+
+        this.message = 'O jogo foi cadastrado com sucesso.';
+
+        this.success = true;
+
+        this.show = false;
+
+        this.selected = false;
+
+        this.focusOut = true;
+
+        this.focus = false;
 
         this.platformService.getPlatforms().subscribe(
 
@@ -65,9 +93,13 @@ export class GamesRegisterComponent implements OnInit {
 
     onSubmit(form) {
 
-        console.log(form.value);
+        let formSubmit = form.value;
 
-        this.gameService.registerGame(form.value).subscribe(
+        console.log('---');
+        console.log(formSubmit);
+        console.log('---');
+
+        this.gameService.registerGame(formSubmit).subscribe(
 
             (game: Game[]) => {
 
@@ -89,38 +121,38 @@ export class GamesRegisterComponent implements OnInit {
 
         /*
 
-        if (this.fileList) {
+            if (this.fileList) {
 
-            if (this.fileList.length > 0) {
+                if (this.fileList.length > 0) {
 
-                let file: File = this.fileList[0];
+                    let file: File = this.fileList[0];
 
-                let formData: FormData = new FormData();
+                    let formData: FormData = new FormData();
 
-                formData.append('uploadFile', file, file.name);
+                    formData.append('uploadFile', file, file.name);
 
-                this.gameService.registerGameImage(formData).subscribe(
-                    (game: Game[]) => {
+                    this.gameService.registerGameImage(formData).subscribe(
+                        (game: Game[]) => {
 
-                        console.log(game);
+                            console.log(game);
+
+                            this.show = true;
+
+                        }), error => {
+
+                        console.log(error);
 
                         this.show = true;
 
-                    }), error => {
+                        this.success = false;
 
-                    console.log(error);
+                        this.message = 'Falha ao cadastrar o jogo.';
 
-                    this.show = true;
+                    };
 
-                    this.success = false;
-
-                    this.message = 'Falha ao cadastrar o jogo.';
-
-                };
+                }
 
             }
-
-        }
 
         */
 
@@ -131,6 +163,76 @@ export class GamesRegisterComponent implements OnInit {
         this.fileList = target.files;
 
         console.log(this.fileList);
+
+    }
+
+    setterFocusCheckbox() {
+
+        this.focusCheckbox = false;
+
+        // console.log('---');
+
+        // console.log('FocusOut Checkbox: ', this.focusOutCheckbox);
+
+        // console.log('---');
+
+    }
+
+    setterFocusOutCheckbox() {
+
+        this.focusCheckbox = true;
+
+        // console.log('---');
+
+        // console.log('Focus Checkbox: ', this.focusCheckbox);
+
+        // console.log('---');
+
+    }
+
+    verifyCheckbox() {
+
+        let flag: boolean;
+
+        if(this.focusOutCheckbox == true){
+
+            flag = true;
+
+        }else{
+
+            flag = false;
+
+        }
+
+        // console.log('XXX');
+
+        // console.log('Flag: ', flag);
+
+        // console.log('XXX');
+
+        return flag;
+
+    }
+
+    onClicked(platform, event) {
+
+        if(this.idPlatform.indexOf(platform.id) !== -1){
+
+            this.idPlatform.splice(this.idPlatform.indexOf(platform.id), 1);
+
+        }else{
+
+            this.idPlatform.push(platform.id);
+
+        }
+
+        // console.log('---');
+
+        // console.log('Id da Plataforma: ', this.idPlatform);
+
+        // console.log('Ver: ', event.target.checked);
+
+        // console.log('---');
 
     }
 
@@ -150,17 +252,11 @@ export class GamesRegisterComponent implements OnInit {
 
     }
 
-    private selected = false;
-
-    private focusOut = true;
-
-    private focus = false;
-
     setterFocus(){
 
         this.focus = true;
 
-        console.log('Focus: ', this.focus);
+        // console.log('Focus: ', this.focus);
 
     }
 
@@ -168,14 +264,14 @@ export class GamesRegisterComponent implements OnInit {
 
         this.selected = true;
 
-        console.log('Selected: ', this.selected);
+        // console.log('Selected: ', this.selected);
     }
 
     setterFocusOut() {
 
         this.focusOut = false;
 
-        console.log('Focus: ', this.focusOut);
+        // console.log('Focus: ', this.focusOut);
 
     }
 
@@ -193,7 +289,7 @@ export class GamesRegisterComponent implements OnInit {
 
        }
 
-       console.log('Flag: ', flag);
+       // console.log('Flag: ', flag);
 
        return flag;
 

@@ -42,7 +42,7 @@ export class UserEditComponent implements OnInit {
 
         this.show = false;
 
-        this.message = 'O usuário foi cadastrado com sucesso.';
+        this.message = 'O usuário foi editado com sucesso.';
 
         this.activatedRoute.params.subscribe((params: Params) => {
 
@@ -88,6 +88,8 @@ export class UserEditComponent implements OnInit {
 
         };
 
+        /*
+
         if (this.fileList) {
 
             if (this.fileList.length > 0) {
@@ -121,6 +123,8 @@ export class UserEditComponent implements OnInit {
             }
 
         }
+
+        */
 
     }
 
