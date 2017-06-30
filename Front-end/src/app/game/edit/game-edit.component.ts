@@ -137,8 +137,6 @@ export class GameEditComponent implements OnInit {
 
         console.log(form.value);
 
-        /*
-
         this.gameService.editGame(form.value).subscribe(
 
             (form: any) => {
@@ -148,8 +146,6 @@ export class GameEditComponent implements OnInit {
             this.show = true;
 
         }, (error: any) => this.callBack(error));
-
-        */
 
     }
 

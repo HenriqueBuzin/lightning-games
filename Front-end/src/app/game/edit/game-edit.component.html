@@ -42,7 +42,7 @@
                 <label for="price" [ngClass]="applyCssError(price)">Preço</label>
                 <div class="sub" [ngClass]="applyCssError(price)">
                     <span>R$</span>
-                    <input type="number" id="price" name="price" min="0" step="any" placeholder="ex: 199,99" class="form-control" autocomplete="off" #price="ngModel" [(ngModel)]="game.price" required>
+                    <input type="number" id="price" name="price" placeholder="ex: 199,99" class="form-control" autocomplete="off" #price="ngModel" [(ngModel)]="game.price" required>
                 </div>
                 <app-form-control [show]="checkValidTouched(price)" message="O campo preço deve ser preenchido."></app-form-control>
             </div>

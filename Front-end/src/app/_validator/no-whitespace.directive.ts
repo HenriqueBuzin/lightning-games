@@ -18,7 +18,11 @@ import { NoWhitespaceValidator } from './no-whitespace.validator';
 export class NoWhitespaceDirective implements Validator {
 
     private valFn = NoWhitespaceValidator();
+
     validate(control: AbstractControl): { [key: string]: any } {
+
         return this.valFn(control);
+
     }
+
 }
