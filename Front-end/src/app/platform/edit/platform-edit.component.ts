@@ -18,7 +18,7 @@ import { Platform } from '../../_model/platform';
 
 export class PlatformEditComponent implements OnInit {
 
-    platform: Platform;
+    platform: Platform[] = [];
 
     success: boolean;
 
@@ -50,7 +50,7 @@ export class PlatformEditComponent implements OnInit {
 
                 this.platformService.getPlatform(this.id).subscribe(
 
-                    (platform: Platform) => {
+                    (platform: Platform[]) => {
 
                         this.platform = platform;
 

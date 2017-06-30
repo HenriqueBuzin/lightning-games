@@ -3,10 +3,10 @@
         <div class="col-md-8 offset-md-2">
             <div class="form-group">
                 <label for="name" [ngClass]="applyCssError(name)">Nome</label>
-                <input type="text" myNoSpaces id="name" name="name" placeholder="ex: Rockstar Games" class="form-control" autocomplete="off" #name="ngModel" [(ngModel)]="manufactures.name" required>
+                <input type="text" myNoSpaces id="name" name="name" placeholder="ex: Rockstar Games" class="form-control" autocomplete="off" #name="ngModel" [(ngModel)]="manufacture.name" required>
                 <app-form-control [show]="checkValidTouched(name)" message = "O campo nome deve ser preenchido."></app-form-control>
             </div>
-            <input type="hidden" [(ngModel)]="manufactures.id" name="id" ngModel>
+            <input type="hidden" [(ngModel)]="manufacture.id" name="id" ngModel>
             <app-form-control [show]="show" [message]="message" [type]="success"></app-form-control>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
                 Enviar

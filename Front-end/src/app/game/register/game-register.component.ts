@@ -48,7 +48,7 @@ export class GamesRegisterComponent implements OnInit {
         private manufactureService: ManufactureService,
         private gameService: GameService,
         footerService: FooterService
-    ){
+    ) {
 
         footerService.fixFooter(false);
 

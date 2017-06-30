@@ -34,27 +34,33 @@ export class AuthService {
 
         this.http
             .post('http://localhost:8080/lightning/api/user/login', JSON.stringify(user), this.options)
-            .map((response: Response) => response).subscribe(login => {
+            .map((response: Response) => response).subscribe(
 
-                if (login.json() != null) {
+                (login: any) => {
 
-                    this.authenticated = true;
+                    if (login.json() != null) {
 
-                    this.menuEmitter.emit(true);
+                        console.log(login);
 
-                    localStorage.setItem('userName', login.json().name);
+                        this.authenticated = true;
 
-                    this.router.navigate(['/inicio']);
+                        this.menuEmitter.emit(true);
 
-                }else{
+                        localStorage.setItem('userName', login.json().name);
 
-                    this.alertEmitter.emit(true);
+                        this.router.navigate(['/inicio']);
 
-                    this.authenticated = false;
+                    } else {
 
-                    this.menuEmitter.emit(false);
+                        this.alertEmitter.emit(true);
 
-                }
+                        this.authenticated = false;
+
+                        this.menuEmitter.emit(false);
+
+                        console.log(login);
+
+                    }
 
             }, error => console.log(error));
 

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: lightning
+-- Host: 127.0.0.1    Database: lightning
 -- ------------------------------------------------------
--- Server version	5.6.35
+-- Server version	5.7.14
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `user` (
   `registration_date` date NOT NULL,
   `image` varchar(255) DEFAULT './images/standard_image.png',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'cristiano','c@c.com','202cb962ac59075b964b07152d234b70','2017-06-02','ps4.jpg'),(2,'buzin','b@h.com','202cb962ac59075b964b07152d234b70','2017-06-02','ps4.jpg'),(3,'Nome','h@h.com','202cb962ac59075b964b07152d234b70','2017-06-02','ps4.jpg'),(4,'Nome 1','n@n.com','202cb962ac59075b964b07152d234b70','2017-06-02','ps4.jpg'),(5,'Nome 2','n@c.com','202cb962ac59075b964b07152d234b70','2017-06-02','ps4.jpg');
+INSERT INTO `user` VALUES (1,'cristiano','cris@gmail.com','202cb962ac59075b964b07152d234b70','2017-06-02','no-image.png'),(2,'buzin','buzin@gmail.com','202cb962ac59075b964b07152d234b70','2017-06-02','no-image.png'),(6,'Sargento Hightower','hightower@gmail.com','202cb962ac59075b964b07152d234b70','2017-06-20','hightower.png'),(7,'Henrique Buzin','buzin@gmail.com','202cb962ac59075b964b07152d234b70','2017-06-20','buzin.jpg'),(8,'Cristiano Sarmento','cristiano@gmail.com','202cb962ac59075b964b07152d234b70','2017-06-20','cristiano.png'),(9,'Mahoney','mahoney@gmail.com','202cb962ac59075b964b07152d234b70','2017-06-20','mahoney.png'),(10,'YuGiOh','yugi@gmail.com','202cb962ac59075b964b07152d234b70','2017-06-20','yugioh.png'),(11,'Sloth','sloth@gmail.com','202cb962ac59075b964b07152d234b70','2017-06-20','sloth.jpg'),(12,'Frank Drebin','frank@gmail.com','202cb962ac59075b964b07152d234b70','2017-06-20','frank.png');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-15  0:38:51
+-- Dump completed on 2017-06-28 21:01:16

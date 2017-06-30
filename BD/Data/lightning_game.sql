@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: lightning
+-- Host: 127.0.0.1    Database: lightning
 -- ------------------------------------------------------
--- Server version	5.6.35
+-- Server version	5.7.14
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -35,7 +35,7 @@ CREATE TABLE `game` (
   PRIMARY KEY (`id`,`manufacture_id`),
   KEY `fk_game_distribuidor1_idx` (`manufacture_id`),
   CONSTRAINT `fk_game_distribuidor1` FOREIGN KEY (`manufacture_id`) REFERENCES `manufacture` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `game` (
 
 LOCK TABLES `game` WRITE;
 /*!40000 ALTER TABLE `game` DISABLE KEYS */;
-INSERT INTO `game` VALUES (1,1,'Street Fighter','luta',20.5,1000,1,'ps4.jpg','descricao'),(2,1,'Tekken','luta',20.5,1000,1,'ps4.jpg','descricao'),(3,1,'King of Fighters','luta',20.5,1000,1,'ps4.jpg','descricao'),(4,1,'Nome','Categoria',20.5,1000,1,'ps4.jpg','descricao'),(5,1,'Nome 2','Categoria 1',20.5,0,1,'ps4.jpg','descricao'),(6,2,'Nome 3','Categoria 2',20.5,0,0,'ps4.jpg','descricao'),(7,2,'Nome 4','Categoria 3',20.5,0,0,'ps4.jpg','descricao'),(8,2,'Nome 5','Categoria 4',20.5,0,0,'ps4.jpg','descricao'),(9,2,'Nome 6','Categoria 5',20.5,0,0,'ps4.jpg','descricao'),(10,2,'Nome 7','Categoria 6',20.5,0,0,'ps4.jpg','descricao');
+INSERT INTO `game` VALUES (1,1,'Street Fighter','luta',200,1000,1,'street-fighter2.jpg','Uns dos melhores jogos de luta'),(2,2,'Tekken','luta',145.2,1000,1,'ps4.jpg','Boa alternativa pa street fighter'),(4,1,'Tomb Raider','Eatrategia',190.9,1000,1,'ps4.jpg','Jogo do ano 2012'),(5,1,'Uncharted 4','Estrategia',249.9,500,1,'ps4.jpg','Melhor jogo de estrategia'),(6,1,'God Of War5','Estrategia',420,4000,1,'ps4.jpg','Ótimos gráficos'),(7,7,'Mortal Kombat','Luta',249.9,1500,1,'ps4.jpg','Luta sangrenta'),(8,2,'Bobby\'sHome','Infantil',59.9,250,0,'ps4.jpg','Bobby vai para casa'),(9,6,'Spiderman','Ação',199,150,0,'ps4.jpg','Controle o homem aranha pela cidade'),(11,3,'Tetris','Puzzle',19.9,5,0,'no-image.png','Encaixe as peças'),(12,3,'NFS12','Corrida',350.5,1000,1,NULL,'Simulador de corrida');
 /*!40000 ALTER TABLE `game` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-15  0:38:51
+-- Dump completed on 2017-06-28 21:01:16

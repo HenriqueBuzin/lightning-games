@@ -27,7 +27,7 @@ export class GameService {
 
         return this.http
             .get('http://localhost:8080/lightning/api/game', this.options)
-            .map((response: Response) => <Game[]> response.json())
+            .map((response: Response) => <Game> response.json())
             .catch(error => {
 
                 throw new Error(error.message);
@@ -36,11 +36,11 @@ export class GameService {
 
     }
 
-    getGame(id: number): Observable<Game> {
+    getGame(id: number): Observable<Game[]> {
 
         return this.http
             .get('http://localhost:8080/lightning/api/game/' + id, this.options)
-            .map((response: Response) => <Game> response.json())
+            .map((response: Response) => <Game[]> response.json())
             .catch(error => {
 
                 throw new Error(error.message);

@@ -36,11 +36,11 @@ export class ManufactureService {
 
     }
 
-    getManufacture(id: number): Observable<Manufacture> {
+    getManufacture(id: number): Observable<Manufacture[]> {
 
         return this.http
             .get('http://localhost:8080/lightning/api/manufacture/' + id, this.options)
-            .map((response: Response) => <Manufacture> response.json())
+            .map((response: Response) => <Manufacture[]> response.json())
             .catch(error => {
 
             throw new Error(error.message);

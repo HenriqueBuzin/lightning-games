@@ -1,6 +1,6 @@
 // Angular
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Injectable } from '@angular/core';
+import { Injectable,  } from '@angular/core';
 
 // Model
 import { Platform } from '../_model/platform';
@@ -37,11 +37,11 @@ export class PlatformsService {
 
     }
 
-    getPlatform(id: number): Observable<Platform> {
+    getPlatform(id: number): Observable<Platform[]> {
 
         return this.http
             .get('http://localhost:8080/lightning/api/platform/' + id, this.options)
-            .map((response: Response) => <Platform> response.json())
+            .map((response: Response) => <Platform[]> response.json())
             .catch(error => {
 
                 throw new Error(error.message);

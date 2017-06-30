@@ -9,7 +9,7 @@ export class Game {
     price: number;
     quantity: number;
     production: boolean;
-    image: string;
+    manufactureId: number;
     manufacture: Manufacture;
     platform: Platform;
     description: string;

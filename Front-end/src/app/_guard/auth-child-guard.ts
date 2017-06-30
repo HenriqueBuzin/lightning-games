@@ -21,7 +21,7 @@ export class AuthChildGuard implements CanActivateChild {
 
     ): Observable<boolean> | boolean {
 
-        if(this.authService.authenticatedUser()){
+        if (this.authService.authenticatedUser()) {
 
             return true;
 

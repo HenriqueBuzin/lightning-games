@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: lightning
+-- Host: 127.0.0.1    Database: lightning
 -- ------------------------------------------------------
--- Server version	5.6.35
+-- Server version	5.7.14
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,7 +27,7 @@ CREATE TABLE `manufacture` (
   `name` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `manufacture` (
 
 LOCK TABLES `manufacture` WRITE;
 /*!40000 ALTER TABLE `manufacture` DISABLE KEYS */;
-INSERT INTO `manufacture` VALUES (1,'Sony','ps4.jpg'),(2,'Microsoft','ps4.jpg'),(3,'Eletronic Arts','ps4.jpg'),(4,'Nome','ps4.jpg'),(5,'Nome 1','ps4.jpg');
+INSERT INTO `manufacture` VALUES (1,'Sony','ps4.jpg'),(2,'Microsoft','ps4.jpg'),(3,'Eletronic Arts','ps4.jpg'),(4,'Nintendo',NULL),(5,'Capcon',NULL),(6,'RockStar',NULL),(7,'Midway',NULL);
 /*!40000 ALTER TABLE `manufacture` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-15  0:38:51
+-- Dump completed on 2017-06-28 21:01:16

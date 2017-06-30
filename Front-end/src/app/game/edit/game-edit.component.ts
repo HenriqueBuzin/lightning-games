@@ -25,7 +25,7 @@ export class GameEditComponent implements OnInit {
 
     platforms: Platform[] = [];
 
-    game: Game;
+    game: Game[] = [];
 
     success: boolean;
 
@@ -85,6 +85,8 @@ export class GameEditComponent implements OnInit {
 
                 this.platforms = platforms;
 
+                console.log(platforms);
+
         }, (error: any) => console.log(error));
 
         this.manufactureService.getManufactures().subscribe(
@@ -103,7 +105,7 @@ export class GameEditComponent implements OnInit {
 
                 this.gameService.getGame(this.id).subscribe(
 
-                    (game: Game) => {
+                    (game: Game[]) => {
 
                         this.game = game;
 

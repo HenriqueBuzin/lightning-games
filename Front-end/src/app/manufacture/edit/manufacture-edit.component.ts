@@ -17,7 +17,7 @@ import { Manufacture } from '../../_model/manufacture';
 })
 export class ManufactureEditComponent implements OnInit {
 
-    manufacture: Manufacture;
+    manufacture: Manufacture[] = [];
 
     success: boolean;
 
@@ -49,7 +49,7 @@ export class ManufactureEditComponent implements OnInit {
 
                 this.manufactureService.getManufacture(this.id).subscribe(
 
-                    (manufacture: Manufacture) => {
+                    (manufacture: Manufacture[]) => {
 
                         this.manufacture = manufacture;
 
