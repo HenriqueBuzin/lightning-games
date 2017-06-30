@@ -1,6 +1,7 @@
 package lightning.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -68,6 +69,13 @@ public class User implements Serializable {
 		if (image == null) return "";
 
 		return "http://localhost:8080/lightning/images/" + image;
+	}
+	
+	public String getRegistrationDateBr() {
+		if (registrationDate == null) return "";
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(registrationDate);
 	}
 
 	public Integer getId() {

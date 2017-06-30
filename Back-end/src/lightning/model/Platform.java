@@ -42,7 +42,7 @@ public class Platform implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "platform", fetch = FetchType.LAZY)
 	private List<GameHasPlatform> gameHasPlatformList;
-
+	
 	public Platform() {
 	}
 

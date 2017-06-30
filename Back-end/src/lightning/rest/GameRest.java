@@ -50,7 +50,14 @@ public class GameRest {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Game find(@PathParam("id") Integer id) {
-        return service.find(id);
+    	Game game = service.find(id);
+    	
+    	if(game.getManufacture() != null)
+    		game.setManufactureId(game.getManufacture().getId());
+    	
+    	if(game.getGameHasPlatformList().size() > 0)
+    		game.setPlatform(String.valueOf(game.getGameHasPlatformList().get(0).getPlatform().getId()));
+        return game;
     }
 
     @GET

@@ -17,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -62,8 +63,15 @@ public class Game implements Serializable {
     @ManyToOne(optional = false)
     private Manufacture manufacture;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "game", fetch = FetchType.LAZY)
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "game", fetch = FetchType.EAGER)
     private List<GameHasPlatform> gameHasPlatformList;
+    
+    @Transient
+    private String platform;
+    
+    @Transient
+    private Integer manufactureId;
 
     public Game() {
     }
@@ -91,7 +99,15 @@ public class Game implements Serializable {
         return id;
     }
 
-    public String getImage() {
+	public String getPlatform() {
+		return platform;
+	}
+
+	public void setPlatform(String platform) {
+		this.platform = platform;
+	}
+
+	public String getImage() {
 		return image;
 	}
 
@@ -158,14 +174,14 @@ public class Game implements Serializable {
 	public void setManufacture(Manufacture manufacture) {
 		this.manufacture = manufacture;
 	}
-
+	
 	@XmlTransient
     public List<GameHasPlatform> getGameHasPlatformList() {
-        return gameHasPlatformList;
+        return this.gameHasPlatformList;
     }
 
-    public void setGameHasPlatformList(List<GameHasPlatform> gameHasPlatformList) {
-        this.gameHasPlatformList = gameHasPlatformList;
+    public void setGameHasPlatformList(List<GameHasPlatform> g) {
+        this.gameHasPlatformList = g;
     }
     
     public List<String> getPlatforms() {
@@ -173,6 +189,14 @@ public class Game implements Serializable {
 								  .map(g -> g.getPlatform().getName())
 								  .collect(Collectors.toList());
     }
+
+	public Integer getManufactureId() {
+		return manufactureId;
+	}
+
+	public void setManufactureId(Integer manufactureId) {
+		this.manufactureId = manufactureId;
+	}
 
 	@Override
 	public int hashCode() {

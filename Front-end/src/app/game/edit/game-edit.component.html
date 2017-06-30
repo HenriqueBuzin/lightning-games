@@ -11,28 +11,25 @@
                 <input type="text" id="category" name="category" placeholder="ex: Luta" class="form-control" autocomplete="off" #category="ngModel" [(ngModel)]="game.category" required>
                 <app-form-control [show]="checkValidTouched(category)" message="O campo categoria deve ser preenchido."></app-form-control>
             </div>
-            <!--
             <div class="form-group">
                 <label>Fabricante</label><br>
                 <div *ngFor="let manufacture of manufactures; let i = index;" style="display: inline-block">
                     <label class="radio-inline" for="manufacture-{{i}}">
-                        <input type="radio" name="manufacture" id="manufacture-{{i}}" value="{{manufacture.id}}" ngModel [checked]="manufacture.id == game.manufactureId" required>
+                        <input type="radio" name="manufactureId" id="manufacture-{{i}}" [value]="manufacture.id" ngModel [checked]="manufacture.id == game.manufactureId">
                         <span>{{manufacture.name}}</span>
                     </label>
                 </div>
                 <app-form-control [show]="checkValidRadio()" message="É necessário selecionar uma fabricante."></app-form-control>
             </div>
-            ---
             <div class="form-group">
                 <label>Plataforma</label><br>
                 <div *ngFor="let platform of platforms; let i = index;" style="display: inline-block">
                     <label class="radio-inline" for="platform-{{i}}">
-                        <input type="radio" name="platform" id="platform-{{i}}" value="{{platform.id}}" ngModel [checked]="platform?.id == game?.platform.id" required>
+                        <input type="radio" name="platform" id="platform-{{i}}" [value]="platform.id" ngModel [checked]="platform.id == game.platform">
                         <span>{{platform.name}}</span>
                     </label>
                 </div>
             </div>
-            -->
             <div class="form-group">
                 <label for="quantity" [ngClass]="applyCssError(quantity)">Quantidade</label>
                 <input type="number" id="quantity" name="quantity" placeholder="ex: 3" class="form-control" autocomplete="off" #quantity="ngModel" [(ngModel)]="game.quantity" required>
@@ -52,7 +49,7 @@
                 <app-form-control [show]="checkValidTouched(description)" message = "O campo descrição deve ser preenchido."></app-form-control>
             </div>
             <app-form-control [show]="checkValidTouched(description)" message="O campo descrição deve ser preenchido."></app-form-control>
-            <input type="hidden" name="id" #id="ngModel" [ngModel]="game?.id">
+            <input type="hidden" name="id" #id="ngModel" [(ngModel)]="game.id">
             <app-form-control [show]="show" [message]="message" [type]="success"></app-form-control>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
                 Enviar

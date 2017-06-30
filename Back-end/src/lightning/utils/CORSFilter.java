@@ -22,7 +22,7 @@ public class CORSFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) servletResponse;
 		resp.addHeader("Access-Control-Allow-Origin", "*");
 		resp.addHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
-		resp.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+		resp.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-xsrf-token");
 
 		// Just ACCEPT and REPLY OK if OPTIONS
 		if (request.getMethod().equals("OPTIONS")) {

@@ -1,7 +1,13 @@
 
-Foi criado um endpoint para upload de imagem:
-POST http://localhost:8080/lightning/api/image
-A pagina upload-image.html foi usada para teste. 
+Foram criados endpoints para upload de imagem:
+
+POST http://localhost:8080/lightning/api/image/game
+POST http://localhost:8080/lightning/api/image/manufacture
+POST http://localhost:8080/lightning/api/image/platform
+POST http://localhost:8080/lightning/api/image/user
+
+A pagina upload-image.html foi usada para teste.
+È preciso mandar o 'id' da entidade!!!
 
 
 

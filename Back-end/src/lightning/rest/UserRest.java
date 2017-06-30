@@ -1,5 +1,6 @@
 package lightning.rest;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -43,6 +44,7 @@ public class UserRest {
 			entity.setImage("no-image.png");
 		}
 		
+		entity.setRegistrationDate(new Date());
 		entity.setPassword(service.converterStringParaMD5(entity.getPassword()));
 		service.create(entity);
 	}
@@ -62,7 +64,11 @@ public class UserRest {
 			entity.setImage("no-image.png");
 		}
 		
-		entity.setPassword(service.converterStringParaMD5(entity.getPassword()));
+		User user = service.find(entity.getId());
+		entity.setPassword(user.getPassword());
+		entity.setRegistrationDate(user.getRegistrationDate());
+		
+		//entity.setPassword(service.converterStringParaMD5(entity.getPassword()));
 		service.edit(entity);
 	}
 

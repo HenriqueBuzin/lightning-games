@@ -24,11 +24,14 @@ public class PlatformRest {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void create(Platform entity) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Platform create(Platform entity) {
 		if (entity.getImage() == null || "".equals(entity.getImage())) {
 			entity.setImage("no-image.png");
 		}
 		service.create(entity);
+		
+		return entity;
 	}
 
 	@PUT
@@ -43,7 +46,7 @@ public class PlatformRest {
 	@DELETE
 	@Path("{id}")
 	public void remove(@PathParam("id") Integer id) {
-		service.remove(service.find(id));
+		service.remove(id);
 	}
 
 	@GET

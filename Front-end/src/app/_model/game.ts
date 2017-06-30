@@ -10,7 +10,7 @@ export class Game {
     quantity: number;
     production: boolean;
     manufactureId: number;
+    platform: number;
     manufacture: Manufacture;
-    platform: Platform;
     description: string;
 }
