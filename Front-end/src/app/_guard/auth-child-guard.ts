@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivateChild, Router, RouterStateSnapshot }
 import { Injectable } from '@angular/core';
 
 // Service
-import { AuthService } from './../_services/auth.service';
+import { AuthService } from '../_service/auth.service';
 
 // Essential
 import { Observable } from 'rxjs/Observable';

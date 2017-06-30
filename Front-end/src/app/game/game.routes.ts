@@ -8,7 +8,7 @@ import { GameEditComponent } from './edit/game-edit.component';
 import { GameComponent } from './game.component';
 
 // Guard (Child)
-import { AuthChildGuard } from './../_guards/auth-child-guard';
+import { AuthChildGuard } from '../_guard/auth-child-guard';
 
 const gameRoutes: Routes = [
 

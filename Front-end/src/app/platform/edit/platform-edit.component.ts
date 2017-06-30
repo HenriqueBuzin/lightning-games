@@ -3,11 +3,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 // Service
-import { PlatformsService } from './../../_services/platform.service';
-import { FooterService } from './../../_services/footer.service';
+import { PlatformsService } from '../../_service/platform.service';
+import { FooterService } from '../../_service/footer.service';
 
 // Model
-import { Platform } from './../../_models/platform';
+import { Platform } from '../../_model/platform';
 
 @Component({
     moduleId: module.id,
@@ -15,9 +15,10 @@ import { Platform } from './../../_models/platform';
     templateUrl: './platform-edit.component.html',
     styleUrls: ['./platform-edit.component.css' ]
 })
+
 export class PlatformEditComponent implements OnInit {
 
-    platforms: Platform[] = [];
+    platform: Platform;
 
     success: boolean;
 
@@ -27,13 +28,9 @@ export class PlatformEditComponent implements OnInit {
 
     private id: number;
 
-    private fileList: FileList;
-
-    private fileName: string;
-
     constructor(private activatedRoute: ActivatedRoute, private platformService: PlatformsService, footerService: FooterService) {
 
-        footerService.fixFooter(false);
+        footerService.fixFooter(true);
 
     }
 
@@ -53,13 +50,13 @@ export class PlatformEditComponent implements OnInit {
 
                 this.platformService.getPlatform(this.id).subscribe(
 
-                    (platforms: Platform[]) => {
+                    (platform: Platform) => {
 
-                        this.platforms = platforms;
+                        this.platform = platform;
 
-                        console.log(platforms);
+                        console.log(platform);
 
-                }), error => console.log(error);
+                }, (error: any) => console.log(error));
 
         });
 
@@ -79,46 +76,6 @@ export class PlatformEditComponent implements OnInit {
 
     }
 
-    // Realiza o procedimento de envio de imagem
-
-    uploadImage(id) {
-
-        if (this.fileList){
-
-            if (this.fileList.length > 0) {
-
-                let file: File = this.fileList[0];
-
-                this.fileName = file.name;
-
-                let formData: FormData = new FormData();
-
-                formData.append('uploadFile', file, file.name);
-
-                this.platformService.editPlatformImage(formData, id).subscribe(
-
-                    (platform: Platform[]) => {
-
-                        console.log(platform);
-
-                        this.show = true;
-
-                    }), error => this.callBack(error);
-
-            } else {
-
-                this.callBack('Validação menor ou igual a 0');
-
-            }
-
-        } else {
-
-            this.callBack('Validação imagem retornou null');
-
-        }
-
-    }
-
     // Função chamada ao submeter o formulário
 
     onSubmit(form) {
@@ -133,35 +90,25 @@ export class PlatformEditComponent implements OnInit {
 
                 this.show = true;
 
-        }), error => this.callBack(error);
-
-    }
-
-    // Função que adiciona globalmente a imagem para ser submetida com o formulário
-
-    fileChange(target) {
-
-        this.fileList = target.files;
-
-        console.log(this.fileList);
+        }, (error: any) => this.callBack(error));
 
     }
 
     // Validações
 
-    checkValidTouched(field){
+    checkValidTouched(field) {
 
         return !field.valid && field.touched;
 
     }
 
-    applyCssError(field){
+    applyCssError(field) {
 
         return {
 
             'textError': this.checkValidTouched(field)
 
-        }
+        };
 
     }
 

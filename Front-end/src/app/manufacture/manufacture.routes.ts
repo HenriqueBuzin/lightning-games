@@ -8,7 +8,7 @@ import { ManufactureEditComponent } from './edit/manufacture-edit.component';
 import { ManufactureComponent } from './manufacture.component';
 
 // Guard (Child)
-import {AuthChildGuard} from './../_guards/auth-child-guard';
+import {AuthChildGuard} from '../_guard/auth-child-guard';
 
 const manufactureRoutes: Routes = [
 

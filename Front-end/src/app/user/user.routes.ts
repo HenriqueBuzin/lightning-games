@@ -8,7 +8,7 @@ import { UserEditComponent } from './edit/user-edit.component';
 import { UserComponent } from './user.component';
 
 // Guard (Child)
-import { AuthChildGuard } from './../_guards/auth-child-guard';
+import { AuthChildGuard } from '../_guard/auth-child-guard';
 
 const userRoutes: Routes = [
 

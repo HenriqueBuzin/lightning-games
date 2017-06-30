@@ -2,11 +2,11 @@
 import { Component, OnInit } from '@angular/core';
 
 // Service
-import { PlatformsService } from './../../_services/platform.service';
-import { FooterService } from './../../_services/footer.service';
+import { PlatformsService } from '../../_service/platform.service';
+import { FooterService } from '../../_service/footer.service';
 
 // Model
-import { Platform } from './../../_models/platform';
+import { Platform } from '../../_model/platform';
 
 @Component({
     moduleId: module.id,
@@ -21,8 +21,6 @@ export class PlatformsRegisterComponent implements OnInit {
     show: boolean;
 
     message: string;
-
-    private fileList: FileList;
 
     private id: number;
 
@@ -42,43 +40,6 @@ export class PlatformsRegisterComponent implements OnInit {
 
     }
 
-    // Função de upload de imagem
-
-    uploadImage(id) {
-
-        if (this.fileList) {
-
-            if (this.fileList.length > 0) {
-
-                let file: File = this.fileList[0];
-
-                let formData: FormData = new FormData();
-
-                formData.append('uploadFile', file, file.name);
-
-                this.platformService.registerPlatformImage(formData, id).subscribe(
-                    (platform: Platform[]) => {
-
-                        console.log(platform);
-
-                        this.show = true;
-
-                }), error => this.callBack(error);
-
-            } else {
-
-                this.callBack('Validação menor ou igual a 0');
-
-            }
-
-        } else {
-
-            this.callBack('Validação imagem retornou null');
-
-        }
-
-    }
-
     // Função de callback, retorna o erro ao usuário
 
     callBack(error) {
@@ -89,13 +50,13 @@ export class PlatformsRegisterComponent implements OnInit {
 
         this.success = false;
 
-        this.message = 'Falha ao cadastrar a plataforma.'
+        this.message = 'Falha ao cadastrar a plataforma.';
 
     }
 
     // Função chamada quando submete o formulário
 
-    onSubmit(form){
+    onSubmit(form) {
 
         console.log(form.value);
 
@@ -111,35 +72,25 @@ export class PlatformsRegisterComponent implements OnInit {
 
                 this.show = true;
 
-            }), error => this.callBack(error);
-
-    }
-
-    // Função que adiciona globalmente a imagem, para o formulário ser enviado como único.
-
-    fileChange(target) {
-
-        this.fileList = target.files;
-
-        console.log(this.fileList);
+            }, error => this.callBack(error));
 
     }
 
     // Validações
 
-    checkValidTouched(field){
+    checkValidTouched(field) {
 
         return !field.valid && field.touched;
 
     }
 
-    applyCssError(field){
+    applyCssError(field) {
 
         return {
 
             'textError': this.checkValidTouched(field)
 
-        }
+        };
 
     }
 

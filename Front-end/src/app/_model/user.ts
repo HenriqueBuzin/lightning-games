@@ -3,6 +3,6 @@ export class User {
     name: string;
     email: string;
     password: string;
-    registrationDate: string;
+    registrationDateBr: string;
     image: string;
 }

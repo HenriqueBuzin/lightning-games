@@ -8,7 +8,7 @@
                             Cadastrar Usuário
                         </a>
                     </span>
-                    <input  #SearchedText (keyup)="0" class="form-control" placeholder="Procurar usuário (nome, e-mail)">
+                    <input  #SearchedText (keyup)="0" class="form-control" placeholder="Procurar usuário (nome, e-mail, data)">
                 </div>
             </form>
         </div>
@@ -27,10 +27,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let user of users | searchUser:SearchedText.value">
-                    <!-- <td><img src="{{user.imageFullPath}}" width="150" height="150" /></td> -->
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
-                    <td>{{user.registrationDate | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{user.registrationDateBr}}</td>
                     <td><a [routerLink]="['/usuario', 'editar', user.id]"><i class="fa fa-pencil icon" aria-hidden="true"></i></a></td>
                     <td><i class="fa fa-times icon" aria-hidden="true" (click)="open('Você realmente desejar excluir o usuário ' + user.name + '?', user.id)"></i></td>
                 </tr>

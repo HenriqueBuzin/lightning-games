@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 
 // Service
-import { FooterService } from './../_services/footer.service';
+import { FooterService } from '../_service/footer.service';
 
 @Component({
     moduleId: module.id,
@@ -10,7 +10,7 @@ import { FooterService } from './../_services/footer.service';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent{
+export class HomeComponent {
 
     userName: string = localStorage.getItem('userName');
 

@@ -9,12 +9,12 @@ import { GameEditComponent } from './edit/game-edit.component';
 import { GameComponent } from './game.component';
 
 // Services
-import { ManufactureService } from './../_services/manufacture.service';
-import { PlatformsService } from './../_services/platform.service';
-import { GameService } from './../_services/game.service';
+import { ManufactureService } from '../_service/manufacture.service';
+import { PlatformsService } from '../_service/platform.service';
+import { GameService } from '../_service/game.service';
 
 // Directive
-import { FormControlModule } from './../_directives/form-control/form-control.module';
+import { FormControlModule } from '../_directive/form-control/form-control.module';
 
 // Routes
 import { routing } from './game.routes';

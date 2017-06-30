@@ -8,7 +8,7 @@
                             Cadastrar Jogo
                         </a>
                     </span>
-                    <input #SearchedText (keyup)="0" class="form-control" placeholder="Procurar jogo (nome, categoria, descrição, preço, quantidade, em produção)">
+                    <input #SearchedText (keyup)="0" class="form-control" placeholder="Procurar jogo (nome, categoria, preço, quantidade, em produção, descrição)">
                 </div>
             </form>
         </div>
@@ -20,6 +20,7 @@
                   <!-- <th>Capa</th> -->
                   <th>Nome</th>
                   <th>Categoria</th>
+                  <th>Fabricante</th>
                   <th>Plataformas</th>
                   <th>Preço</th>
                   <th>Quantidade</th>
@@ -30,10 +31,10 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let game of games | searchGame:SearchedText.value:price">
-                  <!-- <td><img src="{{game.imageFullPath}}" width="150" height="150" /></td> -->
+              <tr *ngFor="let game of games | searchGame:SearchedText.value;">
                   <td>{{game.name}}</td>
                   <td>{{game.category}}</td>
+                  <td>{{game.manufacture.name}}</td>
                   <td>{{game.platforms | separatorArray}}</td>
                   <td>{{game.price | currency:'BRL':true:'2.2-2' | separatorCurrency}}</td>
                   <td>{{game.quantity}}</td>

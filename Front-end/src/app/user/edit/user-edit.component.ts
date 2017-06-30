@@ -4,11 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 
 // Service
-import { FooterService } from './../../_services/footer.service';
-import { UserService } from './../../_services/user.service';
+import { FooterService } from '../../_service/footer.service';
+import { UserService } from '../../_service/user.service';
 
 // Model
-import { User } from './../../_models/user';
+import { User } from '../../_model/user';
 
 @Component({
     moduleId: module.id,
@@ -28,11 +28,9 @@ export class UserEditComponent implements OnInit {
 
     private id: number;
 
-    private fileList: FileList;
-
     constructor(private activatedRoute: ActivatedRoute, private userService: UserService, footerService: FooterService) {
 
-        footerService.fixFooter(false);
+        footerService.fixFooter(true);
 
     }
 
@@ -54,11 +52,11 @@ export class UserEditComponent implements OnInit {
 
                     this.user = user;
 
-                }), (error: Response) => {
+                }, (error: Response) => {
 
                     console.log(error);
 
-            };
+            });
 
         });
 
@@ -78,44 +76,6 @@ export class UserEditComponent implements OnInit {
 
     }
 
-    // Realiza o procedimento de submeter a imagem
-
-    uploadImage(id) {
-
-        if (this.fileList) {
-
-             if (this.fileList.length > 0) {
-
-                 let file: File = this.fileList[0];
-
-                 let formData: FormData = new FormData();
-
-                 formData.append('uploadFile', file, file.name);
-
-                 this.userService.editUserImage(formData, id).subscribe(
-
-                     (user: User[]) => {
-
-                         console.log(user);
-
-                         this.show = true;
-
-                 }), error => this.callBack(error);
-
-             } else {
-
-                 this.callBack('Validação menor ou igual a 0');
-
-             }
-
-        } else {
-
-            this.callBack('Validação imagem retornou null');
-
-        }
-
-    }
-
     // Função chamada ao submeter o formulário
 
     onSubmit(form) {
@@ -130,17 +90,7 @@ export class UserEditComponent implements OnInit {
 
                 this.show = true;
 
-            }), error => this.callBack(error);
-
-    }
-
-    // Adiciona a imagem ao scopo global para ser submetido
-
-    fileChange(target) {
-
-        this.fileList = target.files;
-
-        console.log(this.fileList);
+            }, error => this.callBack(error));
 
     }
 
@@ -172,7 +122,7 @@ export class UserEditComponent implements OnInit {
 
                 console.log(user);
 
-            }), (error: Response) => console.log(error);
+        }, (error: Response) => console.log(error));
 
     }
 

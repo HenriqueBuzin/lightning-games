@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 
 // Service
-import { FooterService } from './../../_services/footer.service';
-import { UserService } from './../../_services/user.service';
+import { FooterService } from '../../_service/footer.service';
+import { UserService } from '../../_service/user.service';
 
 // Model
-import { User } from './../../_models/user';
+import { User } from '../../_model/user';
 
 @Component({
     moduleId: module.id,
@@ -23,11 +23,9 @@ export class UsersRegisterComponent implements OnInit {
 
     message: string;
 
-    private fileList: FileList;
-
     constructor(private userService: UserService, footerService: FooterService) {
 
-        footerService.fixFooter(false);
+        footerService.fixFooter(true);
 
     }
 
@@ -45,56 +43,13 @@ export class UsersRegisterComponent implements OnInit {
 
     callBack(error) {
 
-
         console.log(error);
 
         this.show = true;
 
         this.success = false;
 
-        this.message = 'Falha ao cadastrar o usuário.'
-
-
-
-    }
-
-    // Realiza o envio da imagem
-
-    uploadImage(id) {
-
-         if (this.fileList){
-
-             if (this.fileList.length > 0) {
-
-                let file: File = this.fileList[0];
-
-                let formData: FormData = new FormData();
-
-                formData.append('uploadFile', file, file.name);
-
-                console.log(this.fileList[0]);
-
-                this.userService.registerUserImage(formData, id).subscribe(
-
-                     (user: User[]) => {
-
-                        console.log(user);
-
-                        this.show = true;
-
-                }), error => this.callBack(error);
-
-             } else {
-
-                 this.callBack('Validação menor ou igual a 0');
-
-             }
-
-         } else {
-
-             this.callBack('Validação imagem retornou null');
-
-         }
+        this.message = 'Falha ao cadastrar o usuário.';
 
     }
 
@@ -112,35 +67,43 @@ export class UsersRegisterComponent implements OnInit {
 
                 // this.uploadImage(1);
 
-        }), error => this.callBack(error);
-
-    }
-
-    // Adiciona globalmente a imagem para o formulário ser submetido como único
-
-    fileChange(target) {
-
-        this.fileList = target.files;
-
-        console.log(this.fileList);
+        }, error => this.callBack(error));
 
     }
 
     // Validações
 
-    checkValidTouched(field){
+    whiteSpaceValidator(field) {
 
-        return !field.valid && field.touched;
+        let flag: boolean;
+
+        if ((field.value || '').trim().length === 0) {
+
+            flag =  true;
+
+        } else {
+
+            flag =  false;
+
+        }
+
+        return flag;
 
     }
 
-    applyCssError(field){
+    checkValidTouched(field) {
+
+        return (!field.valid && field.touched);
+
+    }
+
+    applyCssError(field) {
 
         return {
 
             'textError': this.checkValidTouched(field)
 
-        }
+        };
 
     }
 

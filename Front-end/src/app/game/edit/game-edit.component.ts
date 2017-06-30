@@ -1,17 +1,17 @@
 // Angulae
 import { ActivatedRoute, Params } from '@angular/router';
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // Models
-import { Manufacture } from './../../_models/manufacture';
-import { GameService } from './../../_services/game.service';
-import { Platform } from './../../_models/platform';
-import { Game } from './../../_models/game';
+import { Manufacture } from '../../_model/manufacture';
+import { GameService } from '../../_service/game.service';
+import { Platform } from '../../_model/platform';
+import { Game } from '../../_model/game';
 
 // Service
-import { ManufactureService } from './../../_services/manufacture.service';
-import { PlatformsService } from './../../_services/platform.service';
-import {FooterService} from "../../_services/footer.service";
+import { ManufactureService } from '../../_service/manufacture.service';
+import { PlatformsService } from '../../_service/platform.service';
+import { FooterService } from '../../_service/footer.service';
 
 @Component({
     moduleId: module.id,
@@ -25,7 +25,7 @@ export class GameEditComponent implements OnInit {
 
     platforms: Platform[] = [];
 
-    games: Game[] = [];
+    game: Game;
 
     success: boolean;
 
@@ -35,19 +35,17 @@ export class GameEditComponent implements OnInit {
 
     private id: number;
 
-    private fileList: FileList;
-
     private selected: boolean;
 
     private focusOut: boolean;
 
     private focus: boolean;
 
-    private focusCheckbox: boolean;
+    private selectedPlatform: boolean;
 
-    private focusOutCheckbox: boolean;
+    private focusOutPlatform: boolean;
 
-    private idPlatform: number[] = [];
+    private focusPlatform: boolean;
 
     constructor(
         private manufactureService: ManufactureService,
@@ -63,9 +61,11 @@ export class GameEditComponent implements OnInit {
 
     ngOnInit() {
 
-        this.focusCheckbox = true;
+        this.selectedPlatform = false;
 
-        this.focusOutCheckbox = false;
+        this.focusOutPlatform = true;
+
+        this.focusPlatform = false;
 
         this.selected = false;
 
@@ -85,7 +85,7 @@ export class GameEditComponent implements OnInit {
 
                 this.platforms = platforms;
 
-        }), error => console.log(error);
+        }, (error: any) => console.log(error));
 
         this.manufactureService.getManufactures().subscribe(
 
@@ -93,7 +93,7 @@ export class GameEditComponent implements OnInit {
 
                 this.manufactures = manufactures;
 
-        }), error => console.log(error);
+        }, (error: any) => console.log(error));
 
         this.activatedRoute.params.subscribe(
 
@@ -103,13 +103,13 @@ export class GameEditComponent implements OnInit {
 
                 this.gameService.getGame(this.id).subscribe(
 
-                    (games: Game[]) => {
+                    (game: Game) => {
 
-                        this.games = games;
+                        this.game = game;
 
-                        console.log(games);
+                        console.log(game);
 
-                }), error => console.log(error);
+                }, (error: any) => console.log(error));
 
         });
 
@@ -129,90 +129,49 @@ export class GameEditComponent implements OnInit {
 
     }
 
-    // Realiza o procedimento de cadastro da imagem.
-
-    uploadImage(id) {
-
-        if (this.fileList) {
-
-            if (this.fileList.length > 0) {
-
-                let file: File = this.fileList[0];
-
-                let formData: FormData = new FormData();
-
-                formData.append('uploadFile', file, file.name);
-
-                this.gameService.editGameImage(formData, id).subscribe(
-                    (game: Game[]) => {
-
-                        console.log(game);
-
-                        this.show = true;
-
-                    }), error => this.callBack(error);
-
-            } else {
-
-                this.callBack('Validação menor ou igual a 0');
-
-            }
-
-        } else {
-
-            this.callBack('Validação imagem retornou null');
-
-        }
-
-    }
-
     // Função do form sendo submetido
 
     onSubmit(form) {
 
         console.log(form.value);
 
-        this.gameService.editGame(form.value).subscribe(form => {
+        /*
+
+        this.gameService.editGame(form.value).subscribe(
+
+            (form: any) => {
 
             console.log(form);
 
             this.show = true;
 
-        }), error => this.callBack(error);
+        }, (error: any) => this.callBack(error));
 
-    }
-
-    // Ao selecionar a imagem, esta função adiciona ela a variável global para ser acessada no formulário como único.
-
-    fileChange(target) {
-
-        this.fileList = target.files;
-
-        console.log(this.fileList);
+        */
 
     }
 
     // Validações
 
-    checkValidTouched(field){
+    checkValidTouched(field) {
 
         return !field.valid && field.touched;
 
     }
 
-    applyCssError(field){
+    applyCssError(field) {
 
         return {
 
             'subError': this.checkValidTouched(field)
 
-        }
+        };
 
     }
 
     // Validar Radio
 
-    setterFocus(){
+    setterFocus() {
 
         this.focus = true;
 
@@ -224,14 +183,11 @@ export class GameEditComponent implements OnInit {
 
         this.selected = true;
 
-        // console.log('Selected: ', this.selected);
     }
 
     setterFocusOut() {
 
         this.focusOut = false;
-
-        // console.log('Focus: ', this.focusOut);
 
     }
 
@@ -239,7 +195,7 @@ export class GameEditComponent implements OnInit {
 
         let flag: boolean;
 
-        if (this.focus == true && this.focusOut == false && this.selected == false) {
+        if (this.focus === true && this.focusOut === false && this.selected === false) {
 
             flag = true;
 
@@ -248,8 +204,6 @@ export class GameEditComponent implements OnInit {
             flag = false;
 
         }
-
-        // console.log('Flag: ', flag);
 
         return flag;
 
@@ -257,57 +211,31 @@ export class GameEditComponent implements OnInit {
 
     // Validar Checkbox
 
-    onClicked(platform, event) {
+    setterFocusPlatform() {
 
-        if(this.idPlatform.indexOf(platform.id) !== -1){
+        this.focusPlatform = true;
 
-            this.idPlatform.splice(this.idPlatform.indexOf(platform.id), 1);
-
-        }else{
-
-            this.idPlatform.push(platform.id);
-
-        }
-
-        console.log('---');
-
-        console.log('Id da Plataforma: ', this.idPlatform);
-
-        console.log('Ver: ', event.target.checked);
-
-        console.log('---');
+        console.log('Focus: ', this.focus);
 
     }
 
-    setterFocusCheckbox() {
+    setterSelectedPlatform() {
 
-        this.focusCheckbox = false;
-
-        console.log('---');
-
-        console.log('FocusOut Checkbox: ', this.focusOutCheckbox);
-
-        console.log('---');
+        this.selectedPlatform = true;
 
     }
 
-    setterFocusOutCheckbox() {
+    setterFocusOutPlatform() {
 
-        this.focusCheckbox = true;
-
-        console.log('---');
-
-        console.log('Focus Checkbox: ', this.focusCheckbox);
-
-        console.log('---');
+        this.focusOutPlatform = false;
 
     }
 
-    verifyCheckbox() {
+    checkValidRadioPlatform() {
 
         let flag: boolean;
 
-        if (this.focusCheckbox == true && this.focusOutCheckbox == false && this.idPlatform == null) {
+        if (this.focusPlatform === true && this.focusOutPlatform === false && this.selectedPlatform === false) {
 
             flag = true;
 
@@ -316,8 +244,6 @@ export class GameEditComponent implements OnInit {
             flag = false;
 
         }
-
-        // console.log('Flag: ', flag);
 
         return flag;
 

@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 import { Injectable } from '@angular/core';
 
 // Service
-import { AuthService } from './../_services/auth.service';
+import { AuthService } from '../_service/auth.service';
 
 // Essential
 import { Observable } from 'rxjs/Observable';
@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
 
     ): Observable<boolean> | boolean {
 
-        if(this.authService.authenticatedUser()){
+        if (this.authService.authenticatedUser()) {
 
             return true;
 

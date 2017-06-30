@@ -16,9 +16,13 @@ export class SeparatorArrayPipe implements PipeTransform {
 
     transform(value: string, separator: string = ', '): string {
 
-        if(value == null) return '';
+        if (value == null) {
 
-        let text: string = '';
+            return '';
+
+        }
+
+        let text = '';
 
         for (let i = 0; i < value.length; i++) {
 

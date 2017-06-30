@@ -2,7 +2,7 @@
 import { Pipe , PipeTransform } from '@angular/core';
 
 // Model
-import { Game } from './../../_models/game';
+import { Game } from '../../_model/game';
 
 @Pipe({
     name: 'searchGame',
@@ -22,7 +22,11 @@ export class SearchGamePipe implements PipeTransform {
 
     transform(games: Game[], typed: string): any {
 
-        if(games == null) return '';
+        if (games == null) {
+
+            return '';
+
+        }
 
         typed = typed.toLowerCase();
 
@@ -38,7 +42,13 @@ export class SearchGamePipe implements PipeTransform {
 
             (game.quantity.toString().toLocaleLowerCase().includes(typed)) ||
 
-            ((game.production ? 'sim' : 'nao não').includes(typed))
+            ((game.production ? 'sim' : 'nao não').includes(typed)) ||
+
+            (game.description.toLocaleLowerCase().includes(typed)) ||
+
+            (game.manufacture.name.toLocaleLowerCase().includes(typed)) ||
+
+            (game.platform.name.toLocaleLowerCase().includes(typed))
 
         );
 

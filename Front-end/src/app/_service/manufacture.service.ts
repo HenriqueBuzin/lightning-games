@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 // Model
-import { Manufacture } from './../_models/manufacture';
+import { Manufacture } from '../_model/manufacture';
 
 // Essential
 import { Observable } from 'rxjs/Observable';
@@ -36,11 +36,11 @@ export class ManufactureService {
 
     }
 
-    getManufacture(id: number): Observable<Manufacture[]> {
+    getManufacture(id: number): Observable<Manufacture> {
 
         return this.http
             .get('http://localhost:8080/lightning/api/manufacture/' + id, this.options)
-            .map((response: Response) => <Manufacture[]> response.json())
+            .map((response: Response) => <Manufacture> response.json())
             .catch(error => {
 
             throw new Error(error.message);
@@ -66,48 +66,6 @@ export class ManufactureService {
 
         return this.http
             .post('http://localhost:8080/lightning/api/manufacture', JSON.stringify(manufacture), this.options)
-            .map((response: Response) => response)
-            .catch(error => {
-
-                throw new Error(error.message);
-
-        });
-
-    }
-
-    registerManufactureImage(image: FormData, id: number): Observable<Manufacture[]> {
-
-        this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
-
-        let array: any[] = [];
-
-        array.push(image);
-
-        array.push(id);
-
-        return this.http
-            .post('http://localhost:8080/lightning/api/image/manufacture', array, this.options)
-            .map((response: Response) => response)
-            .catch(error => {
-
-                throw new Error(error.message);
-
-        });
-
-    }
-
-    editManufactureImage(image: FormData, id: number): Observable<Manufacture[]> {
-
-        this.headers = new Headers({'Content-Type' : 'multipart/form-data'});
-
-        let array: any[] = [];
-
-        array.push(image);
-
-        array.push(id);
-
-        return this.http
-            .put('http://localhost:8080/lightning/api/image/manufacture', array, this.options)
             .map((response: Response) => response)
             .catch(error => {
 

@@ -3,15 +3,9 @@
         <div class="col-md-8 offset-md-2">
             <div class="form-group">
                 <label for="name" [ngClass]="applyCssError(name)">Nome</label>
-                <input type="text" id="name" name="name" placeholder="ex: Rockstar Games" class="form-control" autocomplete="off" #name="ngModel" ngModel required>
+                <input type="text" myNoSpaces id="name" name="name" placeholder="ex: Rockstar Games" class="form-control" autocomplete="off" #name="ngModel" ngModel required>
                 <app-form-control [show]="checkValidTouched(name)" message = "O campo nome deve ser preenchido."></app-form-control>
             </div>
-            <!--
-                <div class="form-group">
-                    <label for="image">Imagem</label>
-                    <input type="file" name="image" (change)="fileChange($event.target)" id="image" class="form-control" accept=".png,.jpg">
-                </div>
-            -->
             <app-form-control [show]="show" [message]="message" [type]="success"></app-form-control>
             <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
                 Enviar

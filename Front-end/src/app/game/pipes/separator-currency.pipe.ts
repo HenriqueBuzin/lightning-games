@@ -16,13 +16,17 @@ export class SeparatorCurrencyPipe implements PipeTransform {
 
     transform(value: string): string {
 
-        if(value == null) return '';
+        if (value == null) {
 
-        let text: string = ' ';
+            return '';
 
-        let coin: string =  value.substring(0, 2)
+        }
 
-        let price: string = value.substring(2, (value.length));
+        let text = ' ';
+
+        const coin: string =  value.substring(0, 2);
+
+        const price: string = value.substring(2, (value.length));
 
         text = coin + text + price;
 

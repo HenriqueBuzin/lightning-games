@@ -2,29 +2,26 @@
 import { Pipe , PipeTransform } from '@angular/core';
 
 // Model
-import { User } from './../_models/user';
+import { User } from '../_model/user';
 
 @Pipe({
     name: 'searchUser',
     pure: false
 })
-export class SearchUserPipe implements PipeTransform{
 
-    transform(users: User[], typed: string){
+export class SearchUserPipe implements PipeTransform {
+
+    transform(users: User[], typed: string) {
 
         typed = typed.toLowerCase();
-
-        /*
-            Pesquisar por data de registro
-            - (user.registrationDate.toString().includes(typed))
-
-         */
 
         return users.filter(user =>
 
             (user.name.toLowerCase().includes(typed)) ||
 
-            (user.email.toLowerCase().includes(typed))
+            (user.email.toLowerCase().includes(typed)) ||
+
+            (user.registrationDateBr.includes(typed))
 
         );
 

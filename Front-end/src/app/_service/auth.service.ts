@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { FooterService } from './footer.service';
 
 // Model
-import { User } from './../_models/user';
+import { User } from '../_model/user';
 
 @Injectable()
 export class AuthService {
@@ -30,7 +30,7 @@ export class AuthService {
 
     }
 
-    login(user: User){
+    login(user: User) {
 
         this.http
             .post('http://localhost:8080/lightning/api/user/login', JSON.stringify(user), this.options)
@@ -56,17 +56,17 @@ export class AuthService {
 
                 }
 
-            }), erro => console.log(erro);
+            }, error => console.log(error));
 
     }
 
-    authenticatedUser(){
+    authenticatedUser() {
 
         return this.authenticated;
 
     }
 
-    logout(){
+    logout() {
 
         this.authenticated = false;
 

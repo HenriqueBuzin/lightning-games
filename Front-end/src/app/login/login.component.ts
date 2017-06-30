@@ -2,11 +2,11 @@
 import { Component } from '@angular/core';
 
 // Services
-import { FooterService } from './../_services/footer.service';
-import { AuthService } from './../_services/auth.service';
+import { FooterService } from '../_service/footer.service';
+import { AuthService } from '../_service/auth.service';
 
 // Model
-import { User } from './../_models/user';
+import { User } from '../_model/user';
 
 @Component({
     moduleId: module.id,
@@ -26,7 +26,7 @@ export class LoginComponent {
 
     }
 
-    onSubmit(){
+    onSubmit() {
 
         this.authService.login(this.user);
 
@@ -38,19 +38,19 @@ export class LoginComponent {
 
     }
 
-    checkValidTouched(field){
+    checkValidTouched(field) {
 
         return !field.valid && field.touched;
 
     }
 
-    applyCssErrorLabel(field){
+    applyCssErrorLabel(field) {
 
         return {
 
             'textError': this.checkValidTouched(field)
 
-        }
+        };
 
     }
 

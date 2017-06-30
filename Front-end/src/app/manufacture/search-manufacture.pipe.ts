@@ -2,15 +2,15 @@
 import { Pipe , PipeTransform } from '@angular/core';
 
 // Model
-import { Manufacture } from './../_models/manufacture';
+import { Manufacture } from '../_model/manufacture';
 
 @Pipe({
     name: 'searchManufacture',
     pure: false
 })
-export class SearchManufacturePipe implements PipeTransform{
+export class SearchManufacturePipe implements PipeTransform {
 
-    transform(manufactures: Manufacture[], typed: string){
+    transform(manufactures: Manufacture[], typed: string) {
 
         typed = typed.toLowerCase();
 

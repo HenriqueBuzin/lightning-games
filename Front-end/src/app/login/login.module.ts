@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { LoginComponent } from './login.component';
 
 // Directives
-import { FormControlModule } from './../_directives/form-control/form-control.module';
+import { FormControlModule } from '../_directive/form-control/form-control.module';
 
 // Routes
 import { routing } from './login.routes';
@@ -21,4 +21,6 @@ import { routing } from './login.routes';
         FormControlModule
     ]
 })
+
 export class LoginModule { }
+

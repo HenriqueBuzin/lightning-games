@@ -7,10 +7,11 @@ import { Component } from '@angular/core';
     templateUrl: './dialog.component.html',
     styleUrls: [ './dialog.component.css' ]
 })
+
 export class DialogComponent {
 
-    constructor(public dialogRef: MdDialogRef<any>) { }
-
     public message: string;
+
+    constructor(public dialogRef: MdDialogRef<any>) { }
 
 }

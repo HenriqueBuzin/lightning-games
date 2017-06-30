@@ -9,10 +9,10 @@ import { PlatformEditComponent } from './edit/platform-edit.component';
 import { PlatformComponent } from './platform.component';
 
 // External Component
-import { FormControlModule } from './../_directives/form-control/form-control.module';
+import { FormControlModule } from '../_directive/form-control/form-control.module';
 
 // Service
-import { PlatformsService } from './../_services/platform.service';
+import { PlatformsService } from '../_service/platform.service';
 
 // Pipe
 import { SearchPlatformPipe } from './search-platform.pipe';

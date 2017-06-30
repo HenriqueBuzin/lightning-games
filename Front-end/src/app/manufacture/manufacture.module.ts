@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Services
-import { ManufactureService } from './../_services/manufacture.service';
+import { ManufactureService } from '../_service/manufacture.service';
 
 // Components
 import { ManufacturesRegisterComponent } from './register/manufacture-register.component';
@@ -12,7 +12,7 @@ import { ManufactureEditComponent } from './edit/manufacture-edit.component';
 import { ManufactureComponent } from './manufacture.component';
 
 // External Component
-import { FormControlModule } from './../_directives/form-control/form-control.module';
+import { FormControlModule } from '../_directive/form-control/form-control.module';
 
 // Pipe
 import {SearchManufacturePipe} from './search-manufacture.pipe';

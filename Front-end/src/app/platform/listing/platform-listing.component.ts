@@ -3,14 +3,14 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 
 // Component
-import { DialogComponent } from './../../_directives/dialog/dialog.component';
+import { DialogComponent } from '../../_directive/dialog/dialog.component';
 
 // Service
-import { PlatformsService } from './../../_services/platform.service';
-import { FooterService } from './../../_services/footer.service';
+import { PlatformsService } from '../../_service/platform.service';
+import { FooterService } from '../../_service/footer.service';
 
 // Model
-import { Platform } from './../../_models/platform';
+import { Platform } from '../../_model/platform';
 
 @Component({
     moduleId: module.id,
@@ -21,6 +21,8 @@ import { Platform } from './../../_models/platform';
 export class PlatformsListingComponent implements OnInit {
 
     platforms: Object[] = [];
+
+    private dialogRef: MdDialogRef<any>;
 
     constructor(public dialog: MdDialog, private platformsService: PlatformsService, footerService: FooterService) {
 
@@ -34,16 +36,17 @@ export class PlatformsListingComponent implements OnInit {
 
     }
 
-    loadTable(){
+    loadTable() {
 
         this.platformsService.getPlatforms().subscribe(
+
             (platforms: Platform[]) => {
+
                 this.platforms = platforms;
-        }), erro => console.log(erro);
+
+        }, erro => console.log(erro));
 
     }
-
-    dialogRef: MdDialogRef<any>;
 
     open(message: string, id: number) {
 
@@ -57,14 +60,15 @@ export class PlatformsListingComponent implements OnInit {
 
         this.dialogRef.afterClosed().subscribe(result => {
 
-            if(result) {
+            if (result) {
 
                 this.platformsService.deletePlatform(id).subscribe(
+
                     (platform: Platform[]) => {
 
-                     console.log(platform);
+                        console.log(platform);
 
-                    this.loadTable();
+                        this.loadTable();
 
                 });
 

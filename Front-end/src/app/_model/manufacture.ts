@@ -1,4 +1,4 @@
-export class Platform {
+export class Manufacture {
     id: number;
     name: string;
     image: string;

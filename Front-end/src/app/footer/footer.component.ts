@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 
 // Service
-import { FooterService } from './../_services/footer.service';
+import { FooterService } from '../_service/footer.service';
 
 @Component({
     moduleId: module.id,
@@ -10,6 +10,7 @@ import { FooterService } from './../_services/footer.service';
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.css']
 })
+
 export class FooterComponent implements OnInit {
 
     fix = false;

@@ -8,7 +8,7 @@ import { PlatformEditComponent } from './edit/platform-edit.component';
 import { PlatformComponent } from './platform.component';
 
 // Guard (Child)
-import { AuthChildGuard } from './../_guards/auth-child-guard';
+import { AuthChildGuard } from '../_guard/auth-child-guard';
 
 const platformRoutes: Routes = [
 

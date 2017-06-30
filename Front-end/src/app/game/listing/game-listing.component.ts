@@ -3,14 +3,14 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import {Component, OnInit} from '@angular/core';
 
 // Directive
-import { DialogComponent } from './../../_directives/dialog/dialog.component';
+import { DialogComponent } from '../../_directive/dialog/dialog.component';
 
 // Service
-import { FooterService } from './../../_services/footer.service';
-import { GameService } from './../../_services/game.service';
+import { FooterService } from '../../_service/footer.service';
+import { GameService } from '../../_service/game.service';
 
 // Model
-import { Game } from './../../_models/game';
+import { Game } from '../../_model/game';
 
 @Component({
     moduleId: module.id,
@@ -19,8 +19,9 @@ import { Game } from './../../_models/game';
     styleUrls: [ './game-listing.component.css' ]
 })
 export class GamesListingComponent implements OnInit {
-
     games: Game[] = [];
+
+    private dialogRef: MdDialogRef<any>;
 
     constructor(public dialog: MdDialog, private gameService: GameService, footerService: FooterService) {
 
@@ -34,16 +35,19 @@ export class GamesListingComponent implements OnInit {
 
     }
 
-    loadTable(){
+    loadTable() {
 
         this.gameService.getGames().subscribe(
+
             (games: Game[]) => {
+
                 this.games = games;
-        }), erro => console.log(erro);
+
+                console.log(games);
+
+        }, (error: any) => console.log(error));
 
     }
-
-    dialogRef: MdDialogRef<any>;
 
     open(message: string, id: number) {
 
@@ -57,16 +61,15 @@ export class GamesListingComponent implements OnInit {
 
         this.dialogRef.afterClosed().subscribe(result => {
 
-            if(result) {
+            if (result) {
 
-                this.gameService.deleteGame(id).subscribe(games => {
+                this.gameService.deleteGame(id).subscribe(
 
-                    console.log(games);
+                    (games) => {
 
                     this.loadTable();
 
                 });
-
 
             }
 

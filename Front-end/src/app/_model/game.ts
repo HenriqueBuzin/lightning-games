@@ -1,3 +1,7 @@
+// Models
+import { Manufacture } from './manufacture';
+import { Platform } from './platform';
+
 export class Game {
     id: number;
     name: string;
@@ -6,6 +10,7 @@ export class Game {
     quantity: number;
     production: boolean;
     image: string;
+    manufacture: Manufacture;
+    platform: Platform;
     description: string;
-    platform: string;
 }

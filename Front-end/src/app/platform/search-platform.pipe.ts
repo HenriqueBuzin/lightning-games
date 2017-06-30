@@ -2,7 +2,7 @@
 import { Pipe , PipeTransform } from '@angular/core';
 
 // Model
-import { Platform } from './../_models/platform';
+import { Platform } from '../_model/platform';
 
 @Pipe({
     name: 'searchPlatform',

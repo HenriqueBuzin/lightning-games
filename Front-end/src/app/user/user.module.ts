@@ -9,10 +9,10 @@ import { UserEditComponent } from './edit/user-edit.component';
 import { UserComponent } from './user.component';
 
 // Service
-import { UserService } from './../_services/user.service';
+import { UserService } from '../_service/user.service';
 
 // Directives
-import { FormControlModule } from './../_directives/form-control/form-control.module';
+import { FormControlModule } from '../_directive/form-control/form-control.module';
 
 // Pipe
 import { SearchUserPipe } from './search-user.pipe';

@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 
 // Service
-import { AuthService } from './../_services/auth.service';
+import { AuthService } from '../_service/auth.service';
 
 @Component({
     moduleId: module.id,
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
 
     menu = false;
 
-    constructor(private authService: AuthService){ }
+    constructor(private authService: AuthService) { }
 
     ngOnInit() {
 
@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
 
     }
 
-    logout(){
+    logout() {
 
         this.authService.logout();
 

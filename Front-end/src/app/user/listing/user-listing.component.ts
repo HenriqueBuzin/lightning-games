@@ -4,14 +4,14 @@ import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 
 // Directive
-import { DialogComponent } from './../../_directives/dialog/dialog.component';
+import { DialogComponent } from '../../_directive/dialog/dialog.component';
 
 // Service
-import { FooterService } from './../../_services/footer.service';
-import { UserService } from './../../_services/user.service';
+import { FooterService } from '../../_service/footer.service';
+import { UserService } from '../../_service/user.service';
 
 // Model
-import { User } from './../../_models/user';
+import { User } from '../../_model/user';
 
 @Component({
     moduleId: module.id,
@@ -22,6 +22,8 @@ import { User } from './../../_models/user';
 export class UsersListingComponent implements OnInit {
 
     users: User[] = [];
+
+    private dialogRef: MdDialogRef<any>;
 
     constructor(public dialog: MdDialog, private userService: UserService, footerService: FooterService) {
 
@@ -35,7 +37,7 @@ export class UsersListingComponent implements OnInit {
 
     }
 
-    loadTable(){
+    loadTable() {
 
         this.userService.getUsers().subscribe(
 
@@ -43,11 +45,11 @@ export class UsersListingComponent implements OnInit {
 
                 this.users = users;
 
-        }), (error: Response) => console.log(error);
+                console.log(users);
+
+        }, (error: Response) => console.log(error));
 
     }
-
-    dialogRef: MdDialogRef<any>;
 
     open(message: string, id: number) {
 
@@ -61,7 +63,7 @@ export class UsersListingComponent implements OnInit {
 
         this.dialogRef.afterClosed().subscribe(result => {
 
-            if(result) {
+            if (result) {
 
                 this.userService.deleteUser(id).subscribe(
 

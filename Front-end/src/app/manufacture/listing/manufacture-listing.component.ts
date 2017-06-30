@@ -3,14 +3,14 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 
 // Directives
-import { DialogComponent } from './../../_directives/dialog/dialog.component';
+import { DialogComponent } from '../../_directive/dialog/dialog.component';
 
 // Service
-import { ManufactureService } from './../../_services/manufacture.service';
-import { FooterService } from './../../_services/footer.service';
+import { ManufactureService } from '../../_service/manufacture.service';
+import { FooterService } from '../../_service/footer.service';
 
 // Manufacture
-import { Manufacture } from './../../_models/manufacture';
+import { Manufacture } from '../../_model/manufacture';
 
 @Component({
     moduleId: module.id,
@@ -21,6 +21,8 @@ import { Manufacture } from './../../_models/manufacture';
 export class ManufacturesListingComponent implements OnInit {
 
     manufactures: Manufacture[] = [];
+
+    private dialogRef: MdDialogRef<any>;
 
     constructor(public dialog: MdDialog, private manufacturesService: ManufactureService, footerService: FooterService) {
 
@@ -34,16 +36,14 @@ export class ManufacturesListingComponent implements OnInit {
 
     }
 
-    loadTable(){
+    loadTable() {
 
         this.manufacturesService.getManufactures().subscribe(
             (manufactures: Manufacture[]) => {
                 this.manufactures = manufactures;
-        }), erro => console.log(erro);
+        }, erro => console.log(erro));
 
     }
-
-    dialogRef: MdDialogRef<any>;
 
     open(message: string, id: number) {
 
@@ -57,7 +57,7 @@ export class ManufacturesListingComponent implements OnInit {
 
         this.dialogRef.afterClosed().subscribe(result => {
 
-            if(result) {
+            if (result) {
 
                 this.manufacturesService.deleteManufacture(id).subscribe(
 
